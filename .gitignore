@@ -213,3 +213,13 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#output files
+*.lst
+*.o
+*.bin
+*.cof
+*.eep
+*.elf
+*.hex
+*.map
