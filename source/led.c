@@ -403,23 +403,23 @@ void led_check(uint8_t forward)
 void led_3lockupdate(uint8_t LEDstate)
 {
         if (LEDstate & LED_NUM) { // light up caps lock
-            led_on(LED_NUM_PIN);
+            led_on(LED_BLOCK_NUMLOCK);
         } else {
-            led_off(LED_NUM_PIN);
+            led_off(LED_BLOCK_NUMLOCK);
         }
         if (LEDstate & LED_CAPS) { // light up caps lock
-            led_on(LED_CAP_PIN);
+            led_on(LED_BLOCK_CAPSLOCK);
             if (led_mode == LED_EFFECT_FULLCAPS)
                 led_on(LED_BLOCK_FULL);
         } else {
-            led_off(LED_CAP_PIN);
+            led_off(LED_BLOCK_CAPSLOCK);
             if (led_mode == LED_EFFECT_FULLCAPS)
                 led_off(LED_BLOCK_FULL);
         }
         if (LEDstate & LED_SCROLL) { // light up caps lock
-            led_on(LED_SCR_PIN);
+            led_on(LED_BLOCK_SCROLLOCK);
         } else {
-            led_off(LED_SCR_PIN);
+            led_off(LED_BLOCK_SCROLLOCK);
         }
 }
 
