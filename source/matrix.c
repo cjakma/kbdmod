@@ -18,7 +18,8 @@
 #include "matrix.h"
 #include "eepaddress.h"
 
-int16_t scankeycnt = 0;
+int16_t scankeycntms = 0;
+
 
 // for KEY_BEYOND_FN;
 static uint8_t isBeyondFN = 0;	 //KEY_BEYOND_FN
@@ -33,6 +34,8 @@ uint8_t svkeyidx[MAX_COL][MAX_ROW];
 
 uint8_t matrixFN;           // (col << 4 | row)
 uint8_t layer = 0;
+uint8_t kbdsleepmode = 0;
+uint8_t ledPortBackup = 0;
 
 
 extern int8_t usbmode;
@@ -175,9 +178,14 @@ static uint8_t scanmatrix(void)
 
 	uint8_t matrixState = 0;
 
-    if (scankeycnt++ >= 5000)
+    if (scankeycntms++ >= 60000)
     {
-        scankeycnt--;
+        scankeycntms--;
+        kbdsleepmode = 1;
+        led_mode = LED_EFFECT_OFF;
+        timer1PWMBSet((uint16_t)(0));
+        timer1PWMBOn();
+        led_off(LED_BLOCK_ALL);
     }
     
 

@@ -46,10 +46,10 @@ LED_MODE led_mode = LED_EFFECT_FADING;
 static int16_t pushedLevelStay;
 static uint8_t pushedLevel;
 static uint16_t pushedLevelDuty;
+uint8_t LEDstate;     ///< current state of the LEDs
 
-extern int16_t scankeycnt;
-
-
+extern int16_t scankeycntms;
+extern uint8_t kbdsleepmode;
 
 void led_off(LED_BLOCK block)
 {
@@ -270,7 +270,14 @@ void led_blink(int matrixState)
                 default :
                     break;
             }
-            scankeycnt = 0;      
+            scankeycntms = 0;
+            if (kbdsleepmode == 1)
+            {
+                led_mode_init();
+                led_3lockupdate(LEDstate);
+                kbdsleepmode = 0;
+            }
+             
         }else{          // none of keys is pushed
             switch(ledmode[ledblock])
                  {
@@ -294,7 +301,7 @@ void led_fader(void)
     LED_BLOCK ledblock;
     for (ledblock = LED_BLOCK_ESC; ledblock<LED_BLOCK_ALL; ledblock++)
     {
-        if((ledmode[ledblock] == LED_EFFECT_FADING) || ((ledmode[ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycnt > 1000)))
+        if((ledmode[ledblock] == LED_EFFECT_FADING) || ((ledmode[ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
         {
             if(pwmDir[ledblock]==0)
             {
@@ -391,6 +398,31 @@ void led_check(uint8_t forward)
     _delay_ms(100);
     led_off(LED_BLOCK_ALL);
 }
+
+
+void led_3lockupdate(uint8_t LEDstate)
+{
+        if (LEDstate & LED_NUM) { // light up caps lock
+            led_on(LED_NUM_PIN);
+        } else {
+            led_off(LED_NUM_PIN);
+        }
+        if (LEDstate & LED_CAPS) { // light up caps lock
+            led_on(LED_CAP_PIN);
+            if (led_mode == LED_EFFECT_FULLCAPS)
+                led_on(LED_BLOCK_FULL);
+        } else {
+            led_off(LED_CAP_PIN);
+            if (led_mode == LED_EFFECT_FULLCAPS)
+                led_off(LED_BLOCK_FULL);
+        }
+        if (LEDstate & LED_SCROLL) { // light up caps lock
+            led_on(LED_SCR_PIN);
+        } else {
+            led_off(LED_SCR_PIN);
+        }
+}
+
 
 void led_mode_init(void)
 {

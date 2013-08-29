@@ -273,32 +273,29 @@ int processRX(void)
             // Reflect LED states to PD0~2
             // scroll lock
             if(rxed & 0x01){
-                led_on(LED_BLOCK_SCROLLOCK);
+                LEDstate |= LED_SCROLL;
             }else{          
-                led_off(LED_BLOCK_SCROLLOCK);
+                LEDstate &= ~LED_SCROLL;
             }
     
             // num lock
             if(rxed & 0x02){
-                led_on(LED_BLOCK_NUMLOCK);
+                LEDstate |= LED_NUM;
             }else{
-                led_off(LED_BLOCK_NUMLOCK);
+                LEDstate &= ~LED_NUM;
             }
             
             // capslock
             if(rxed & 0x04)
             {
-                led_on(LED_BLOCK_CAPSLOCK);
-                if (led_mode == LED_EFFECT_FULLCAPS)
-                    led_on(LED_BLOCK_FULL);
+                LEDstate |= LED_CAPS;
             }
             else
             {
-                led_off(LED_BLOCK_CAPSLOCK);
-                if (led_mode == LED_EFFECT_FULLCAPS)
-                    led_off(LED_BLOCK_FULL);
+                LEDstate &= ~LED_CAPS;
             }
     
+            led_3lockupdate(LEDstate);
             tx_state(0xFA, STA_NORMAL);
             break;
 

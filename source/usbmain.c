@@ -47,12 +47,6 @@ static uint8_t idleRate = 0;        ///< in 4ms units
 static uint8_t protocolVer = 1; ///< 0 = boot protocol, 1 = report protocol
 uint8_t expectReport = 0;       ///< flag to indicate if we expect an USB-report
 
-#define LED_NUM     0x01  ///< num LED on a boot-protocol keyboard
-#define LED_CAPS    0x02  ///< caps LED on a boot-protocol keyboard
-#define LED_SCROLL  0x04  ///< scroll LED on a boot-protocol keyboard
-#define LED_COMPOSE 0x08  ///< compose LED on a boot-protocol keyboard
-#define LED_KANA    0x10  ///< kana LED on a boot-protocol keyboard
-uint8_t LEDstate = 0;     ///< current state of the LEDs
 
 /** USB report descriptor (length is defined in usbconfig.h). The report
  * descriptor has been created with usb.org's "HID Descriptor Tool" which can
@@ -153,25 +147,7 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
 uint8_t usbFunctionWrite(uchar *data, uchar len) {
     if (expectReport && (len == 1)) {
         LEDstate = data[0]; // Get the state of all 5 LEDs
-        if (LEDstate & LED_NUM) { // light up caps lock
-            led_on(LED_BLOCK_NUMLOCK);
-        } else {
-            led_off(LED_BLOCK_NUMLOCK);
-        }
-        if (LEDstate & LED_CAPS) { // light up caps lock
-            led_on(LED_BLOCK_CAPSLOCK);
-            if (led_mode == LED_EFFECT_FULLCAPS)
-                led_on(LED_BLOCK_FULL);
-        } else {
-            led_off(LED_BLOCK_CAPSLOCK);
-            if (led_mode == LED_EFFECT_FULLCAPS)
-                led_off(LED_BLOCK_FULL);
-        }
-        if (LEDstate & LED_SCROLL) { // light up caps lock
-            led_on(LED_BLOCK_SCROLLOCK);
-        } else {
-            led_off(LED_BLOCK_SCROLLOCK);
-        }
+        led_3lockupdate(LEDstate);
     }
     expectReport = 0;
     return 0x01;
@@ -403,7 +379,6 @@ uint8_t bufcmp(uint8_t *s1, uint8_t *s2, uint8_t size)
 uint8_t cmpReportBuffer()
 {
     uint8_t result = 0;
-    uint8_t i;
     uint8_t *s1, *s2;
     uint8_t size;
 

@@ -68,12 +68,19 @@ typedef enum
     LED_EFFECT_NONE
 }LED_MODE;
 
+#define LED_NUM     0x01  ///< num LED on a boot-protocol keyboard
+#define LED_CAPS    0x02  ///< caps LED on a boot-protocol keyboard
+#define LED_SCROLL  0x04  ///< scroll LED on a boot-protocol keyboard
+#define LED_COMPOSE 0x08  ///< compose LED on a boot-protocol keyboard
+#define LED_KANA    0x10  ///< kana LED on a boot-protocol keyboard
 
 extern LED_MODE led_mode;
+extern uint8_t LEDstate;     ///< current state of the LEDs
 
 void led_blink(int matrixState);
 void led_fader(void);
 void led_check(uint8_t forward);
+void led_3lockupdate(uint8_t LEDstate);
 void led_mode_init(void);
 void led_mode_change (LED_BLOCK ledblock, int mode);
 void led_pushed_level_cal(void);
