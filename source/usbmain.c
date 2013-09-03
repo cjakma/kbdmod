@@ -442,20 +442,13 @@ uint8_t usbmain(void) {
 
     DEBUG_PRINT(("USB\n"));
     
-    wdt_enable(WDTO_1S);
     usbInit();
     usbDeviceDisconnect();  /* enforce re-enumeration, do this while interrupts are disabled! */
     _delay_ms(10);
     usbDeviceConnect();
     sei();
-
-
-
-    wdt_enable(WDTO_1S);
-
-
     
-//    led_on(LED_BLOCK_ALL);
+//    wdt_enable(WDTO_1S);
 
     while (1) {
         // main event loop

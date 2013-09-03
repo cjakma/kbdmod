@@ -70,19 +70,11 @@ void DPpullEn(uint8_t enable)
     {
         sbi(USB_LEVEL_SHIFT_PORT, USB_LEVEL_SHIFT_PIN);     // pullup
         cbi(USB_LEVEL_SHIFT_DDR, USB_LEVEL_SHIFT_PIN);      // INPUT
-
-        PORTD   = 0xC4; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(pull-up), D+(0)
-        DDRD    = 0x38; //3a // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
-
     }
     else
     {
         sbi(USB_LEVEL_SHIFT_DDR, USB_LEVEL_SHIFT_PIN);      // OUTPUT
         cbi(USB_LEVEL_SHIFT_PORT, USB_LEVEL_SHIFT_PIN);     // drive 0
-        
-        PORTD   = 0x87; // Zener(0), LED_SCR, LED_CAPS, LED_NUM (0ff), D-Data(pull-up), D+CLK(pull-up)
-        DDRD    = 0x78; //3a // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-Data(INPUT), D+CLK(INPUT)
-
     }
 }
 
@@ -149,8 +141,10 @@ int portInit(void)
 	PORTE	= 0xC7;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    off                         (11000111)
     DDRE	= 0x38;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    OUT                         (00111000)
 
-	PORTD	= 0xC4; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(pull-up), D+(0)
-    DDRD    = 0x38; //3a // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
+
+    PORTD   = 0x40; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(0), D+(0)
+    DDRD    = 0x3C; // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
+
     return 0;
 }
 
@@ -205,7 +199,6 @@ int main(void)
     timer3PWMInit(8);
 	keymap_init();
     led_mode_init();
-
 
     if(usbmode)
     {
