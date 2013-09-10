@@ -3,7 +3,7 @@
 #define SCAN_RELEASED       0x01 << 0
 #define SCAN_CHANGED        (SCAN_PUSHED | SCAN_RELEASED)
 
-#define DEBOUNCE_MAX        10           // 5ms at 12MHz XTAL
+#define DEBOUNCE_MAX        15           // 10 is 5ms at 12MHz XTAL
 
 
 extern void keymap_init(void);
