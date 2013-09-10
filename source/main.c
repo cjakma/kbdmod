@@ -23,8 +23,13 @@
 
 #define USB_LEVEL_SHIFT_PORT    PORTD
 #define USB_LEVEL_SHIFT_DDR     DDRD
-
 #define USB_LEVEL_SHIFT_PIN     6
+
+#define PS2_CLK_PULLUP_PORT    PORTD
+#define PS2_CLK_PULLUP_DDR     DDRD
+#define PS2_CLK_PULLUP_PIN     7
+
+
 
 #define INTERFACE_CHECK_TIME    5     // 50ms
 
@@ -70,11 +75,17 @@ void DPpullEn(uint8_t enable)
     {
         sbi(USB_LEVEL_SHIFT_PORT, USB_LEVEL_SHIFT_PIN);     // pullup
         cbi(USB_LEVEL_SHIFT_DDR, USB_LEVEL_SHIFT_PIN);      // INPUT
+
+        sbi(PS2_CLK_PULLUP_DDR, PS2_CLK_PULLUP_PIN);      // OUT
+        cbi(PS2_CLK_PULLUP_PORT, PS2_CLK_PULLUP_PIN);     // drive 0
     }
     else
     {
         sbi(USB_LEVEL_SHIFT_DDR, USB_LEVEL_SHIFT_PIN);      // OUTPUT
         cbi(USB_LEVEL_SHIFT_PORT, USB_LEVEL_SHIFT_PIN);     // drive 0
+        
+        sbi(PS2_CLK_PULLUP_PORT, PS2_CLK_PULLUP_PIN);     // pullup
+        cbi(PS2_CLK_PULLUP_DDR, PS2_CLK_PULLUP_PIN);      // INPUT
     }
 }
 
@@ -82,7 +93,7 @@ void DPpullEn(uint8_t enable)
 
 int portInit(void)
 {
-    // initialize matrix ports - cols, rows
+//  initialize matrix ports - cols, rows
 //    PA       0:7      col      (6, 7 reserved)
 //    PG       0:1      row 0, 1
 //               2         N/A
@@ -108,7 +119,7 @@ int portInit(void)
 //    4               LED_CAPS
 //    5               LED_SCR
 //    6               Zener Diode
-//    7               N/A
+//    7               D+ pull-up register
     
 //    PE
 //    0(PDI)         MOSI
@@ -135,15 +146,15 @@ int portInit(void)
     DDRG    = 0x00; // row 0, 1
 
 //  LED port
-	PORTB	= 0x0F;	// LED_VESEL, LED_BLOCK_PRT, LED_BLOCK_PAD, LED_BLOCK_WASD off         (00001111)
+	PORTB	= 0x0F;	// LED_VESEL, LED_BLOCK_PRT, LED_BLOCK_PAD, LED_BLOCK_WASD off          (00001111)
 	DDRB 	= 0xF0;	// LED_VESEL, LED_BLOCK_PRT, LED_BLOCK_PAD, LED_BLOCK_WASD OUT        (11110000)
 
-	PORTE	= 0xC7;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    off                         (11000111)
+	PORTE	= 0xC7;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    off                           (11000111)
     DDRE	= 0x38;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    OUT                         (00111000)
 
 
-    PORTD   = 0x40; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(0), D+(0)
-    DDRD    = 0x3C; // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
+    PORTD   = 0x40; // DPpull-up(Low), Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(0), D+(0)
+    DDRD    = 0xBC; // DPpull-up(OUT), Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
 
     return 0;
 }
