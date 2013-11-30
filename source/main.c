@@ -5,7 +5,6 @@
 #define KEYBD_EXTERN
 #include "global.h"
 #include "timer128.h"
-//#include "keysta.h"
 #include "keymap.h"
 #include "print.h"
 #include "led.h"
