@@ -448,15 +448,14 @@ uint8_t usbmain(void) {
     usbDeviceConnect();
     sei();
     
-//    wdt_enable(WDTO_1S);
+    wdt_enable(WDTO_500MS);
 
     while (1) {
         // main event loop
 
         if(interfaceReady == 0 && interfaceCount++ > 4000){
 			// move to ps/2
-		    usbmode = 0;
-			DEBUG_PRINT(("move to ps/2 \n"));
+		   while(1);
 			//break;
 		}
                 

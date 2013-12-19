@@ -76,7 +76,8 @@ typedef enum
 
 extern LED_MODE led_mode;
 extern uint8_t LEDstate;     ///< current state of the LEDs
-
+extern uint8_t ledmodeIndex;
+extern uint8_t ledmode[9][11];
 void led_blink(int matrixState);
 void led_fader(void);
 void led_check(uint8_t forward);

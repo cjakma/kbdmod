@@ -21,13 +21,50 @@ static uint8_t *const ledport[] = {LED_NUM_PORT, LED_CAP_PORT,LED_SCR_PORT, LED_
                                     LED_BLOCK_ESC_PORT,LED_BLOCK_Fx_PORT,LED_BLOCK_PAD_PORT, LED_BLOCK_FULL_PORT, 
                                     LED_BLOCK_WASD_PORT,LED_BLOCK_ARROW18_PORT, LED_BLOCK_ARROW30_PORT};
     
-static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN,LED_SCR_PIN, LED_PRT_PIN, 
+static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN, LED_SCR_PIN, LED_PRT_PIN, 
                                     LED_BLOCK_ESC_PIN,LED_BLOCK_Fx_PIN,LED_BLOCK_PAD_PIN,LED_BLOCK_FULL_PIN, 
                                     LED_BLOCK_WASD_PIN,LED_BLOCK_ARROW18_PIN, LED_BLOCK_ARROW30_PIN};
-#if 0
-static uint8_t ledmode[] = {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                            LED_EFFECT_FADING, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_ALWAYS, LED_EFFECT_PUSHED_LEVEL, 
-                            LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS};
+#if 1
+uint8_t ledmodeIndex;
+uint8_t ledmode[9][11] ={ 
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
+                    LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, 
+                    LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
+                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_OFF, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},
+                    
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+                    LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
+
+                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF}
+
+                    
+};
 
 #else
 static uint8_t ledmode[] = {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
@@ -43,9 +80,9 @@ static uint32_t pwmCounter[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 LED_MODE led_mode = LED_EFFECT_FADING;
 
-static int16_t pushedLevelStay;
-static uint8_t pushedLevel;
-static uint16_t pushedLevelDuty;
+static int16_t pushedLevelStay[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint8_t pushedLevel[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint16_t pushedLevelDuty[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint8_t LEDstate;     ///< current state of the LEDs
 
 extern int16_t scankeycntms;
@@ -255,7 +292,7 @@ void led_blink(int matrixState)
         
         if(matrixState & SCAN_DIRTY)      // 1 or more key is pushed
         {
-            switch(ledmode[ledblock])
+            switch(ledmode[ledmodeIndex][ledblock])
             {
 
                 case LED_EFFECT_FADING_PUSH_ON:
@@ -279,7 +316,7 @@ void led_blink(int matrixState)
             }
              
         }else{          // none of keys is pushed
-            switch(ledmode[ledblock])
+            switch(ledmode[ledmodeIndex][ledblock])
                  {
                      case LED_EFFECT_FADING_PUSH_ON:
                      case LED_EFFECT_PUSH_ON:
@@ -301,7 +338,7 @@ void led_fader(void)
     LED_BLOCK ledblock;
     for (ledblock = LED_BLOCK_ESC; ledblock<LED_BLOCK_ALL; ledblock++)
     {
-        if((ledmode[ledblock] == LED_EFFECT_FADING) || ((ledmode[ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
+        if((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING) || ((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
         {
             if(pwmDir[ledblock]==0)
             {
@@ -340,31 +377,31 @@ void led_fader(void)
        
             pwmCounter[ledblock]++;
 
-        }else if (ledmode[ledblock] == LED_EFFECT_PUSHED_LEVEL)
+        }else if (ledmode[ledmodeIndex][ledblock] == LED_EFFECT_PUSHED_LEVEL)
         {
     		// 일정시간 유지
 
-    		if(pushedLevelStay > 0){
-    			pushedLevelStay--;
+    		if(pushedLevelStay[ledblock] > 0){
+    			pushedLevelStay[ledblock]--;
     		}else{
     			// 시간이 흐르면 레벨을 감소 시킨다.
-    			if(pushedLevelDuty > 0){
+    			if(pushedLevelDuty[ledblock] > 0){
     				pwmCounter[ledblock]++;
     				if(pwmCounter[ledblock] >= speed[ledblock]){
     					pwmCounter[ledblock] = 0;			
-    					pushedLevelDuty--;
-    					pushedLevel = PUSHED_LEVEL_MAX - (255-pushedLevelDuty) / (255/PUSHED_LEVEL_MAX);
+    					pushedLevelDuty[ledblock]--;
+    					pushedLevel[ledblock] = PUSHED_LEVEL_MAX - (255-pushedLevelDuty[ledblock]) / (255/PUSHED_LEVEL_MAX);
     					/*if(pushedLevel_prev != pushedLevel){
     						DEBUG_PRINT(("---------------------------------decrease pushedLevel : %d, life : %d\n", pushedLevel, pushedLevelDuty));
     						pushedLevel_prev = pushedLevel;
     					}*/
     				}
     			}else{
-    				pushedLevel = 0;
+    				pushedLevel[ledblock] = 0;
     				pwmCounter[ledblock] = 0;
     			}
     		}
-    		led_wave_set(ledblock, pushedLevelDuty);
+    		led_wave_set(ledblock, pushedLevelDuty[ledblock]);
 
     	}else
         {
@@ -428,10 +465,10 @@ void led_mode_init(void)
 {
     LED_BLOCK ledblock;
 
-    led_mode = eeprom_read_byte(EEPADDR_LED_STATUS); 
+    ledmodeIndex = eeprom_read_byte(EEPADDR_LED_STATUS); 
     for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
     {
-        led_mode_change(ledblock, ledmode[ledblock]);
+        led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
     }
 }
 
@@ -455,21 +492,26 @@ void led_mode_change (LED_BLOCK ledblock, int mode)
             led_wave_on(ledblock);
             break;
         default :
-            ledmode[ledblock] = LED_EFFECT_FADING;
+            ledmode[ledmodeIndex][ledblock] = LED_EFFECT_FADING;
             break;
      }
-    eeprom_write_byte(EEPADDR_LED_STATUS, ledblock);
+    eeprom_write_byte(EEPADDR_LED_STATUS, ledmodeIndex);
 }
 
 
 void led_pushed_level_cal(void)
 {
+    LED_BLOCK ledblock;
 	// update pushed level
-	if(pushedLevel < PUSHED_LEVEL_MAX)
-	{
-		pushedLevelStay = 511;
-		pushedLevel++;
-		pushedLevelDuty = (255 * pushedLevel) / PUSHED_LEVEL_MAX;
+	
+    for (ledblock = LED_BLOCK_ESC; ledblock < LED_BLOCK_ALL; ledblock++)
+    { 
+        if(pushedLevel[ledblock] < PUSHED_LEVEL_MAX)
+        {
+            pushedLevelStay[ledblock] = 511;
+            pushedLevel[ledblock]++;
+            pushedLevelDuty[ledblock] = (255 * pushedLevel[ledblock]) / PUSHED_LEVEL_MAX;
+        }
 	}
 }
 

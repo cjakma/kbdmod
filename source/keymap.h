@@ -9,12 +9,19 @@
 #define MAX_COL     6
 #define MAX_ROW     18
 
-
 #define MAX_LAYER   8
 
 // Total 132 keys + one none
 #define NUM_KEY         172
 
+#define KEY_LED0        239
+#define KEY_LED1        240
+#define KEY_LED2        241
+#define KEY_LED3        242
+#define KEY_LED4        243
+#define KEY_LED5        244
+#define KEY_LED6        245
+#define KEY_LED7        246
 
 #define KEY_L0          247
 #define KEY_L1          248
@@ -24,7 +31,7 @@
 #define KEY_L5          252
 #define KEY_L6          253
 
-#define KEY_LED         254
+#define KEY_RESET       254
 #define KEY_FN          255
 
 
@@ -224,6 +231,6 @@ extern const uint8_t PROGMEM keycode_set2_make_break[];
 extern const uint8_t PROGMEM keycode_set2_extend[];
 extern const uint8_t PROGMEM keycode_set2_proc_shift[];
 extern const uint8_t PROGMEM keymap_code[MAX_LAYER][MAX_COL][MAX_ROW];
-
+extern uint8_t* keymap[MAX_LAYER];
 
 #endif

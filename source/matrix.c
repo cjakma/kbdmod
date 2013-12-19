@@ -1,7 +1,6 @@
 #define KEYBD_EXTERN
 #include "global.h"
 #include "timer128.h"
-//#include "keysta.h"
 #include "keymap.h"
 #include "print.h"
 #include "led.h"
@@ -56,8 +55,7 @@ static uint8_t findFNkey(void)
 		for(row=0;row<MAX_ROW;row++)
         {
 			keyidx = pgm_read_byte(&keymap_code[0][col][row]);
-			//keyidx = pgm_read_byte(&keymap_code[currentKeymap][row][col]);
-
+//            keyidx = pgm_read_byte(keymap[0]+(col*MAX_COL)+row);
 			if(keyidx == KEY_FN)
 			{
                 matrixFN = col << 4 | row;
@@ -98,24 +96,40 @@ void keymap_init(void)
     layer = eeprom_read_byte(EEPADDR_KEYLAYER);
     if (layer >= MAX_LAYER)
         layer = 0;
-
 }
 
 uint8_t processFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
+    uint8_t ledblock;
     switch(keyidx)
     {
-        case KEY_LED:
+        case KEY_LED0:
+        case KEY_LED1:
+        case KEY_LED2:
+        case KEY_LED3:
         {
-            if (led_mode >= LED_EFFECT_OFF)
+            ledmodeIndex = keyidx-KEY_LED0;
+            for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
             {
-                led_mode = LED_EFFECT_FADING;
-            }else{
-                led_mode++;
+                    led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
             }
-
-            led_mode_change(LED_BLOCK_ALL, led_mode);
+            retVal = 1;
+            break;
+        }
+            
+        case KEY_LED4:
+        case KEY_LED5:
+        case KEY_LED6:
+        case KEY_LED7:
+        {
+            ledmodeIndex ++;
+            if ((ledmodeIndex > 8) || (ledmodeIndex < 4))
+                ledmodeIndex = 4;
+            for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
+            {
+                    led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
+            }
             retVal = 1;
             break;
         }
@@ -131,6 +145,10 @@ uint8_t processFNkeys(uint8_t keyidx)
             retVal = 1;
             break;
 
+        case KEY_RESET:
+            while(1);
+            break;
+            
         default:
             break;
     }
@@ -284,10 +302,10 @@ uint8_t scankey(void)
 
   
     clearReportBuffer();
-	uint8_t keymap = getLayer(matrixFN);
+	uint8_t t_layer = getLayer(matrixFN);
 
 	// keymap changes detect
-	if(currentKeymap != keymap) {
+	if(currentKeymap != t_layer) {
 		//DEBUG_PRINT(("KEYMAP CHANGED FROM %d - %d, lastMAKE_SIZE = %d, lastMAKE_keyidx = %d\n", currentKeymap, keymap, lastMAKE_SIZE, lastMAKE_keyidx));
 	}
 	// debounce cleared => compare last matrix and current matrix
@@ -297,7 +315,9 @@ uint8_t scankey(void)
 		{
 			prev = MATRIX[row]&BV(col);
 			cur  = curMATRIX[row]&BV(col);
-			keyidx = pgm_read_byte(&keymap_code[keymap][col][row]);
+			keyidx = pgm_read_byte(&keymap_code[t_layer][col][row]);
+//            keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_COL)+row);
+
             if (keyidx == KEY_NONE || keyidx == KEY_FN)
                 continue;
 
@@ -325,7 +345,7 @@ uint8_t scankey(void)
 
                 }else if (prev && !cur)  //released
                 {
-                    if (keyidx != KEY_LED)  // ignore KEY_LED relaseasing
+                    if (keyidx != KEY_RESET)  // ignore KEY_LED relaseasing
                         putKey(svkeyidx[col][row], 0);
     			}
             }
@@ -334,7 +354,7 @@ uint8_t scankey(void)
 	
 	for(row=0; row<MAX_ROW; row++)
 		MATRIX[row] = curMATRIX[row];
-	currentKeymap = keymap;
+	currentKeymap = t_layer;
  
     retVal |= 1;
 	return retVal;

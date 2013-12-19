@@ -208,18 +208,21 @@ int main(void)
 	timer1PWMInit(8);
     timer3PWMInit(8);
 	keymap_init();
-    led_mode_init();
 
     if(usbmode)
     {
         
         led_check(1);
+        
+        led_mode_init();
         usbmain();
     }
     else
     {
         timer2IntEnable();
         led_check(0);
+        
+        led_mode_init();
         ps2main();
     }
     return 0;
