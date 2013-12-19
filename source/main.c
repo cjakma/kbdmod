@@ -197,34 +197,30 @@ int8_t checkInterface(void)
 
 int main(void)
 {
+   enable_printf();
+   portInit();
+   usbmode = checkInterface();
+   DPpullEn(usbmode);
 
-    enable_printf();
-    portInit();
-    usbmode = checkInterface();
-    DPpullEn(usbmode);
-    
-    timerInit();
-    timer0PWMInit(8);
-	timer1PWMInit(8);
-    timer3PWMInit(8);
-	keymap_init();
+   timerInit();
+   timer0PWMInit(8);
+   timer1PWMInit(8);
+   timer3PWMInit(8);
+   keymap_init();
 
-    if(usbmode)
-    {
-        
-        led_check(1);
-        
-        led_mode_init();
-        usbmain();
-    }
-    else
-    {
-        timer2IntEnable();
-        led_check(0);
-        
-        led_mode_init();
-        ps2main();
-    }
-    return 0;
+   if(usbmode)
+   {
+      led_check(1);
+      led_mode_init();
+      usbmain();
+   }
+   else
+   {
+      timer2IntEnable();
+      led_check(0);
+      led_mode_init();
+      ps2main();
+   }
+   return 0;
 }
 
