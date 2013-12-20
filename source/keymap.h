@@ -160,7 +160,6 @@ enum {
     KEY_KP_DOT,             //       Delete
     KEY_Europe2,             //       non-US \ and |
     KEY_APPS,		        // 102
-
     KEY_POWER_HID,
     KEY_KP_EQUAL,
     KEY_F13,
@@ -189,12 +188,46 @@ enum {
     KEY_FIND,
     KEY_MUTE_HID,
     
-    KEY_VOLUP,
+    KEY_VOLUP,      // 0x80
     KEY_VOLDN,
     KEY_KL_CAP,
     KEY_KL_NUM,
     KEY_KL_SCL,
-
+    KEY_KP_COMMA,
+    KEY_EQUAL_SIGN,
+    KEY_INTL1,
+    KEY_INTL2,
+    KEY_INTL3,
+    KEY_INTL4,
+    KEY_INTL5,
+    KEY_INTL6,
+    KEY_INTL7,
+    KEY_INTL8,
+    KEY_INTL9,
+    
+    KEY_HANJA,      // 0x90
+    KEY_HANGLE,
+    KEY_KATA,
+    KEY_HIRA,
+    KEY_LANG5,
+    KEY_LANG6,
+    KEY_LANG7,
+    KEY_LANG8,
+    KEY_LANG9,
+    KEY_ALT_ERASE,
+    KEY_SYSREQ,
+    KEY_CANCEL,
+    KEY_CLEAR,
+    KEY_PRIOR,
+    KEY_RETURN,
+    KEY_SPERATOR,
+    
+    KEY_OUT,        // 0xA0
+    KEY_OPER,
+    KEY_CLR_AGIN,
+    KEY_CRSEL,
+    KEY_EXCEL,
+    
 	 /* These are NOT standard USB HID - handled specially in decoding, 
      so they will be mapped to the modifier byte in the USB report */
 	KEY_Modifiers,
@@ -208,12 +241,112 @@ enum {
 	KEY_RGUI,     // 0x80
 	KEY_Modifiers_end,
 
+    KEY_00  = 0xB0,
+    KEY_000,
 
-	KEY_HANJA,	KEY_HANGLE,	KEY_POWER,	KEY_SLEEP,	KEY_WAKE,	KEY_EMAIL,
- 	KEY_WWW_SEARCH, KEY_WWW_HOME,	KEY_WWW_BACK,	KEY_WWW_FORWARD,	KEY_WWW_STOP,	KEY_WWW_REFRESH,	KEY_WWW_FAVORITE,	KEY_NEXT_TRK,	KEY_PREV_TRK,	KEY_STOP,
- 	KEY_PLAY,	KEY_MUTE,	KEY_VOL_UP,	KEY_VOL_DOWN,	KEY_MEDIA,	KEY_CALC,	KEY_MYCOM,	KEY_SCREENSAVE,	KEY_REC,	KEY_REWIND,
- 	KEY_MINIMIZE,	KEY_EJECT
+    KEY_Consumers,
+    KEY_NEXT_TRK,
+    KEY_PREV_TRK,
+    KEY_STOP,
+    KEY_PLAY,
+    KEY_MUTE,
+    KEY_BASS_BST,
+    KEY_LOUDNESS,
+    KEY_VOL_UP,
+    KEY_VOL_DOWN,
+    KEY_BASS_UP,
+    KEY_BASS_DN,
+    KEY_TRE_UP,
+    KEY_TRE_DN,
+    KEY_MEDIA_SEL,
+    KEY_MAIL,
+    KEY_CALC,
+    KEY_MYCOM,
+    KEY_WWW_SEARCH,
+    KEY_WWW_HOME,
+    KEY_WWW_BACK,
+    KEY_WWW_FORWARD,
+    KEY_WWW_STOP,
+    KEY_WWW_REFRESH,
+    KEY_WWW_FAVORITE,
+    KEY_EJECT,
+    KEY_SCREENSAVE,
+    KEY_REC,
+	KEY_REWIND,
+	KEY_MINIMIZE,
+
+    KEY_System,
+    KEY_POWER,
+    KEY_SLEEP,
+    KEY_WAKE,
+
 };
+
+/* Generic Desktop Page(0x01) - system power control */
+#define SYSTEM_POWER_DOWN       0x0081
+#define SYSTEM_SLEEP            0x0082
+#define SYSTEM_WAKE_UP          0x0083
+
+/* Consumer Page(0x0C)
+ * following are supported by Windows: http://msdn.microsoft.com/en-us/windows/hardware/gg463372.aspx
+ */
+#define AUDIO_MUTE              0x00E2
+#define AUDIO_VOL_UP            0x00E9
+#define AUDIO_VOL_DOWN          0x00EA
+#define TRANSPORT_NEXT_TRACK    0x00B5
+#define TRANSPORT_PREV_TRACK    0x00B6
+#define TRANSPORT_STOP          0x00B7
+#define TRANSPORT_STOP_EJECT    0x00CC
+#define TRANSPORT_PLAY_PAUSE    0x00CD
+/* application launch */
+#define AL_CC_CONFIG            0x0183
+#define AL_EMAIL                0x018A
+#define AL_CALCULATOR           0x0192
+#define AL_LOCAL_BROWSER        0x0194
+/* application control */
+#define AC_SEARCH               0x0221
+#define AC_HOME                 0x0223
+#define AC_BACK                 0x0224
+#define AC_FORWARD              0x0225
+#define AC_STOP                 0x0226
+#define AC_REFRESH              0x0227
+#define AC_BOOKMARKS            0x022A
+/* supplement for Bluegiga iWRAP HID(not supported by Windows?) */
+#define AL_LOCK                 0x019E
+#define TRANSPORT_RECORD        0x00B2
+#define TRANSPORT_REWIND        0x00B4
+#define TRANSPORT_EJECT         0x00B8
+#define AC_MINIMIZE             0x0206
+
+
+/* keycode to system usage */
+#define KEYCODE2SYSTEM(key) \
+    (key == KEY_POWER ? SYSTEM_POWER_DOWN : \
+    (key == KEY_SLEEP ? SYSTEM_SLEEP : \
+    (key == KEY_WAKE  ? SYSTEM_WAKE_UP : 0)))
+
+/* keycode to consumer usage */
+#define KEYCODE2CONSUMER(key) \
+    (key == KEY_MUTE       ?  AUDIO_MUTE : \
+    (key == KEY_VOL_UP     ?  AUDIO_VOL_UP : \
+    (key == KEY_VOL_DOWN   ?  AUDIO_VOL_DOWN : \
+    (key == KEY_NEXT_TRK ?  TRANSPORT_NEXT_TRACK : \
+    (key == KEY_PREV_TRK ?  TRANSPORT_PREV_TRACK : \
+    (key == KEY_STOP       ?  TRANSPORT_STOP : \
+    (key == KEY_EJECT      ?  TRANSPORT_STOP_EJECT : \
+    (key == KEY_PLAY ?  TRANSPORT_PLAY_PAUSE : \
+    (key == KEY_MEDIA_SEL     ?  AL_CC_CONFIG : \
+    (key == KEY_MAIL             ?  AL_EMAIL : \
+    (key == KEY_CALC       ?  AL_CALCULATOR : \
+    (key == KEY_MYCOM      ?  AL_LOCAL_BROWSER : \
+    (key == KEY_WWW_SEARCH       ?  AC_SEARCH : \
+    (key == KEY_WWW_HOME         ?  AC_HOME : \
+    (key == KEY_WWW_BACK         ?  AC_BACK : \
+    (key == KEY_WWW_FORWARD      ?  AC_FORWARD : \
+    (key == KEY_WWW_STOP         ?  AC_STOP : \
+    (key == KEY_WWW_REFRESH      ?  AC_REFRESH : \
+    (key == KEY_WWW_FAVORITE    ?  AC_BOOKMARKS : 0)))))))))))))))))))
+    
 
 
 #define KFLA_EXTEND 		0x01

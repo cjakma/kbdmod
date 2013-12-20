@@ -102,7 +102,7 @@ gps.o		: gps.c			gps.h		global.h
 $(TRG).o	: $(TRG).c		global.h
 keysta.o	: keysta.h		keysta.c
 keymap.o	: keymap.c		keymap.h
-
+usbmain.o 	: usbmain.c		usbconfig.h	usbdrv/usbdrv.c	usbdrv/usbdrv.h
 prog: all
 	avrdude -c USBasp -P usbasp -p atmega32 -U hfuse:w:0xD7:m -U lfuse:w:0x0E:m
 	avrdude -c USBasp -P usbasp -p atmega32 -U flash:w:main.hex:i
