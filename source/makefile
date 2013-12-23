@@ -16,23 +16,23 @@
 AVRLIB = ./avrlib
 
 ########### change this lines according to your project ##################
-#put the name of the target mcu here (at90s8515, at90s8535, attiny22, atmega603 etc.)
+#put the name of the TRG mcu here (at90s8515, at90s8535, attiny22, atmega603 etc.)
 #	MCU = atmega32
 #	MCU = atmega161
 	MCU = atmega128
 
 F_CPU = 12000000
 
-#put the name of the target file here (without extension)
-#  Your "target" file is your C source file that is at the top level of your code.
+#put the name of the TRG file here (without extension)
+#  Your "TRG" file is your C source file that is at the top level of your code.
 #  In other words, this is the file which contains your main() function.
 
 	TRG = kbdmodmx
 
 #put your C sourcefiles here 
-#  Here you must list any C source files which are used by your target file.
+#  Here you must list any C source files which are used by your TRG file.
 #  They will be compiled in the order you list them, so it's probably best
-#  to list $(TRG).c, your top-level target file, last.
+#  to list $(TRG).c, your top-level TRG file, last.
 
 	SRC = $(AVRLIB)/timer128.c \
 			usbdrv/usbdrv.c usbdrv/oddebug.c \
@@ -51,7 +51,7 @@ F_CPU = 12000000
 #additional libraries and object files to link
 #  Libraries and object files are collections of functions which have already been
 #  compiled.  If you have such files, list them here, and you will be able to use
-#  use the functions they contain in your target program.
+#  use the functions they contain in your TRG program.
 
 	LIB	=
 
@@ -60,7 +60,7 @@ F_CPU = 12000000
 
 #assembler flags
 	ASFLAGS = -Wa, -gstabs -DF_CPU=$(F_CPU)
-#target out
+#TRG out
 	OUT = $(TRG)
 #compiler flags
 	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes $(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst)
@@ -104,12 +104,12 @@ gps.o		: gps.c			gps.h		global.h
 $(TRG).o	: $(TRG).c		global.h
 keysta.o	: keysta.h		keysta.c
 keymap.o	: keymap.c		keymap.h
-matrix.o	: matrix/matrix.c	matrix/matrix.h
-led.o		: led/led.c		led/led.h
+matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h
+led/led.o		: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbconfig.h	usbdrv/usbdrv.c	usbdrv/usbdrv.h
 
 all:
-	rm -r $(TRG)
+	rm -rf $(TRG)
 	mkdir $(TRG)
 	mv *.lst $(TRG)
 	mv *.o $(TRG)
