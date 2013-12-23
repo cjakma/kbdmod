@@ -13,7 +13,7 @@
 # I've added some extra comments above several of the makefile fields which
 # you will have to deal with.
 
-AVRLIB = ../avrlib
+AVRLIB = ./avrlib
 
 ########### change this lines according to your project ##################
 #put the name of the target mcu here (at90s8515, at90s8535, attiny22, atmega603 etc.)
@@ -27,7 +27,7 @@ F_CPU = 12000000
 #  Your "target" file is your C source file that is at the top level of your code.
 #  In other words, this is the file which contains your main() function.
 
-	TRG = main
+	TRG = kbdmodmx
 
 #put your C sourcefiles here 
 #  Here you must list any C source files which are used by your target file.
@@ -35,10 +35,11 @@ F_CPU = 12000000
 #  to list $(TRG).c, your top-level target file, last.
 
 	SRC = $(AVRLIB)/timer128.c \
-			ps2main.c keysta.c \
-			usbmain.c usbdrv/usbdrv.c usbdrv/oddebug.c \
-			matrix.c led.c keymap.c \
-			$(TRG).c  \
+			usbdrv/usbdrv.c usbdrv/oddebug.c \
+			matrix/matrix.c matrix/keymap.c \
+			led/led.c \
+			usbmain.c ps2main.c keysta.c \
+			main.c  \
 
 #put additional assembler source file here
 #  The ASRC line allows you to list files which contain assembly code/routines that
@@ -55,13 +56,14 @@ F_CPU = 12000000
 	LIB	=
 
 #additional includes to compile
-	INC	= usbdrv
+	INC	= -Iusbdrv -Imatrix -Iled -Imacro
 
 #assembler flags
 	ASFLAGS = -Wa, -gstabs -DF_CPU=$(F_CPU)
-
+#target out
+	OUT = $(TRG)
 #compiler flags
-	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes -I$(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst)
+	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes $(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst)
 
 #linker flags
 	LDFLAGS = -Wl,-Map=$(TRG).map,--cref
@@ -102,8 +104,18 @@ gps.o		: gps.c			gps.h		global.h
 $(TRG).o	: $(TRG).c		global.h
 keysta.o	: keysta.h		keysta.c
 keymap.o	: keymap.c		keymap.h
+matrix.o	: matrix/matrix.c	matrix/matrix.h
+led.o		: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbconfig.h	usbdrv/usbdrv.c	usbdrv/usbdrv.h
-prog: all
-	avrdude -c USBasp -P usbasp -p atmega32 -U hfuse:w:0xD7:m -U lfuse:w:0x0E:m
-	avrdude -c USBasp -P usbasp -p atmega32 -U flash:w:main.hex:i
-	pause;
+
+all:
+	rm -r $(TRG)
+	mkdir $(TRG)
+	mv *.lst $(TRG)
+	mv *.o $(TRG)
+	mv *.bin $(TRG)
+	mv *.cof $(TRG)
+	mv *.eep $(TRG)
+	mv *.elf $(TRG)
+	mv *.hex $(TRG)
+	mv *.map $(TRG)
