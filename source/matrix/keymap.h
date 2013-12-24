@@ -12,7 +12,7 @@
 #define MAX_LAYER   8
 
 // Total 132 keys + one none
-#define NUM_KEY         172
+#define NUM_KEY         212
 
 #define KEY_LED0        239
 #define KEY_LED1        240
@@ -241,6 +241,7 @@ enum {
 	KEY_RGUI,     // 0x80
 	KEY_Modifiers_end,
 
+    KEY_RESERVED,
     KEY_00  = 0xB0,
     KEY_000,
 
@@ -279,7 +280,6 @@ enum {
     KEY_POWER,
     KEY_SLEEP,
     KEY_WAKE,
-
 };
 
 /* Generic Desktop Page(0x01) - system power control */

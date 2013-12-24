@@ -101,21 +101,25 @@ tsip.o		: tsip.c		tsip.h		global.h
 nmea.o		: nmea.c		nmea.h		global.h
 vt100.o		: vt100.c		vt100.h		global.h
 gps.o		: gps.c			gps.h		global.h
-$(TRG).o	: $(TRG).c		global.h
-keysta.o	: keysta.h		keysta.c
-keymap.o	: keymap.c		keymap.h
+main.o		: main.c		global.h	eepaddress.h	
+keysta.o	: keysta.c		keysta.h	common_inc.h
+matrix/keymap.o	: matrix/keymap.c	matrix/keymap.h		matrix/matrix.h		led/led.h	eepaddress.h
 matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h
-led/led.o		: led/led.c		led/led.h
-usbmain.o 	: usbmain.c		usbconfig.h	usbdrv/usbdrv.c	usbdrv/usbdrv.h
+led/led.o	: led/led.c		led/led.h
+usbmain.o 	: usbmain.c		usbmain.h 	usbconfig.h		matrix/matrix.h		usbdrv/usbdrv.h
+ps2main.o	: ps2main.c		keysta.h	matrix/keymap.h	matrix/matrix.h
+$(AVRLIB)/timer128.o	: $(AVRLIB)/timer128.c	$(AVRLIB)/timer128.h
+usbdrv/usbdrv.o	:	usbdrv/usbdrv.c		usbdrv/usbdrv.h	usbdrv/oddebug.h 
+usbdrv/oddebug.o :	usbdrv/oddebug.c 	usbdrv/oddebug.h
+usbdrv/usbdrvasm.o : usbdrv/usbdrvasm.asm usbdrv/usbdrvasm.S usbdrv/usbportability.h	usbdrv/usbdrv.h
 
 all:
-	rm -rf $(TRG)
-	mkdir $(TRG)
-	mv *.lst $(TRG)
-	mv *.o $(TRG)
-	mv *.bin $(TRG)
-	mv *.cof $(TRG)
-	mv *.eep $(TRG)
-	mv *.elf $(TRG)
-	mv *.hex $(TRG)
-	mv *.map $(TRG)
+#	rm -rf $(TRG)
+#	mkdir $(TRG)
+#	mv *.lst $(TRG)
+#	mv *.bin $(TRG)
+#	mv *.cof $(TRG)
+#	mv *.eep $(TRG)
+#	mv *.elf $(TRG)
+#	mv *.hex $(TRG)
+#	mv *.map $(TRG)

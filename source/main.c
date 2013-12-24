@@ -17,28 +17,15 @@
 #include <avr/wdt.h>
 #include <util/delay.h>     /* for _delay_ms() */
 
+#include "hwport.h"
 #include "usbdrv.h"
 #include "eepaddress.h"
-
-#define USB_LEVEL_SHIFT_PORT    PORTD
-#define USB_LEVEL_SHIFT_DDR     DDRD
-#define USB_LEVEL_SHIFT_PIN     6
-
-#define PS2_CLK_PULLUP_PORT    PORTD
-#define PS2_CLK_PULLUP_DDR     DDRD
-#define PS2_CLK_PULLUP_PIN     7
+#include "matrix.h"
 
 
-
-#define INTERFACE_CHECK_TIME    5     // 50ms
-
-
-int8_t usbmode = 1;
-
+int8_t usbmode;
 extern uint8_t usbmain(void);
 extern uint8_t ps2main(void);
-
-
 
 
 #ifdef DEBUG
@@ -197,6 +184,7 @@ int8_t checkInterface(void)
 
 int main(void)
 {
+    
    enable_printf();
    portInit();
    usbmode = checkInterface();

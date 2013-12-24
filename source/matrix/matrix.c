@@ -13,25 +13,19 @@
 #include <avr/wdt.h>
 #include <util/delay.h>     /* for _delay_ms() */
 
+#include "hwport.h"
 #include "usbdrv.h"
 #include "matrix.h"
 #include "eepaddress.h"
 
 int16_t scankeycntms = 0;
-
-
-// for KEY_BEYOND_FN;
-static uint8_t isBeyondFN = 0;	 //KEY_BEYOND_FN
-
-static uint8_t currentKeymap=0;
-
 	
 // 17*8 bit matrix
 uint8_t MATRIX[MAX_ROW];
 uint8_t curMATRIX[MAX_ROW];
 uint8_t svkeyidx[MAX_COL][MAX_ROW];
 
-uint8_t matrixFN;           // (col << 4 | row)
+uint8_t matrixFN[MAX_LAYER];           // (col << 4 | row)
 uint8_t layer = 0;
 uint8_t kbdsleepmode = 0;
 uint8_t ledPortBackup = 0;
@@ -46,22 +40,22 @@ extern void putKey(uint8_t keyidx, uint8_t isPushed);
 
 static uint8_t findFNkey(void)
 {
-    uint8_t matrixFN;
     uint8_t col, row;
     uint8_t keyidx;
-    
-	for(col=0;col<MAX_COL;col++)
-	{
-		for(row=0;row<MAX_ROW;row++)
-        {
-			keyidx = pgm_read_byte(&keymap_code[0][col][row]);
-//            keyidx = pgm_read_byte(keymap[0]+(col*MAX_COL)+row);
-			if(keyidx == KEY_FN)
-			{
-                matrixFN = col << 4 | row;
-                return matrixFN ;
-			}
-		}
+    uint8_t i;
+    for(i = 0; i < MAX_LAYER; i++)
+    {
+    	for(col=0;col<MAX_COL;col++)
+    	{
+    		for(row=0;row<MAX_ROW;row++)
+            {
+                keyidx = pgm_read_byte(keymap[i]+(col*MAX_ROW)+row);
+    			if(keyidx == KEY_FN)
+    			{
+                    matrixFN[i] = col << 5 | row;
+    			}
+    		}
+        }
     }
     return 0;
 }
@@ -70,6 +64,11 @@ static uint8_t findFNkey(void)
 void keymap_init(void) 
 {
 	int i, keyidx;
+
+    for(i=0; i<MAX_LAYER; i++)
+    {
+        keymap[i] = &keymap_code[i][0][0];
+    }
 
 	// set zero for every flags
 	for(i=0;i<NUM_KEY;i++)
@@ -91,8 +90,8 @@ void keymap_init(void)
 	for(i=0;i<MAX_ROW;i++)
 		MATRIX[i]=0;
     
-    matrixFN = findFNkey();
-    
+    findFNkey();
+
     layer = eeprom_read_byte(EEPADDR_KEYLAYER);
     if (layer >= MAX_LAYER)
         layer = 0;
@@ -112,7 +111,7 @@ uint8_t processFNkeys(uint8_t keyidx)
             ledmodeIndex = keyidx-KEY_LED0;
             for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
             {
-                    led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
+                led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
             }
             retVal = 1;
             break;
@@ -146,7 +145,7 @@ uint8_t processFNkeys(uint8_t keyidx)
             break;
 
         case KEY_RESET:
-            while(1);
+            Reset_AVR();
             break;
             
         default:
@@ -162,8 +161,8 @@ uint8_t getLayer(uint8_t FNcolrow)
     uint8_t row;
     uint8_t cur;
     
-    col = (FNcolrow >> 4) & 0x0f;
-    row = FNcolrow & 0x0f;
+    col = (FNcolrow >> 5) & 0x0f;
+    row = FNcolrow & 0x1f;
 	
 	DDRA  = BV(col);
 	PORTA = ~BV(col);
@@ -302,12 +301,8 @@ uint8_t scankey(void)
 
   
     clearReportBuffer();
-	uint8_t t_layer = getLayer(matrixFN);
+	uint8_t t_layer = getLayer(matrixFN[layer]);
 
-	// keymap changes detect
-	if(currentKeymap != t_layer) {
-		//DEBUG_PRINT(("KEYMAP CHANGED FROM %d - %d, lastMAKE_SIZE = %d, lastMAKE_keyidx = %d\n", currentKeymap, keymap, lastMAKE_SIZE, lastMAKE_keyidx));
-	}
 	// debounce cleared => compare last matrix and current matrix
 	for(col=0;col<MAX_COL;col++)
 	{
@@ -315,12 +310,10 @@ uint8_t scankey(void)
 		{
 			prev = MATRIX[row]&BV(col);
 			cur  = curMATRIX[row]&BV(col);
-			keyidx = pgm_read_byte(&keymap_code[t_layer][col][row]);
-//            keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_COL)+row);
+            keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
 
             if (keyidx == KEY_NONE || keyidx == KEY_FN)
                 continue;
-
 
  
             if (!prev && cur)   //pushed
@@ -354,7 +347,6 @@ uint8_t scankey(void)
 	
 	for(row=0; row<MAX_ROW; row++)
 		MATRIX[row] = curMATRIX[row];
-	currentKeymap = t_layer;
  
     retVal |= 1;
 	return retVal;

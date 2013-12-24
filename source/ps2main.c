@@ -1,12 +1,5 @@
 #define KEYBD_EXTERN
 
-#include "timer128.h"
-#include "keysta.h"
-#include "print.h"
-#include "keymap.h"
-#include "led.h"
-#include "matrix.h"
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
@@ -15,6 +8,13 @@
 #include <avr/wdt.h>
 #include <util/delay.h>     /* for _delay_ms() */
 
+#include "timer128.h"
+#include "keysta.h"
+#include "print.h"
+
+#include "keymap.h"
+#include "led.h"
+#include "matrix.h"
 
 #define STA_NORMAL              0
 #define STA_RXCHAR              1
@@ -77,8 +77,6 @@ static long TYPEMATIC_REPEAT=5;
 
 
 extern uint8_t MATRIX[];
-extern int8_t usbmode;
-extern unsigned char matrixFN;           // (col << 4 | row)
 // Queue operation -> push, pop
 void push(uint8_t item) {
 	static uint8_t record=0;

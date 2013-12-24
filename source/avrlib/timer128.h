@@ -268,6 +268,9 @@ long timer2GetOverflowCount(void);
 // NOTE: the PWM frequency can be controlled in increments by setting the
 //			prescaler for timer1
 
+void timer0PWMInit(u08 bitRes);     ///< initialize and set timer0 mode to PWM
+
+
 void timer1PWMInit(u08 bitRes);		///< initialize and set timer1 mode to PWM
 void timer1PWMInitICR(u16 topcount);///< initialize and set timer1 mode to PWM with specific top count
 void timer1PWMOff(void);			///< turn off all timer1 PWM output and set timer mode to normal

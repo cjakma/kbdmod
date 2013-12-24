@@ -13,19 +13,21 @@ const uint8_t PROGMEM keycode_set2[NUM_KEY] =	{
     0x48, 0x50, 0x57, 0x5f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,     // KEY_F21  (0x70)
     0x00, 0x00, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x51, 0x13, 0x6A, 0x64, 0x67, 0x27, 0x00, 0x00, 0x00,     // KEY_VOLUP (0x80)
     0xF2, 0xF1, 0x63, 0x62, 0x5F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,     // KEY_HANJA (0x90)
-    0x00, 0x00, 0x00, 0x00,
-
-
-   		// KEY_Modifiers
-   	0x00, 
+    0x00, 0x00, 0x00, 0x00, 0x00,                                                                       // ~KEY_EXCEL (0xA4)
+   		
+   	0x00,                                                                                               // KEY_Modifiers (0xA5)
     0x14, 0x12, 0x11, 0x1F, 0x14, 0x59, 0x11, 0x27, 
-    0x00,		// KEY_Modifiers_end
-
+    0x00,		                                                                                        // KEY_Modifiers_end (0xAE)
+    0x00, 0x00, 0x00,                                                                                    // ~KEY_000(0xB1)
+    
     // now only for PS/2
-    0xF1, 0xF2, 0x37, 0x3F, 0x5E, 0x48, 0x10, 0x3A, 0x38, 0x30, 
-    0x28, 0x20, 0x18, 0x4D, 0x15, 0x3B, 0x34, 0x23, 0x32, 0x21, 
-    0x50, 0x2B, 0x40, 0x4B, 0x1C, 0x43, 0x22, 0x1D					// 141 keys
+    0X00,
+    0x4D, 0x15, 0x3B, 0x34, 0x23, 0x00, 0x00, 0x32, 0x21, 0x00, 0x00, 0x00, 0x00, 0x50, 0x48, 0x2B,
+    0x40, 0x10, 0x3A, 0x38, 0x30, 0x28, 0x20, 0x18,
 
+    0x00, 0x00, 0x00, 0x00, 0x00,
+
+    0x00, 0x37, 0x3F, 0x5E
 };
 
 // key information for each keys
@@ -60,8 +62,8 @@ const uint8_t PROGMEM keycode_set2_proc_shift[] =
  	KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_KP_SLASH,
 	KEY_NONE };
 
-uint8_t* keymap[MAX_LAYER] = {
-    (uint8_t*)0xE800,  (uint8_t*)0xE900,  (uint8_t*)0xEA00,  (uint8_t*)0xEB00,  (uint8_t*)0xEC00,  (uint8_t*)0xED00,  (uint8_t*)0xEE00,  (uint8_t*)0xEF00};
+uint8_t* keymap[MAX_LAYER]; // = {
+//    (uint8_t*)0xE800,  (uint8_t*)0xE900,  (uint8_t*)0xEA00,  (uint8_t*)0xEB00,  (uint8_t*)0xEC00,  (uint8_t*)0xED00,  (uint8_t*)0xEE00,  (uint8_t*)0xEF00};
 
 
 #ifdef MX3018
@@ -113,40 +115,40 @@ const uint8_t PROGMEM keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
         // LAYER 4 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
 		{ KEY_NEXT_TRK,
-    KEY_PREV_TRK,
-    KEY_STOP,
-    KEY_PLAY,
-    KEY_MUTE,
-    KEY_BASS_BST,
-    KEY_LOUDNESS,
-    KEY_VOL_UP,
-    KEY_VOL_DOWN,
-    KEY_BASS_UP,
-    KEY_BASS_DN,
-    KEY_TRE_UP,
-    KEY_TRE_DN,
-    KEY_MEDIA_SEL,
-    KEY_MAIL,
-    KEY_CALC,
-    KEY_MYCOM,
-    KEY_WWW_SEARCH,
-    }, // COL0
-		{KEY_WWW_HOME,
-    KEY_WWW_BACK,
-    KEY_WWW_FORWARD,
-    KEY_WWW_STOP,
-    KEY_WWW_REFRESH,
-    KEY_WWW_FAVORITE,
-    KEY_EJECT,
-    KEY_SCREENSAVE,
-    KEY_REC,
-	KEY_REWIND,
-	KEY_MINIMIZE,
+            KEY_PREV_TRK,
+            KEY_STOP,
+            KEY_PLAY,
+            KEY_MUTE,
+            KEY_BASS_BST,
+            KEY_LOUDNESS,
+            KEY_VOL_UP,
+            KEY_VOL_DOWN,
+            KEY_BASS_UP,
+            KEY_BASS_DN,
+            KEY_TRE_UP,
+            KEY_TRE_DN,
+            KEY_MEDIA_SEL,
+            KEY_MAIL,
+            KEY_CALC,
+            KEY_MYCOM,
+            KEY_WWW_SEARCH,
+            }, // COL0
+        		{KEY_WWW_HOME,
+            KEY_WWW_BACK,
+            KEY_WWW_FORWARD,
+            KEY_WWW_STOP,
+            KEY_WWW_REFRESH,
+            KEY_WWW_FAVORITE,
+            KEY_EJECT,
+            KEY_SCREENSAVE,
+            KEY_REC,
+        	KEY_REWIND,
+        	KEY_MINIMIZE,
 
-    KEY_System,
-    KEY_POWER,
-    KEY_SLEEP,
-    KEY_WAKE,KEY_WAKE,KEY_00,KEY_000,},  // COL1
+            KEY_System,
+            KEY_POWER,
+            KEY_SLEEP,
+            KEY_WAKE,KEY_WAKE,KEY_00,KEY_000,},  // COL1
 		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN},  // COL2
 		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE},  // COL3
 		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE},  // COL4

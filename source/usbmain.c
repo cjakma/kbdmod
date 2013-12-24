@@ -6,34 +6,20 @@
 #include "print.h"
 #include "led.h"
 
-#include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <stdio.h>
 #include <avr/eeprom.h>
-#include <avr/wdt.h>
 #include <util/delay.h>     /* for _delay_ms() */
 #include <string.h>
 
 #include "usbdrv.h"
 #include "matrix.h"
-
+#include "usbmain.h"
+#include "hwport.h"
 
 uint8_t interfaceReady = 0;
-extern int8_t usbmode;
-extern unsigned char matrixFN;           // (col << 4 | row)
 
-MODIFIERS modifierBitmap[] = {
-    MOD_NONE ,
-    MOD_CONTROL_LEFT ,
-    MOD_SHIFT_LEFT ,
-    MOD_ALT_LEFT ,
-    MOD_GUI_LEFT ,
-    MOD_CONTROL_RIGHT ,
-    MOD_SHIFT_RIGHT ,
-    MOD_ALT_RIGHT ,
-    MOD_GUI_RIGHT
-};
 
 /* ------------------------------------------------------------------------- */
 /* ----------------------------- USB interface ----------------------------- */
@@ -43,156 +29,17 @@ static uint8_t keyboardReport[8]; ///< buffer for HID reports
 static uint8_t oldReportBuffer[8]; ///< buufer for HID reports save on Overflower
 uint8_t reportIndex; // keyboardReport[0] contains modifiers
 
-typedef GNUC_PACKED struct report_extra{
-    uint8_t  report_id;
-    uint16_t usage;
-}report_extra_t;
+
 
 report_extra_t extraReport;
 report_extra_t oldextraReport;
 
-uint8_t extraReportUpdate;
 
 
 static uint8_t idleRate = 0;        ///< in 4ms units
 static uint8_t protocolVer = 1; ///< 0 = boot protocol, 1 = report protocol
 uint8_t expectReport = 0;       ///< flag to indicate if we expect an USB-report
 
-
-/*------------------------------------------------------------------*
- * Descriptors                                                      *
- *------------------------------------------------------------------*/
-
-/*
- * Report Descriptor for keyboard
- *
- * from an example in HID spec appendix
- */
-PROGMEM uchar keyboard_hid_report[] = {
-    0x05, 0x01,          // Usage Page (Generic Desktop),
-    0x09, 0x06,          // Usage (Keyboard),
-    0xA1, 0x01,          // Collection (Application),
-    0x75, 0x01,          //   Report Size (1),
-    0x95, 0x08,          //   Report Count (8),
-    0x05, 0x07,          //   Usage Page (Key Codes),
-    0x19, 0xE0,          //   Usage Minimum (224),
-    0x29, 0xE7,          //   Usage Maximum (231),
-    0x15, 0x00,          //   Logical Minimum (0),
-    0x25, 0x01,          //   Logical Maximum (1),
-    0x81, 0x02,          //   Input (Data, Variable, Absolute), ;Modifier byte
-    0x95, 0x01,          //   Report Count (1),
-    0x75, 0x08,          //   Report Size (8),
-    0x81, 0x03,          //   Input (Constant),                 ;Reserved byte
-    0x95, 0x05,          //   Report Count (5),
-    0x75, 0x01,          //   Report Size (1),
-    0x05, 0x08,          //   Usage Page (LEDs),
-    0x19, 0x01,          //   Usage Minimum (1),
-    0x29, 0x05,          //   Usage Maximum (5),
-    0x91, 0x02,          //   Output (Data, Variable, Absolute), ;LED report
-    0x95, 0x01,          //   Report Count (1),
-    0x75, 0x03,          //   Report Size (3),
-    0x91, 0x03,          //   Output (Constant),                 ;LED report padding
-    0x95, 0x06,          //   Report Count (6),
-    0x75, 0x08,          //   Report Size (8),
-    0x15, 0x00,          //   Logical Minimum (0),
-    0x25, 0xFF,          //   Logical Maximum(255),
-    0x05, 0x07,          //   Usage Page (Key Codes),
-    0x19, 0x00,          //   Usage Minimum (0),
-    0x29, 0xFF,          //   Usage Maximum (255),
-    0x81, 0x00,          //   Input (Data, Array),
-    0xc0                 // End Collection
-};
-
-
-/* report id */
-#define REPORT_ID_MOUSE     1
-#define REPORT_ID_SYSTEM    2
-#define REPORT_ID_CONSUMER  3
-
-
-/*
- * Report Descriptor for mouse
- *
- * Mouse Protocol 1, HID 1.11 spec, Appendix B, page 59-60, with wheel extension
- * http://www.microchip.com/forums/tm.aspx?high=&m=391435&mpage=1#391521
- * http://www.keil.com/forum/15671/
- * http://www.microsoft.com/whdc/device/input/wheel.mspx
- */
-PROGMEM uchar mouse_hid_report[] = {
-    /* mouse */
-    0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
-    0x09, 0x02,                    // USAGE (Mouse)
-    0xa1, 0x01,                    // COLLECTION (Application)
-    0x85, REPORT_ID_MOUSE,         //   REPORT_ID (1)
-    0x09, 0x01,                    //   USAGE (Pointer)
-    0xa1, 0x00,                    //   COLLECTION (Physical)
-                                   // ----------------------------  Buttons
-    0x05, 0x09,                    //     USAGE_PAGE (Button)
-    0x19, 0x01,                    //     USAGE_MINIMUM (Button 1)
-    0x29, 0x05,                    //     USAGE_MAXIMUM (Button 5)
-    0x15, 0x00,                    //     LOGICAL_MINIMUM (0)
-    0x25, 0x01,                    //     LOGICAL_MAXIMUM (1)
-    0x75, 0x01,                    //     REPORT_SIZE (1)
-    0x95, 0x05,                    //     REPORT_COUNT (5)
-    0x81, 0x02,                    //     INPUT (Data,Var,Abs)
-    0x75, 0x03,                    //     REPORT_SIZE (3)
-    0x95, 0x01,                    //     REPORT_COUNT (1)
-    0x81, 0x03,                    //     INPUT (Cnst,Var,Abs)
-                                   // ----------------------------  X,Y position
-    0x05, 0x01,                    //     USAGE_PAGE (Generic Desktop)
-    0x09, 0x30,                    //     USAGE (X)
-    0x09, 0x31,                    //     USAGE (Y)
-    0x15, 0x81,                    //     LOGICAL_MINIMUM (-127)
-    0x25, 0x7f,                    //     LOGICAL_MAXIMUM (127)
-    0x75, 0x08,                    //     REPORT_SIZE (8)
-    0x95, 0x02,                    //     REPORT_COUNT (2)
-    0x81, 0x06,                    //     INPUT (Data,Var,Rel)
-                                   // ----------------------------  Vertical wheel
-    0x09, 0x38,                    //     USAGE (Wheel)
-    0x15, 0x81,                    //     LOGICAL_MINIMUM (-127)
-    0x25, 0x7f,                    //     LOGICAL_MAXIMUM (127)
-    0x35, 0x00,                    //     PHYSICAL_MINIMUM (0)        - reset physical
-    0x45, 0x00,                    //     PHYSICAL_MAXIMUM (0)
-    0x75, 0x08,                    //     REPORT_SIZE (8)
-    0x95, 0x01,                    //     REPORT_COUNT (1)
-    0x81, 0x06,                    //     INPUT (Data,Var,Rel)
-                                   // ----------------------------  Horizontal wheel
-    0x05, 0x0c,                    //     USAGE_PAGE (Consumer Devices)
-    0x0a, 0x38, 0x02,              //     USAGE (AC Pan)
-    0x15, 0x81,                    //     LOGICAL_MINIMUM (-127)
-    0x25, 0x7f,                    //     LOGICAL_MAXIMUM (127)
-    0x75, 0x08,                    //     REPORT_SIZE (8)
-    0x95, 0x01,                    //     REPORT_COUNT (1)
-    0x81, 0x06,                    //     INPUT (Data,Var,Rel)
-    0xc0,                          //   END_COLLECTION
-    0xc0,                          // END_COLLECTION
-    /* system control */
-    0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
-    0x09, 0x80,                    // USAGE (System Control)
-    0xa1, 0x01,                    // COLLECTION (Application)
-    0x85, REPORT_ID_SYSTEM,        //   REPORT_ID (2)
-    0x15, 0x01,                    //   LOGICAL_MINIMUM (0x1)
-    0x25, 0xb7,                    //   LOGICAL_MAXIMUM (0xb7)
-    0x19, 0x01,                    //   USAGE_MINIMUM (0x1)
-    0x29, 0xb7,                    //   USAGE_MAXIMUM (0xb7)
-    0x75, 0x10,                    //   REPORT_SIZE (16)
-    0x95, 0x01,                    //   REPORT_COUNT (1)
-    0x81, 0x00,                    //   INPUT (Data,Array,Abs)
-    0xc0,                          // END_COLLECTION
-    /* consumer */
-    0x05, 0x0c,                    // USAGE_PAGE (Consumer Devices)
-    0x09, 0x01,                    // USAGE (Consumer Control)
-    0xa1, 0x01,                    // COLLECTION (Application)
-    0x85, REPORT_ID_CONSUMER,      //   REPORT_ID (3)
-    0x15, 0x01,                    //   LOGICAL_MINIMUM (0x1)
-    0x26, 0x9c, 0x02,              //   LOGICAL_MAXIMUM (0x29c)
-    0x19, 0x01,                    //   USAGE_MINIMUM (0x1)
-    0x2a, 0x9c, 0x02,              //   USAGE_MAXIMUM (0x29c)
-    0x75, 0x10,                    //   REPORT_SIZE (16)
-    0x95, 0x01,                    //   REPORT_COUNT (1)
-    0x81, 0x00,                    //   INPUT (Data,Array,Abs)
-    0xc0,                          // END_COLLECTION
-};
 
 
 
@@ -294,18 +141,18 @@ USB_PUBLIC usbMsgLen_t usbFunctionDescriptor(struct usbRequest *rq)
     switch (rq->wValue.bytes[1]) {
 #if USB_CFG_DESCR_PROPS_CONFIGURATION
         case USBDESCR_CONFIG:
-            usbMsgPtr = (unsigned char *)usbDescriptorConfiguration;
+            usbMsgPtr = (usbMsgPtr_t)usbDescriptorConfiguration;
             len = sizeof(usbDescriptorConfiguration);
             break;
 #endif
         case USBDESCR_HID:
             switch (rq->wValue.bytes[0]) {
                 case 0:
-                    usbMsgPtr = (unsigned char *)(usbDescriptorConfiguration + 9 + 9);
+                    usbMsgPtr = (usbMsgPtr_t)(usbDescriptorConfiguration + 9 + 9);
                     len = 9;
                     break;
                 case 1:
-                    usbMsgPtr = (unsigned char *)(usbDescriptorConfiguration + 9 + (9 + 9 + 7) + 9);
+                    usbMsgPtr = (usbMsgPtr_t)(usbDescriptorConfiguration + 9 + (9 + 9 + 7) + 9);
                     len = 9;
                     break;
             }
@@ -314,11 +161,11 @@ USB_PUBLIC usbMsgLen_t usbFunctionDescriptor(struct usbRequest *rq)
             /* interface index */
             switch (rq->wIndex.word) {
                 case 0:
-                    usbMsgPtr = keyboard_hid_report;
+                    usbMsgPtr = (usbMsgPtr_t)keyboard_hid_report;
                     len = sizeof(keyboard_hid_report);
                     break;
                 case 1:
-                    usbMsgPtr = mouse_hid_report;
+                    usbMsgPtr = (usbMsgPtr_t)mouse_hid_report;
                     len = sizeof(mouse_hid_report);
                     break;
             }
@@ -343,13 +190,13 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
     
 	interfaceReady = 1;
 
-    usbMsgPtr = keyboardReport;
+    usbMsgPtr = (usbMsgPtr_t)keyboardReport;
     if ((rq->bmRequestType & USBRQ_TYPE_MASK) == USBRQ_TYPE_CLASS) {
         // class request type
         if (rq->bRequest == USBRQ_HID_GET_REPORT) {
             // wValue: ReportType (highbyte), ReportID (lowbyte)
             // we only have one report type, so don't look at wValue
-            usbMsgPtr = (void *)keyboardReport;
+            usbMsgPtr = (usbMsgPtr_t)keyboardReport;
             return sizeof(keyboardReport);
         } else if (rq->bRequest == USBRQ_HID_SET_REPORT) {
             if (rq->wValue.word == 0x0200 && rq->wIndex.word == 0) {
@@ -358,7 +205,7 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
             }
             return 0xff; // Call usbFunctionWrite with data
         } else if (rq->bRequest == USBRQ_HID_GET_IDLE) {
-            usbMsgPtr = &idleRate;
+            usbMsgPtr = (usbMsgPtr_t)&idleRate;
             return 1;
         } else if (rq->bRequest == USBRQ_HID_SET_IDLE) {
             idleRate = rq->wValue.bytes[1];
@@ -368,7 +215,7 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
                 protocolVer = rq->wValue.bytes[1];
             }
         } else if(rq->bRequest == USBRQ_HID_SET_PROTOCOL) {
-            usbMsgPtr = &protocolVer;
+            usbMsgPtr = (usbMsgPtr_t)&protocolVer;
             return 1;
         }
     } else {
@@ -620,7 +467,7 @@ uint8_t bufcmp(uint8_t *s1, uint8_t *s2, uint8_t size)
 }
 
 
-uint8_t cmpReportBuffer()
+uint8_t cmpReportBuffer(void)
 {
     uint8_t result = 0;
     uint8_t *s1, *s2;
@@ -715,7 +562,7 @@ uint8_t usbmain(void) {
 
         if(interfaceReady == 0 && interfaceCount++ > 4000){
 			// move to ps/2
-		   while(1);
+		   Reset_AVR();
 			//break;
 		}
                 
@@ -723,47 +570,47 @@ uint8_t usbmain(void) {
         usbPoll();
 
         updateNeeded = scankey();   // changes?
-        extraReportUpdate = updateNeeded;
         if (updateNeeded == 0)      //debounce
             continue;
         
-
         if (idleRate == 0)                  // report only when the change occured
         {
             if (cmpReportBuffer() == 0)     // exactly same status?
             {
-                updateNeeded = 0;
+                updateNeeded &= ~(0x01);   // clear key report
             }
             if (bufcmp((uint8_t *)&oldextraReport, (uint8_t *)&extraReport, sizeof(extraReport)) == 0)
             {
-                extraReportUpdate = 0;
+                updateNeeded &= ~(0x04);    // clear consumer report
             }
         }
 
-        if (TIFR & (1 << TOV0)) {
+        if (TIFR & (1 << TOV0)) 
+        {
             TIFR = (1 << TOV0); // reset flag
-            if (idleRate != 0) { // do we need periodic reports?
-                if(idleCounter > 4){ // yes, but not yet
+            if (idleRate != 0) 
+            { // do we need periodic reports?
+                if(idleCounter > 4)
+                { // yes, but not yet
                     idleCounter -= 5; // 22ms in units of 4ms
-               } else { // yes, it is time now
-                    updateNeeded = 1;
+                }else 
+                { // yes, it is time now
+                    updateNeeded |= 0x01;
                     idleCounter = idleRate;
                 }
             }
         }
         // if an update is needed, send the report
       
-        if(updateNeeded  && usbInterruptIsReady())
+        if((updateNeeded & 0x01)  && usbInterruptIsReady())
         {
-            updateNeeded = 0;
             usbSetInterrupt(keyboardReport, sizeof(keyboardReport));
             saveReportBuffer();
         }
 
-        if(extraReportUpdate  && usbInterruptIsReady3())
+        if((updateNeeded & 0x04)  && usbInterruptIsReady3())
         {
-            extraReportUpdate = 0;
-            usbSetInterrupt3(&extraReport, sizeof(extraReport));
+            usbSetInterrupt3((uchar *)&extraReport, sizeof(extraReport));
             memcpy(&oldextraReport, &extraReport, sizeof(extraReport));
         }
 
