@@ -329,11 +329,17 @@ uint8_t scankey(void)
                     if(debounceMATRIX[col][row]++ >= DEBOUNCE_MAX)
                     {
                         retVal = buildHIDreports(keyidx);
-                        debounceMATRIX[col][row] = DEBOUNCE_MAX;
+                        debounceMATRIX[col][row] = DEBOUNCE_MAX*2;
                     }
                 }else
                 {
-                    debounceMATRIX[col][row] = 0;
+                    if(debounceMATRIX[col][row]-- >= DEBOUNCE_MAX)
+                    {
+                        retVal = buildHIDreports(keyidx);
+                    }else
+                    {
+                        debounceMATRIX[col][row] = 0;
+                    }
                 }
             }else
             {
