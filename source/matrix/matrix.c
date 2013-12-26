@@ -24,6 +24,7 @@ int16_t scankeycntms = 0;
 // 17*8 bit matrix
 uint32_t MATRIX[MAX_COL];
 uint32_t curMATRIX[MAX_COL];
+int8_t debounceMATRIX[MAX_COL][MAX_ROW];
 uint8_t svkeyidx[MAX_COL][MAX_ROW];
 
 uint8_t matrixFN[MAX_LAYER];           // (col << 4 | row)
@@ -67,7 +68,7 @@ static uint8_t findFNkey(void)
 
 void keymap_init(void) 
 {
-	int i, keyidx;
+	int i, j, keyidx;
 
     for(i=0; i<MAX_LAYER; i++)
     {
@@ -95,6 +96,14 @@ void keymap_init(void)
 		MATRIX[i]=0;
     
     findFNkey();
+
+	for(i=0;i<MAX_COL;i++)
+	{
+        for(j=0;j<MAX_ROW;j++)
+        {
+            debounceMATRIX[i][j] = -1;
+        }
+	}
 
     layer = eeprom_read_byte(EEPADDR_KEYLAYER);
     if (layer >= MAX_LAYER)
@@ -282,6 +291,7 @@ uint8_t scankey(void)
 
         prev = MATRIX[col];
         cur  = curMATRIX[col];
+        MATRIX[col] = curMATRIX[col];
 		for(i = 0; i < MAX_ROW; i++)
 		{
             prevBit = (uint8_t)prev & 0x01;
@@ -316,26 +326,49 @@ uint8_t scankey(void)
             {
                 if(curBit)
                 {
-                    retVal = buildHIDreports(keyidx);
+                    if(debounceMATRIX[col][row]++ >= DEBOUNCE_MAX)
+                    {
+                        retVal = buildHIDreports(keyidx);
+                        debounceMATRIX[col][row] = DEBOUNCE_MAX;
+                    }
+                }else
+                {
+                    debounceMATRIX[col][row] = 0;
                 }
             }else
             {
                 if (!prevBit && curBit)   //pushed
                 {
-                    putKey(keyidx, 1);
-                    svkeyidx[col][row] = keyidx;
+ 
+                    debounceMATRIX[col][row] = 0;    //triger
 
                 }else if (prevBit && !curBit)  //released
                 {
-                    if (keyidx != KEY_RESET)  // ignore KEY_LED relaseasing
-                        putKey(svkeyidx[col][row], 0);
+
+                    debounceMATRIX[col][row] = 0;    //triger
     			}
-            }
- 		}
+                
+                if(debounceMATRIX[col][row] >= 0)
+                {                
+                   if(debounceMATRIX[col][row]++ >= DEBOUNCE_MAX)
+                   {
+                        if(curBit)
+                        {
+                            putKey(keyidx, 1);
+                            svkeyidx[col][row] = keyidx;
+                        }else
+                        {
+                            if (keyidx <= KEY_WAKE)  // ignore FN keys
+                            putKey(svkeyidx[col][row], 0);
+                        }
+                                               
+                        debounceMATRIX[col][row] = -1;
+                   }
+  
+                }
+ 		    }
+		}
 	}
-	
-	for(col=0; col<MAX_COL; col++)
-		MATRIX[col] = curMATRIX[col];
  
     retVal |= 0x05;
 	return retVal;
