@@ -104,10 +104,10 @@ gps.o		: gps.c			gps.h		global.h
 main.o		: main.c		global.h	eepaddress.h	
 keysta.o	: keysta.c		keysta.h	common_inc.h
 matrix/keymap.o	: matrix/keymap.c	matrix/keymap.h		matrix/matrix.h		led/led.h	eepaddress.h
-matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h
+matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h		usbmain.h			ps2main.h
 led/led.o	: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbmain.h 	usbconfig.h		matrix/matrix.h		usbdrv/usbdrv.h
-ps2main.o	: ps2main.c		keysta.h	matrix/keymap.h	matrix/matrix.h
+ps2main.o	: ps2main.c		ps2main.h	keysta.h	matrix/keymap.h	matrix/matrix.h	
 $(AVRLIB)/timer128.o	: $(AVRLIB)/timer128.c	$(AVRLIB)/timer128.h
 usbdrv/usbdrv.o	:	usbdrv/usbdrv.c		usbdrv/usbdrv.h	usbdrv/oddebug.h 
 usbdrv/oddebug.o :	usbdrv/oddebug.c 	usbdrv/oddebug.h

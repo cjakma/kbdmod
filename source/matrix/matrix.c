@@ -16,13 +16,14 @@
 #include "hwport.h"
 #include "usbdrv.h"
 #include "matrix.h"
+#include "usbmain.h"
 #include "eepaddress.h"
 
 int16_t scankeycntms = 0;
 	
 // 17*8 bit matrix
-uint8_t MATRIX[MAX_ROW];
-uint8_t curMATRIX[MAX_ROW];
+uint32_t MATRIX[MAX_COL];
+uint32_t curMATRIX[MAX_COL];
 uint8_t svkeyidx[MAX_COL][MAX_ROW];
 
 uint8_t matrixFN[MAX_LAYER];           // (col << 4 | row)
@@ -34,9 +35,6 @@ uint8_t ledPortBackup = 0;
 extern int8_t usbmode;
 
 
-extern uint8_t clearReportBuffer(void);
-extern uint8_t buildHIDreports(uint8_t keyidx);
-extern void putKey(uint8_t keyidx, uint8_t isPushed);
 
 static uint8_t findFNkey(void)
 {
@@ -45,6 +43,7 @@ static uint8_t findFNkey(void)
     uint8_t i;
     for(i = 0; i < MAX_LAYER; i++)
     {
+        matrixFN[i] = 0x00;
     	for(col=0;col<MAX_COL;col++)
     	{
     		for(row=0;row<MAX_ROW;row++)
@@ -56,6 +55,11 @@ static uint8_t findFNkey(void)
     			}
     		}
         }
+        if (matrixFN[i] == 0x00)
+        {
+            matrixFN[i] = matrixFN[0];  // default FN position
+        }
+        
     }
     return 0;
 }
@@ -218,36 +222,13 @@ static uint8_t scanmatrix(void)
         vPinG = ~PING;
         vPinC = ~PINC;
         vPinF = ~PINF;
-        
-		// scan each rows
-		for(row=0; row<MAX_ROW; row++)
-		{
-			if(row<2)	{				// for 0..7, PORTA 0 -> 7
-				cur = vPinG & BV(row);
-			}
-			else if(row>=2 && row < 10) {	// for 8..15, PORTC 7 -> 0
-				cur = vPinC & BV(row-2);
-			}else{
-			    cur = vPinF & BV(row-10);
-			}
-            
-            if (cur)
-                matrixState |= SCAN_DIRTY;
-            
-			prev = curMATRIX[row]&BV(col);
-
-			if (prev && !cur)       // key released
-			{
-                curMATRIX[row] &=~ BV(col);
-                matrixState |= SCAN_RELEASED;		
-			}else if (!prev && cur)       // key pushed
-            {
-                curMATRIX[row] |= BV(col);
-                matrixState |= SCAN_PUSHED;		
-            }		
-
+ 
+        curMATRIX[col] = (uint32_t)vPinG << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
+        if(curMATRIX[col])
+        {
+            matrixState |= SCAN_DIRTY;
         }
-	}
+ 	}
     return matrixState;
 }
 
@@ -257,23 +238,15 @@ uint8_t toggle = 0;
 // return : key modified
 uint8_t scankey(void)
 {
-	uint8_t col, row;
-	uint8_t prev, cur;
+	int8_t col, row;
+	uint32_t prev, cur;
+    uint8_t prevBit, curBit;
 	uint8_t keyidx;
 	uint8_t matrixState = 0;
 	uint8_t retVal = 0;
     uint8_t debounce = 0;
+    int8_t i;
 
-#if 0       // scan rate check 8times-USB (5times(PS/2)) in 5ms @ 12MHz XTAL
-    if(toggle)
-    {
-        ledOn(LED_SCR_PIN);
-    }else
-    {
-        ledOff(LED_SCR_PIN);
-    }
-    toggle ^= 1;
-#endif
 
     matrixState = scanmatrix();
 
@@ -304,19 +277,35 @@ uint8_t scankey(void)
 	uint8_t t_layer = getLayer(matrixFN[layer]);
 
 	// debounce cleared => compare last matrix and current matrix
-	for(col=0;col<MAX_COL;col++)
+	for(col = 0; col < MAX_COL; col++)
 	{
-		for(row=0;row<MAX_ROW;row++)
+
+        prev = MATRIX[col];
+        cur  = curMATRIX[col];
+		for(i = 0; i < MAX_ROW; i++)
 		{
-			prev = MATRIX[row]&BV(col);
-			cur  = curMATRIX[row]&BV(col);
+            prevBit = (uint8_t)prev & 0x01;
+            curBit = (uint8_t)cur & 0x01;
+            prev >>= 1;
+            cur >>= 1;
+
+            if (i < 8)
+            {
+                row = 10 + i;
+            }else if (i < 16)
+            {
+                row = -6 + i;
+            }else
+            {
+                row = -16 + i;
+            }
             keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
 
             if (keyidx == KEY_NONE || keyidx == KEY_FN)
                 continue;
 
  
-            if (!prev && cur)   //pushed
+            if (!prevBit && curBit)   //pushed
             {
                 led_pushed_level_cal();          /* LED_EFFECT_PUSHED_LEVEL calculate */        
                 if (processFNkeys(keyidx))
@@ -325,18 +314,18 @@ uint8_t scankey(void)
 
             if(usbmode)
             {
-                if(cur)
+                if(curBit)
                 {
                     retVal = buildHIDreports(keyidx);
                 }
             }else
             {
-                if (!prev && cur)   //pushed
+                if (!prevBit && curBit)   //pushed
                 {
                     putKey(keyidx, 1);
                     svkeyidx[col][row] = keyidx;
 
-                }else if (prev && !cur)  //released
+                }else if (prevBit && !curBit)  //released
                 {
                     if (keyidx != KEY_RESET)  // ignore KEY_LED relaseasing
                         putKey(svkeyidx[col][row], 0);
@@ -345,10 +334,10 @@ uint8_t scankey(void)
  		}
 	}
 	
-	for(row=0; row<MAX_ROW; row++)
-		MATRIX[row] = curMATRIX[row];
+	for(col=0; col<MAX_COL; col++)
+		MATRIX[col] = curMATRIX[col];
  
-    retVal |= 1;
+    retVal |= 0x05;
 	return retVal;
 }
 
