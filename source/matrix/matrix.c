@@ -170,6 +170,10 @@ uint8_t processFNkeys(uint8_t keyidx)
             break;
 
         case KEY_M48:
+            recordMacro();
+            retVal = 1;
+            break;
+            
         case KEY_M49:
         case KEY_M50:
             if(usbmode)
@@ -216,7 +220,7 @@ uint8_t getLayer(uint8_t FNcolrow)
 }
 
 
-static uint8_t scanmatrix(void)
+uint8_t scanmatrix(void)
 {
 	uint8_t col, row;
 	uint8_t prev, cur;
@@ -240,21 +244,21 @@ static uint8_t scanmatrix(void)
 	// scan matrix 
 	for(col=0; col<MAX_COL; col++)
 	{
-		// Col -> set only one port as input and all others as output low
-		DDRA  = BV(col);        //  only target col bit is output and others are input
-		PORTA = ~BV(col);       //  only target col bit is LOW and other are pull-up
+      // Col -> set only one port as input and all others as output low
+      DDRA  = BV(col);        //  only target col bit is output and others are input
+      PORTA = ~BV(col);       //  only target col bit is LOW and other are pull-up
 
-        _delay_us(10);
+      _delay_us(10);
 
-        vPinG = ~PING;
-        vPinC = ~PINC;
-        vPinF = ~PINF;
- 
-        curMATRIX[col] = (uint32_t)vPinG << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
-        if(curMATRIX[col])
-        {
-            matrixState |= SCAN_DIRTY;
-        }
+      vPinG = ~PING;
+      vPinC = ~PINC;
+      vPinF = ~PINF;
+
+      curMATRIX[col] = (uint32_t)vPinG << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
+      if(curMATRIX[col])
+      {
+         matrixState |= SCAN_DIRTY;
+      }
  	}
     return matrixState;
 }
@@ -286,20 +290,6 @@ uint8_t scankey(void)
     /* LED Fader */
     led_fader();
 
-
-    /* debounce check */
-	if(matrixState & SCAN_CHANGED)
-	{
-		debounce = DEBOUNCE_MAX;
-        return retVal;
-	}
-	if(debounce > 1)
-	{
-        debounce--;
-		return retVal;
-	}
-
-  
     clearReportBuffer();
 	uint8_t t_layer = getLayer(matrixFN[layer]);
 
@@ -370,7 +360,7 @@ uint8_t scankey(void)
                 {
 
                     debounceMATRIX[col][row] = 0;    //triger
-    			}
+    			   }
                 
                 if(debounceMATRIX[col][row] >= 0)
                 {                
@@ -383,7 +373,7 @@ uint8_t scankey(void)
                         }else
                         {
                             if (keyidx <= KEY_WAKE)  // ignore FN keys
-                            putKey(svkeyidx[col][row], 0);
+                              putKey(svkeyidx[col][row], 0);
                         }
                                                
                         debounceMATRIX[col][row] = -1;

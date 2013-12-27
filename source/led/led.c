@@ -10,6 +10,7 @@
 #include "led.h"
 #include "global.h"
 #include "timer128.h"
+#include "keymap.h"
 #include "matrix.h"
 #include "eepaddress.h"
 

@@ -7,13 +7,16 @@
 #include <util/delay.h>     /* for _delay_ms() */
 
 #include <stdio.h>
+#include <avr/wdt.h>
+
 #include "keysta.h"
 #include "keymap.h"
 #include "usbdrv.h"
 #include "usbmain.h"
 #include "ps2main.h"
-
-#define MAX_MACROLEN    128
+#include "keymap.h"
+#include "matrix.h"
+#define MAX_MACROLEN    10
 
 
 
@@ -202,17 +205,20 @@ void sendString(char* string) {
     key.key = KEY_ENTER;
     sendKey(key);
 }
-
+uint8_t macrobuffer[20] = {KEY_LSHIFT, KEY_H, KEY_LSHIFT, KEY_I, KEY_G, KEY_H, KEY_LSHIFT, KEY_1, KEY_LSHIFT, KEY_NONE};
+uint8_t macrostart[] = "recording start";
+uint8_t macroend[] = "recording end";
+#if 0
 void playMacroUSB(uint8_t *buff)
 {
     uint8_t i;
     Key key;
     key.mode = 0;
     key.key = 0;
-
+    
     for (i = 0; i < MAX_MACROLEN; i++)
     {
-        if(*buff > KEY_Modifiers && *buff < KEY_Modifiers_end)
+        if((KEY_Modifiers < *buff) && (*buff < KEY_Modifiers_end))
             key.mode ^= modifierBitmap[(*buff++) -KEY_Modifiers];
 
         while(((*buff < KEY_Modifiers) || (KEY_Modifiers_end < *buff)) && *buff != KEY_NONE )
@@ -221,7 +227,7 @@ void playMacroUSB(uint8_t *buff)
             sendKey(key);
         }
         if(*buff == KEY_NONE)
-            return;
+            break;
 
     }
     
@@ -229,6 +235,40 @@ void playMacroUSB(uint8_t *buff)
     key.key = 0;
     sendKey(key);
 }
+#else
+void playMacroUSB(uint8_t *buff)
+{
+    uint8_t i;
+    Key key;
+    key.mode = 0;
+    key.key = 0;
+    uint8_t index = 0;
+
+    for (i = 0; i < MAX_MACROLEN; i++)
+    {
+        if((KEY_Modifiers < macrobuffer[index]) && (macrobuffer[index] < KEY_Modifiers_end))
+        {
+            key.mode ^= modifierBitmap[(macrobuffer[index]) -KEY_Modifiers];
+            index++;
+        }
+        while(((macrobuffer[index]< KEY_Modifiers) || (KEY_Modifiers_end < macrobuffer[index])) && macrobuffer[index] != KEY_NONE )
+        {
+            key.key = macrobuffer[index];
+            sendKey(key);
+            index++;
+        }
+        if(macrobuffer[index] == KEY_NONE)
+            break;
+
+    }
+    
+    key.mode = 0;
+    key.key = 0;
+    sendKey(key);
+}
+#endif
+
+
 
 void playMacroPS2(uint8_t *buff)
 {
@@ -240,7 +280,7 @@ void playMacroPS2(uint8_t *buff)
 
     for (i = 0; i < MAX_MACROLEN; i++)
     {
-        if(KEY_Modifiers < *buff && *buff < KEY_Modifiers_end)
+        if((KEY_Modifiers < *buff) && (*buff < KEY_Modifiers_end))
         {
             key.mode ^= modifierBitmap[(*buff) -KEY_Modifiers];
             if(key.mode & modifierBitmap[(*buff) -KEY_Modifiers])
@@ -280,4 +320,132 @@ void playMacroPS2(uint8_t *buff)
     }
 }
 
+#if 1
 
+void recordMacro(void)
+{
+   int8_t col, row;
+   uint32_t prev, cur;
+   uint8_t prevBit, curBit;
+   uint8_t keyidx;
+   uint8_t matrixState = 0;
+   uint8_t retVal = 0;
+   int8_t i;
+   int8_t index;
+   uint8_t t_layer;
+   Key key;
+   index = 0;
+
+   key.mode = 0;
+   
+   wdt_reset();
+   for (i = 0; i < 10; i++)
+      macrobuffer[i] = 0x00;
+
+   sendString(macrostart);
+
+
+   for(col = 0; col < MAX_COL; col++)
+   {
+      for(row = 0; row < MAX_ROW; row++)
+      {
+         debounceMATRIX[col][row] = -1;
+      }
+   }
+
+   while(1)
+   {
+      
+      wdt_reset();
+      matrixState = scanmatrix();
+      
+      t_layer = getLayer(matrixFN[layer]);
+
+      // debounce cleared => compare last matrix and current matrix
+      for(col = 0; col < MAX_COL; col++)
+      {
+         prev = MATRIX[col];
+         cur  = curMATRIX[col];
+         MATRIX[col] = curMATRIX[col];
+         for(i = 0; i < MAX_ROW; i++)
+         {
+            prevBit = (uint8_t)prev & 0x01;
+            curBit = (uint8_t)cur & 0x01;
+            prev >>= 1;
+            cur >>= 1;
+
+            if (i < 8)
+            {
+               row = 10 + i;
+            }else if (i < 16)
+            {
+               row = -6 + i;
+            }else
+            {
+               row = -16 + i;
+            }
+            keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
+
+         if (keyidx == KEY_NONE)
+            continue;
+
+#if 0
+         if (!prevBit && curBit)   //pushed
+         {
+            if (processFNkeys(keyidx))
+            continue;
+         }
+#endif
+
+         if (!prevBit && curBit)   //pushed
+         {
+            debounceMATRIX[col][row] = 0;    //triger
+
+         }else if (prevBit && !curBit)  //released
+         {
+            debounceMATRIX[col][row] = 0;    //triger
+         }
+
+         if(debounceMATRIX[col][row] >= 0)
+         {                
+            if(debounceMATRIX[col][row]++ >= DEBOUNCE_MAX)
+            {
+               if(curBit)
+               {
+                  if (keyidx == KEY_FN)
+                  {
+                     macrobuffer[index] = KEY_NONE;
+                     sendString(macroend);
+                     return;
+                  }
+                  else
+                  {
+                     macrobuffer[index] = keyidx;
+                     if ((KEY_Modifiers < keyidx)  && (keyidx < KEY_Modifiers_end))
+                     {
+                        key.key = KEY_SLASH;
+                     }else
+                     {
+                        key.key = macrobuffer[index];
+                     }
+                     sendKey(key);
+                     index++;
+                  }
+               }else
+               {
+                  if ((KEY_Modifiers < keyidx)  && (keyidx < KEY_Modifiers_end))
+                  {
+                     macrobuffer[index++] = keyidx;
+                     key.key = KEY_SLASH;
+                     sendKey(key);
+                  }
+               }
+
+               debounceMATRIX[col][row] = -1;
+            }
+         }
+      }
+      }
+   }
+}
+#endif

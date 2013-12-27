@@ -5,7 +5,22 @@
 
 #define DEBOUNCE_MAX        5           // 10 is 5ms at 12MHz XTAL
 
+
+extern uint32_t MATRIX[MAX_COL];
+extern uint32_t curMATRIX[MAX_COL];
+extern int8_t debounceMATRIX[MAX_COL][MAX_ROW];
+extern uint8_t svkeyidx[MAX_COL][MAX_ROW];
+
+
+extern uint8_t matrixFN[MAX_LAYER];           // (col << 4 | row)
+extern uint8_t layer;
+extern uint8_t kbdsleepmode;
+extern uint8_t ledPortBackup;
+
+
 extern void keymap_init(void);
 extern uint8_t processFNkeys(uint8_t keyidx);
 extern uint8_t getLayer(uint8_t FNcolrow);
 extern uint8_t scankey(void);
+extern uint8_t scanmatrix(void);
+

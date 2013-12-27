@@ -34,7 +34,6 @@ static uint8_t TYPEMATIC_DELAY=2;
 static long TYPEMATIC_REPEAT=5;
 
 
-extern uint8_t MATRIX[];
 // Queue operation -> push, pop
 void push(uint8_t item) {
 	static uint8_t record=0;
@@ -88,7 +87,7 @@ void clear(void) {
 	lastMAKE_IDX=0;
 	loopCnt=0;
 
-	for(i=0;i<17;i++)
+	for(i=0;i<MAX_COL;i++)
 		MATRIX[i] = 0x00;
 }
 
