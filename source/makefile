@@ -37,6 +37,7 @@ F_CPU = 12000000
 	SRC = $(AVRLIB)/timer128.c \
 			usbdrv/usbdrv.c usbdrv/oddebug.c \
 			matrix/matrix.c matrix/keymap.c \
+			macro/macro.c \
 			led/led.c \
 			usbmain.c ps2main.c keysta.c \
 			main.c  \
@@ -104,7 +105,8 @@ gps.o		: gps.c			gps.h		global.h
 main.o		: main.c		global.h	eepaddress.h	
 keysta.o	: keysta.c		keysta.h	common_inc.h
 matrix/keymap.o	: matrix/keymap.c	matrix/keymap.h		matrix/matrix.h		led/led.h	eepaddress.h
-matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h		usbmain.h			ps2main.h
+matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h		usbmain.h			ps2main.h	macro/macro.h
+macro/macro.o	: macro/macro.c		macro/macro.h
 led/led.o	: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbmain.h 	usbconfig.h		matrix/matrix.h		usbdrv/usbdrv.h
 ps2main.o	: ps2main.c		ps2main.h	keysta.h	matrix/keymap.h	matrix/matrix.h	

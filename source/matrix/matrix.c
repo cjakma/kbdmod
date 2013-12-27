@@ -18,7 +18,7 @@
 #include "matrix.h"
 #include "usbmain.h"
 #include "eepaddress.h"
-
+#include "macro.h"
 int16_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -110,6 +110,14 @@ void keymap_init(void)
         layer = 0;
 }
 
+
+uint8_t macrokeystring[3][30] = {
+                                {KEY_H, KEY_E, KEY_L, KEY_L, KEY_O, KEY_H, KEY_E, KEY_L, KEY_L, KEY_O,KEY_H, KEY_E, KEY_L, KEY_L, KEY_O,KEY_H, KEY_E, KEY_L, KEY_L, KEY_O,KEY_H, KEY_E, KEY_L, KEY_L, KEY_O, KEY_NONE},
+                                {KEY_RCTRL, KEY_V, KEY_RCTRL, KEY_C, KEY_P, KEY_NONE},
+                                {KEY_LSHIFT, KEY_H, KEY_LSHIFT, KEY_I, KEY_G, KEY_H, KEY_LSHIFT, KEY_1, KEY_LSHIFT, KEY_NONE}
+                             };
+
+
 uint8_t processFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
@@ -159,6 +167,16 @@ uint8_t processFNkeys(uint8_t keyidx)
 
         case KEY_RESET:
             Reset_AVR();
+            break;
+
+        case KEY_M48:
+        case KEY_M49:
+        case KEY_M50:
+            if(usbmode)
+                playMacroUSB((uint8_t *)&macrokeystring[keyidx-KEY_M48][0]);
+            else
+                playMacroPS2((uint8_t *)&macrokeystring[keyidx-KEY_M48][0]);
+            retVal = 1;
             break;
             
         default:

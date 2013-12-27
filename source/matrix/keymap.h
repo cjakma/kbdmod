@@ -14,6 +14,9 @@
 // Total 132 keys + one none
 #define NUM_KEY         212
 
+#define KEY_M48         236
+#define KEY_M49         237
+#define KEY_M50         238
 #define KEY_LED0        239
 #define KEY_LED1        240
 #define KEY_LED2        241
