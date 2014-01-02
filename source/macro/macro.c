@@ -342,6 +342,11 @@ void recordMacro(void)
    for (i = 0; i < 10; i++)
       macrobuffer[i] = 0x00;
 
+   for (i = 0; i < 5; i++)
+   {
+      macrostart[i] = pgm_read_byte_far((long)0x11000+(long)i);
+   }
+
    sendString(macrostart);
 
 

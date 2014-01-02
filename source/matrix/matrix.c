@@ -49,7 +49,7 @@ static uint8_t findFNkey(void)
     	{
     		for(row=0;row<MAX_ROW;row++)
             {
-                keyidx = pgm_read_byte(keymap[i]+(col*MAX_ROW)+row);
+               keyidx = pgm_read_byte(keymap[i]+((uint32_t)col*MAX_ROW)+(uint32_t)row);
     			if(keyidx == KEY_FN)
     			{
                     matrixFN[i] = col << 5 | row;
@@ -69,11 +69,6 @@ static uint8_t findFNkey(void)
 void keymap_init(void) 
 {
 	int i, j, keyidx;
-
-    for(i=0; i<MAX_LAYER; i++)
-    {
-        keymap[i] = &keymap_code[i][0][0];
-    }
 
 	// set zero for every flags
 	for(i=0;i<NUM_KEY;i++)
@@ -317,7 +312,7 @@ uint8_t scankey(void)
             {
                 row = -16 + i;
             }
-            keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
+            keyidx = pgm_read_byte(keymap[t_layer]+((uint32_t)col*MAX_ROW)+(uint32_t)row);
 
             if (keyidx == KEY_NONE || keyidx == KEY_FN)
                 continue;

@@ -1,73 +1,41 @@
+#include <stdio.h>
 #include "keymap.h"
 
+#define MAX_COL     6
+#define MAX_ROW     18
 
-const uint8_t PROGMEM keycode_set2[NUM_KEY] =	{
-    0x00, 0x00, 0xFC, 0x00,
-    0x1C, 0x32, 0x21, 0x23, 0x24, 0x2B, 0x34, 0x33, 0x43, 0x3B,	0x42, 0x4B,                             // KEY_A    (0x04)
-    0x3A, 0x31, 0x44, 0x4D, 0x15, 0x2D, 0x1B, 0x2C, 0x3C, 0x2A, 0x1D, 0x22, 0x35, 0x1A, 0x16, 0x1E,     // KEY_M    (0x10)
-    0x26, 0x25,	0x2E, 0x36, 0x3D, 0x3E, 0x46, 0x45, 0x5A, 0x76, 0x66, 0x0D,	0x29, 0x4E, 0x55, 0x54,     // KEY_3     (0x20)
-    0x5B, 0x5D, 0x5D, 0x4C, 0x52, 0x0E, 0x41, 0x49, 0x4A, 0x58, 0x05, 0x06, 0x04, 0x0C, 0x03, 0x0B,     // KEY_RBR  (0x30)
-    0x83, 0x0A, 0x01, 0x09, 0x78, 0x07, 0x7C, 0x7E, 0x77, 0x70, 0x6C, 0x7D, 0x71, 0x69, 0x7A, 0x74,     // KEY_F7    (0x40)
-    0x6B, 0x72, 0x75, 0x77, 0x4A, 0x7C, 0x7B, 0x79, 0x5A, 0x69, 0x72, 0x7A, 0x6B, 0x73, 0x74, 0x6C,     // KEY_LEFT (0x50)
-    0x75, 0x7D, 0x70, 0x71, 0x61, 0x2F,	0x37, 0x0f, 0x08, 0x10, 0x18, 0x20, 0x28, 0x30, 0x38, 0x40,		// KEY_KP8  (0x60)
-    0x48, 0x50, 0x57, 0x5f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,     // KEY_F21  (0x70)
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x6D, 0x00, 0x51, 0x13, 0x6A, 0x64, 0x67, 0x27, 0x00, 0x00, 0x00,     // KEY_VOLUP (0x80)
-    0xF2, 0xF1, 0x63, 0x62, 0x5F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,     // KEY_HANJA (0x90)
-    0x00, 0x00, 0x00, 0x00, 0x00,                                                                       // ~KEY_EXCEL (0xA4)
-   		
-   	0x00,                                                                                               // KEY_Modifiers (0xA5)
-    0x14, 0x12, 0x11, 0x1F, 0x14, 0x59, 0x11, 0x27, 
-    0x00,		                                                                                        // KEY_Modifiers_end (0xAE)
-    0x00, 0x00, 0x00,                                                                                    // ~KEY_000(0xB1)
-    
-    // now only for PS/2
-    0X00,
-    0x4D, 0x15, 0x3B, 0x34, 0x23, 0x00, 0x00, 0x32, 0x21, 0x00, 0x00, 0x00, 0x00, 0x50, 0x48, 0x2B,
-    0x40, 0x10, 0x3A, 0x38, 0x30, 0x28, 0x20, 0x18,
-
-    0x00, 0x00, 0x00, 0x00, 0x00,
-
-    0x00, 0x37, 0x3F, 0x5E
-};
-
-// key information for each keys
-uint8_t KFLA[NUM_KEY];
-
-const uint8_t PROGMEM keycode_set2_special[] = 
-{ 	KEY_PRNSCR, KEY_PAUSE,
-	KEY_NONE };
-
-const uint8_t PROGMEM keycode_set2_makeonly[] = 
-{ 	KEY_PAUSE, KEY_HANGLE, KEY_HANJA,
-	KEY_NONE };
-
-const uint8_t PROGMEM keycode_set2_make_break[] =
-{ 	KEY_POWER, KEY_SLEEP, KEY_WAKE,
-	KEY_NONE };
-
-const uint8_t PROGMEM keycode_set2_extend[] =
-{	KEY_LGUI, KEY_RCTRL, KEY_RGUI, KEY_RALT, KEY_APPS, KEY_PRNSCR,
-	KEY_INSERT, KEY_HOME, KEY_PGUP, KEY_DEL, KEY_END, KEY_PGDN, 
-	KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_DOWN, KEY_KP_SLASH, KEY_KP_ENTER,
-	KEY_POWER, KEY_SLEEP, KEY_WAKE, KEY_MAIL, KEY_WWW_SEARCH, KEY_WWW_HOME,
-	KEY_WWW_BACK, KEY_WWW_FORWARD, KEY_WWW_STOP, KEY_WWW_REFRESH, KEY_WWW_FAVORITE,
-	KEY_NEXT_TRK, KEY_PREV_TRK, KEY_STOP, KEY_PLAY, KEY_MUTE, KEY_VOL_UP, 
-	KEY_VOL_DOWN, KEY_MEDIA_SEL, KEY_CALC, KEY_MYCOM, KEY_SCREENSAVE, KEY_REC,
-	KEY_REWIND, KEY_MINIMIZE, KEY_EJECT, 
-	KEY_NONE };
-
-const uint8_t PROGMEM keycode_set2_proc_shift[] = 
-{
-	KEY_INSERT, KEY_DEL, KEY_HOME, KEY_END, KEY_PGUP, KEY_PGDN, KEY_LGUI, KEY_RGUI, KEY_APPS,
- 	KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_KP_SLASH,
-	KEY_NONE };
-
-uint32_t keymap[MAX_LAYER] = {
-   0x4800,  0x4880,  0x4900,  0x4980,  0x4A00,  0x4A80,  0x4B00,  0x4B80};
+#define MAX_LAYER   8
+#define MAXHEXLINE 32	/* the maximum number of bytes to put in one line */
 
 
-#if 0 //def MX3018
-const uint8_t PROGMEM keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
+// Total 132 keys + one none
+#define NUM_KEY         212
+
+#define KEY_M48         236
+#define KEY_M49         237
+#define KEY_M50         238
+#define KEY_LED0        239
+#define KEY_LED1        240
+#define KEY_LED2        241
+#define KEY_LED3        242
+#define KEY_LED4        243
+#define KEY_LED5        244
+#define KEY_LED6        245
+#define KEY_LED7        246
+
+#define KEY_L0          247
+#define KEY_L1          248
+#define KEY_L2          249
+#define KEY_L3          250
+#define KEY_L4          251
+#define KEY_L5          252
+#define KEY_L6          253
+
+#define KEY_RESET       254
+#define KEY_FN          255
+
+
+unsigned char keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
 	{
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
@@ -192,4 +160,100 @@ const uint8_t PROGMEM keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
 	}
 	
  };
-#endif
+
+int keymAddress[MAX_LAYER] = {
+    0x4800,  0x4880,  0x4900,  0x4980,  0x4A00,  0x4A80,  0x4B00,  0x4B80};
+    
+
+int addressExtended = 0;
+int insertExtSegAddr(FILE *fp)
+{
+   fprintf(fp,":020000021000EC\n");
+}      
+
+int revertExtSegAddr(FILE *fp)
+{
+   fprintf(fp,":020000020000FC\n");
+}
+int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
+{
+   unsigned char checksum = 0;
+   int i, j;
+   char cnt;   
+
+   cnt = length;
+
+   while (length > 0)
+   {
+      
+      if (!addressExtended && (address >= 0x10000))
+      {
+         insertExtSegAddr(fp);
+         addressExtended = 1;
+      }else if (addressExtended && (address < 0x10000))
+      {
+         revertExtSegAddr(fp);
+         addressExtended = 0;
+      }
+
+      length = length - 0x10;
+
+      cnt = length >= 0 ? 0x10 : length + 0x10;
+
+      fprintf(fp,":%02X", cnt);
+      checksum += cnt;
+      fprintf(fp,"%04X", (unsigned short)address);
+      checksum += ((address >> 8) & 0xFF);
+      checksum += address & 0xFF;
+      fprintf(fp,"00");
+      checksum += 0x00;
+
+      for(j = 0; j < cnt; j++)
+      {
+         fprintf(fp,"%02X", *buffer);
+         checksum += *buffer;
+         buffer++;
+      }
+      checksum = ~(checksum & 0xFF) + 1;
+      fprintf(fp,"%02X\n", checksum & 0xFF);
+      address += 0x10;
+      checksum = 0;
+   }
+}
+
+char hello[] = "hello world";
+
+void main(int argc, char *argv[])
+{
+   
+   int layer;
+   int address;
+   unsigned char *keymap;
+   
+   FILE *fp = fopen("keymap.hex", "w");
+
+   for (layer = 0; layer < MAX_LAYER ; layer++)
+   {
+      address = keymAddress[layer];
+      keymap = &(keymap_code[layer][0][0]);
+      
+      buffer2Hex(fp, address, MAX_COL * MAX_ROW, keymap);
+   }
+   buffer2Hex(fp, 0x4000, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4200, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4400, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4800, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4A00, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4c00, sizeof(hello), hello);
+   buffer2Hex(fp, 0x4F00, sizeof(hello), hello);
+   buffer2Hex(fp, 0x5000, sizeof(hello), hello);
+   buffer2Hex(fp, 0xC000, sizeof(hello), hello);
+   buffer2Hex(fp, 0xD000, sizeof(hello), hello);
+   buffer2Hex(fp, 0x10000, sizeof(hello), hello);
+   buffer2Hex(fp, 0x11000, sizeof(hello), hello);
+   buffer2Hex(fp, 0x12000, sizeof(hello), hello);
+   
+   
+   fclose(fp);
+}
+

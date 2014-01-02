@@ -1,56 +1,3 @@
-#ifndef KEYMAP_H
-#define KEYMAP_H
-
-#include <avr/pgmspace.h>
-
-#define MX3018
-//#define PS2AVR
-
-#define MAX_COL     6
-#define MAX_ROW     18
-
-#define MAX_LAYER   8
-
-// Total 132 keys + one none
-#define NUM_KEY         212
-
-#define KEY_M48         236
-#define KEY_M49         237
-#define KEY_M50         238
-#define KEY_LED0        239
-#define KEY_LED1        240
-#define KEY_LED2        241
-#define KEY_LED3        242
-#define KEY_LED4        243
-#define KEY_LED5        244
-#define KEY_LED6        245
-#define KEY_LED7        246
-
-#define KEY_L0          247
-#define KEY_L1          248
-#define KEY_L2          249
-#define KEY_L3          250
-#define KEY_L4          251
-#define KEY_L5          252
-#define KEY_L6          253
-
-#define KEY_RESET       254
-#define KEY_FN          255
-
-
-
-/// Codes for modifier-keys.
-typedef enum modifiers {
-    MOD_NONE          = 0,
-    MOD_CONTROL_LEFT  = (1 << 0),
-    MOD_SHIFT_LEFT    = (1 << 1),
-    MOD_ALT_LEFT      = (1 << 2),
-    MOD_GUI_LEFT      = (1 << 3),
-    MOD_CONTROL_RIGHT = (1 << 4),
-    MOD_SHIFT_RIGHT   = (1 << 5),
-    MOD_ALT_RIGHT     = (1 << 6),
-    MOD_GUI_RIGHT     = (1 << 7),
-} MODIFIERS;
 
 
 enum {
@@ -276,7 +223,7 @@ enum {
     KEY_EJECT,
     KEY_SCREENSAVE,
     KEY_REC,
-	KEY_REWIND,
+   KEY_REWIND,
 	KEY_MINIMIZE,
 
     KEY_System,
@@ -284,89 +231,5 @@ enum {
     KEY_SLEEP,
     KEY_WAKE,
 };
+   
 
-/* Generic Desktop Page(0x01) - system power control */
-#define SYSTEM_POWER_DOWN       0x0081
-#define SYSTEM_SLEEP            0x0082
-#define SYSTEM_WAKE_UP          0x0083
-
-/* Consumer Page(0x0C)
- * following are supported by Windows: http://msdn.microsoft.com/en-us/windows/hardware/gg463372.aspx
- */
-#define AUDIO_MUTE              0x00E2
-#define AUDIO_VOL_UP            0x00E9
-#define AUDIO_VOL_DOWN          0x00EA
-#define TRANSPORT_NEXT_TRACK    0x00B5
-#define TRANSPORT_PREV_TRACK    0x00B6
-#define TRANSPORT_STOP          0x00B7
-#define TRANSPORT_STOP_EJECT    0x00CC
-#define TRANSPORT_PLAY_PAUSE    0x00CD
-/* application launch */
-#define AL_CC_CONFIG            0x0183
-#define AL_EMAIL                0x018A
-#define AL_CALCULATOR           0x0192
-#define AL_LOCAL_BROWSER        0x0194
-/* application control */
-#define AC_SEARCH               0x0221
-#define AC_HOME                 0x0223
-#define AC_BACK                 0x0224
-#define AC_FORWARD              0x0225
-#define AC_STOP                 0x0226
-#define AC_REFRESH              0x0227
-#define AC_BOOKMARKS            0x022A
-/* supplement for Bluegiga iWRAP HID(not supported by Windows?) */
-#define AL_LOCK                 0x019E
-#define TRANSPORT_RECORD        0x00B2
-#define TRANSPORT_REWIND        0x00B4
-#define TRANSPORT_EJECT         0x00B8
-#define AC_MINIMIZE             0x0206
-
-
-/* keycode to system usage */
-#define KEYCODE2SYSTEM(key) \
-    (key == KEY_POWER ? SYSTEM_POWER_DOWN : \
-    (key == KEY_SLEEP ? SYSTEM_SLEEP : \
-    (key == KEY_WAKE  ? SYSTEM_WAKE_UP : 0)))
-
-/* keycode to consumer usage */
-#define KEYCODE2CONSUMER(key) \
-    (key == KEY_MUTE       ?  AUDIO_MUTE : \
-    (key == KEY_VOL_UP     ?  AUDIO_VOL_UP : \
-    (key == KEY_VOL_DOWN   ?  AUDIO_VOL_DOWN : \
-    (key == KEY_NEXT_TRK ?  TRANSPORT_NEXT_TRACK : \
-    (key == KEY_PREV_TRK ?  TRANSPORT_PREV_TRACK : \
-    (key == KEY_STOP       ?  TRANSPORT_STOP : \
-    (key == KEY_EJECT      ?  TRANSPORT_STOP_EJECT : \
-    (key == KEY_PLAY ?  TRANSPORT_PLAY_PAUSE : \
-    (key == KEY_MEDIA_SEL     ?  AL_CC_CONFIG : \
-    (key == KEY_MAIL             ?  AL_EMAIL : \
-    (key == KEY_CALC       ?  AL_CALCULATOR : \
-    (key == KEY_MYCOM      ?  AL_LOCAL_BROWSER : \
-    (key == KEY_WWW_SEARCH       ?  AC_SEARCH : \
-    (key == KEY_WWW_HOME         ?  AC_HOME : \
-    (key == KEY_WWW_BACK         ?  AC_BACK : \
-    (key == KEY_WWW_FORWARD      ?  AC_FORWARD : \
-    (key == KEY_WWW_STOP         ?  AC_STOP : \
-    (key == KEY_WWW_REFRESH      ?  AC_REFRESH : \
-    (key == KEY_WWW_FAVORITE    ?  AC_BOOKMARKS : 0)))))))))))))))))))
-    
-
-
-#define KFLA_EXTEND 		0x01
-#define KFLA_SPECIAL		0x02
-#define KFLA_MAKEONLY		0x04
-#define KFLA_MAKE_BREAK		0x08
-#define KFLA_PROC_SHIFT		0x10
-
-
-extern const uint8_t PROGMEM keycode_set2[];
-extern uint8_t KFLA[];
-extern const uint8_t PROGMEM keycode_set2_special[];
-extern const uint8_t PROGMEM keycode_set2_makeonly[];
-extern const uint8_t PROGMEM keycode_set2_make_break[];
-extern const uint8_t PROGMEM keycode_set2_extend[];
-extern const uint8_t PROGMEM keycode_set2_proc_shift[];
-extern const uint8_t PROGMEM keymap_code[MAX_LAYER][MAX_COL][MAX_ROW];
-extern uint32_t keymap[MAX_LAYER];
-
-#endif
