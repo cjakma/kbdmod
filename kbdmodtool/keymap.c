@@ -166,19 +166,19 @@ int keymAddress[MAX_LAYER] = {
     
 
 int addressExtended = 0;
-int insertExtSegAddr(FILE *fp)
+void insertExtSegAddr(FILE *fp)
 {
    fprintf(fp,":020000021000EC\n");
 }      
 
-int revertExtSegAddr(FILE *fp)
+void revertExtSegAddr(FILE *fp)
 {
    fprintf(fp,":020000020000FC\n");
 }
 int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
 {
    unsigned char checksum = 0;
-   int i, j;
+   int j;
    char cnt;   
 
    cnt = length;
@@ -219,11 +219,12 @@ int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
       address += 0x10;
       checksum = 0;
    }
+   return 0;
 }
 
-char hello[] = "hello world";
+ unsigned char hello[] = "hello world";
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
    
    int layer;
@@ -255,5 +256,6 @@ void main(int argc, char *argv[])
    
    
    fclose(fp);
+   return 0;
 }
 
