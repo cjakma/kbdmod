@@ -240,20 +240,7 @@ int main(int argc, char *argv[])
       
       buffer2Hex(fp, address, MAX_COL * MAX_ROW, keymap);
    }
-   buffer2Hex(fp, 0x4000, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4200, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4400, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4800, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4A00, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4c00, sizeof(hello), hello);
-   buffer2Hex(fp, 0x4F00, sizeof(hello), hello);
-   buffer2Hex(fp, 0x5000, sizeof(hello), hello);
-   buffer2Hex(fp, 0xC000, sizeof(hello), hello);
-   buffer2Hex(fp, 0xD000, sizeof(hello), hello);
-   buffer2Hex(fp, 0x10000, sizeof(hello), hello);
-   buffer2Hex(fp, 0x11000, sizeof(hello), hello);
-   buffer2Hex(fp, 0x12000, sizeof(hello), hello);
-   
+  
    
    fclose(fp);
    return 0;
