@@ -161,7 +161,10 @@ uint8_t processFNkeys(uint8_t keyidx)
             break;
 
         case KEY_RESET:
+         {
+            extern AppPtr_t Bootloader;
             Reset_AVR();
+        }
             break;
 
         case KEY_M48:

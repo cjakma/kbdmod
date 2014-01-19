@@ -53,7 +53,11 @@
 
 
 
-#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
+//#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
 
+#define BOOTLOADER_ADDRESS 0x1F000
+
+typedef void (*AppPtr_t) (void); 
+#define Reset_AVR Bootloader 
 
 #endif

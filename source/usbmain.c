@@ -39,6 +39,7 @@ static uint8_t idleRate = 0;        ///< in 4ms units
 static uint8_t protocolVer = 1; ///< 0 = boot protocol, 1 = report protocol
 uint8_t expectReport = 0;       ///< flag to indicate if we expect an USB-report
 
+AppPtr_t Bootloader = BOOTLOADER_ADDRESS; 
 
 
 
