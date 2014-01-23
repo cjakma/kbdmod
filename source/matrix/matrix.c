@@ -262,7 +262,94 @@ uint8_t scanmatrix(void)
 }
 
 
-uint8_t toggle = 0;
+#define SWAP_TIMER  0x400
+uint8_t swapCtrlCaps = 0x80;
+uint8_t swapAltGui =  0x80;
+uint16_t cntLcaps = 0;
+uint16_t cntLctrl = 0;
+uint16_t cntLAlt = 0;
+uint16_t cntLGui = 0;
+
+uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
+{
+    switch (keyidx)
+    {
+        case KEY_CAPS:
+            if (clearmask == 0)
+            {
+                swapCtrlCaps |= 0x80;
+                cntLcaps = 0;
+            }
+            if (cntLcaps++ >= SWAP_TIMER)
+                cntLcaps = SWAP_TIMER;
+            break;
+        case KEY_LCTRL:
+            if (clearmask == 0)
+            {
+                swapCtrlCaps |= 0x80;
+                cntLctrl = 0;
+            }
+            if (cntLctrl++ >= SWAP_TIMER)
+                cntLctrl = SWAP_TIMER;
+            break;
+        case KEY_LALT:
+            if (clearmask == 0)
+            {
+                swapAltGui |= 0x80;
+                cntLAlt = 0;
+            }
+            if (cntLAlt++ >= SWAP_TIMER)
+                cntLAlt = SWAP_TIMER;
+            break;
+        case KEY_LGUI:
+            if (clearmask == 0)
+            {
+                swapAltGui |= 0x80;
+                cntLGui = 0;
+            }
+            if (cntLGui++ >= SWAP_TIMER)
+                cntLGui = SWAP_TIMER;
+            break;
+    }
+    if((cntLcaps == SWAP_TIMER) && (cntLctrl == SWAP_TIMER) && (swapCtrlCaps & 0x80))
+    {
+        swapCtrlCaps ^= 1;
+        swapCtrlCaps &= 0x7F;
+    }
+    if((cntLGui == SWAP_TIMER) && (cntLAlt == SWAP_TIMER) && (swapAltGui & 0x80))
+    {
+        swapAltGui ^= 1;
+        swapAltGui &= 0x7F;
+    }
+}
+
+
+uint8_t swap_key(uint8_t keyidx)
+{
+    if(swapCtrlCaps & 0x01)
+    {
+        if(keyidx == KEY_CAPS)
+        {
+            keyidx = KEY_LCTRL;
+        }
+        else if(keyidx == KEY_LCTRL)
+        {
+            keyidx = KEY_CAPS;
+        }
+    }
+    if(swapAltGui & 0x01)
+    {
+        if(keyidx == KEY_LALT)
+        {
+            keyidx = KEY_LGUI;
+        }
+        else if(keyidx == KEY_LGUI)
+        {
+            keyidx = KEY_LALT;
+        }
+    }
+    return keyidx;
+}
 
 // return : key modified
 uint8_t scankey(void)
@@ -321,12 +408,19 @@ uint8_t scankey(void)
                 continue;
 
  
+            cntKey(keyidx, 0xFFFF);
+            
             if (!prevBit && curBit)   //pushed
             {
                 led_pushed_level_cal();          /* LED_EFFECT_PUSHED_LEVEL calculate */        
                 if (processFNkeys(keyidx))
                     continue;
+            }else if (prevBit && !curBit)  //released
+            {
+                cntKey(keyidx, 0x0000);
             }
+
+            keyidx = swap_key(keyidx);
 
             if(usbmode)
             {
@@ -351,12 +445,10 @@ uint8_t scankey(void)
             {
                 if (!prevBit && curBit)   //pushed
                 {
- 
                     debounceMATRIX[col][row] = 0;    //triger
 
                 }else if (prevBit && !curBit)  //released
                 {
-
                     debounceMATRIX[col][row] = 0;    //triger
     			   }
                 

@@ -39,9 +39,9 @@ static uint8_t idleRate = 0;        ///< in 4ms units
 static uint8_t protocolVer = 1; ///< 0 = boot protocol, 1 = report protocol
 uint8_t expectReport = 0;       ///< flag to indicate if we expect an USB-report
 
-AppPtr_t Bootloader = BOOTLOADER_ADDRESS; 
+AppPtr_t Bootloader = (void *)BOOTLOADER_ADDRESS; 
 
-
+#define MOUSE_ENABLE 1
 
 /*------------------------------------------------------------------*
  * Descriptors                                                      *
@@ -99,6 +99,7 @@ PROGMEM uchar keyboard_hid_report[] = {
  * http://www.microsoft.com/whdc/device/input/wheel.mspx
  */
 PROGMEM uchar mouse_hid_report[] = {
+#if MOUSE_ENABLE
     /* mouse */
     0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
     0x09, 0x02,                    // USAGE (Mouse)
@@ -146,6 +147,7 @@ PROGMEM uchar mouse_hid_report[] = {
     0x81, 0x06,                    //     INPUT (Data,Var,Rel)
     0xc0,                          //   END_COLLECTION
     0xc0,                          // END_COLLECTION
+#endif    
     /* system control */
     0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
     0x09, 0x80,                    // USAGE (System Control)
@@ -181,7 +183,12 @@ PROGMEM uchar mouse_hid_report[] = {
 PROGMEM const char usbDescriptorConfiguration[] = {    /* USB configuration descriptor */
     9,          /* sizeof(usbDescriptorConfiguration): length of descriptor in bytes */
     USBDESCR_CONFIG,    /* descriptor type */
-    9 + (9 + 9 + 7) + (9 + 9 + 7), 0,
+#if MOUSE_ENABLE
+    9 + (9 + 9 + 7) + (9 + 9 + 7),
+#else    
+    9 + (9 + 9 + 7),
+#endif
+    0,
     //18 + 7 * USB_CFG_HAVE_INTRIN_ENDPOINT + 7 * USB_CFG_HAVE_INTRIN_ENDPOINT3 + 9, 0,
                 /* total length of data returned (including inlined descriptors) */
     2,          /* number of interfaces in this configuration */
@@ -225,6 +232,7 @@ PROGMEM const char usbDescriptorConfiguration[] = {    /* USB configuration desc
     USB_CFG_INTR_POLL_INTERVAL, /* in ms */
 #endif
 
+#if MOUSE_ENABLE
     /*
      * Mouse interface
      */
@@ -254,6 +262,7 @@ PROGMEM const char usbDescriptorConfiguration[] = {    /* USB configuration desc
     0x03,       /* attrib: Interrupt endpoint */
     8, 0,       /* maximum packet size */
     USB_CFG_INTR_POLL_INTERVAL, /* in ms */
+#endif
 #endif
 };
 #endif

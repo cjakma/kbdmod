@@ -23,6 +23,7 @@ AVRLIB = ./avrlib
 
 F_CPU = 12000000
 
+JUMPSTART = 0x1E000
 #put the name of the TRG file here (without extension)
 #  Your "TRG" file is your C source file that is at the top level of your code.
 #  In other words, this is the file which contains your main() function.
@@ -67,7 +68,8 @@ F_CPU = 12000000
 	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes $(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst)
 
 #linker flags
-	LDFLAGS = -Wl,-Map=$(TRG).map,--cref
+	LDFLAGS = -Wl,-Map=$(TRG).map,--cref,--section-start=.appinboot=$(JUMPSTART)
+
 #	LDFLAGS = -Wl,-Map=$(TRG).map,--cref -lm
 
 	

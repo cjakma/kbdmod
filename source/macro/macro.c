@@ -322,6 +322,17 @@ void playMacroPS2(uint8_t *buff)
 
 #if 1
 
+void my_init_portb (void) __attribute__ ((naked)) \
+    __attribute__ ((section (".appinboot")));
+
+void
+my_init_portb (void) 
+{
+        PORTB = 0xff;
+        DDRB = 0xff;
+}
+
+
 void recordMacro(void)
 {
    int8_t col, row;
@@ -337,7 +348,9 @@ void recordMacro(void)
    index = 0;
 
    key.mode = 0;
-   
+
+   my_init_portb();
+      
    wdt_reset();
    for (i = 0; i < 10; i++)
       macrobuffer[i] = 0x00;
