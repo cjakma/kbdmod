@@ -22,7 +22,8 @@
 /* ------------------------------------------------------------------------- */
 
 static char dataBuffer[131072 + 256];    /* buffer for file data */
-static int  startAddress, endAddress;
+static int  startAddress[1024], endAddress[1024];
+static int  addressIndex = 0;
 static char leaveBootLoader = 0;
 
 /* ------------------------------------------------------------------------- */
@@ -49,8 +50,8 @@ char    temp[9];
 }
 
 /* ------------------------------------------------------------------------- */
-
-static int  parseIntelHex(char *hexfile, char buffer[131072 + 256], int *startAddr, int *endAddr)
+static int start = 1;
+static int  parseIntelHex(char *hexfile, char buffer[131072 + 256])
 {
 int     address, base, d, segment, i, lineLen, sum, extSegAddr;
 FILE    *input;
@@ -89,10 +90,31 @@ FILE    *input;
         if((sum & 0xff) != 0){
             fprintf(stderr, "Warning: Checksum error between address 0x%x and 0x%x\n", base, address);
         }
-        if(*startAddr > base)
-            *startAddr = base;
-        if(*endAddr < address)
-            *endAddr = address;
+
+        if(start)
+        {
+            startAddress[addressIndex] = base;
+            endAddress[addressIndex] = address;
+            start = 0;
+//            fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", addressIndex, startAddress[addressIndex], addressIndex, endAddress[addressIndex]);
+        }
+            
+        if ((base - endAddress[addressIndex]) >= 32 || (endAddress[addressIndex] - base) >= 32)
+        {
+            addressIndex++;
+            startAddress[addressIndex] = base;
+//            fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", addressIndex, startAddress[addressIndex], addressIndex, endAddress[addressIndex]);
+        }
+
+        endAddress[addressIndex] = address;
+        
+//        fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", addressIndex, startAddress[addressIndex], addressIndex, endAddress[addressIndex]);
+    }
+
+
+    for(i = 0; i <= addressIndex; i++)
+    {
+       fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", i, startAddress[i], i, endAddress[i]);
     }
     fclose(input);
     return 0;
@@ -152,10 +174,10 @@ typedef struct deviceData{
     char    data[128];
 }deviceData_t;
 
-static int uploadData(char *dataBuffer, int startAddr, int endAddr)
+static int uploadData(char *dataBuffer)
 {
 usbDevice_t *dev = NULL;
-int         err = 0, len, mask, pageSize, deviceSize;
+int         err = 0, len, mask, pageSize, deviceSize, i;
 union{
     char            bytes[1];
     deviceInfo_t    info;
@@ -167,7 +189,7 @@ union{
         goto errorOccurred;
     }
     len = sizeof(buffer);
-    if(endAddr > startAddr){    // we need to upload data
+    if(endAddress[addressIndex] > startAddress[0]){    // we need to upload data
         if((err = usbGetReport(dev, USB_HID_REPORT_TYPE_FEATURE, 1, buffer.bytes, &len)) != 0){
             fprintf(stderr, "Error reading page size: %s\n", usbErrorMessage(err));
             goto errorOccurred;
@@ -181,8 +203,8 @@ union{
         deviceSize = getUsbInt(buffer.info.flashSize, 4);
         printf("Page size   = %d (0x%x)\n", pageSize, pageSize);
         printf("Device size = %d (0x%x); %d bytes remaining\n", deviceSize, deviceSize, deviceSize - 2048);
-        if(endAddr > deviceSize - 2048){
-            fprintf(stderr, "Data (%d bytes) exceeds remaining flash size!\n", endAddr);
+        if(endAddress[addressIndex] > deviceSize - 2048){
+            fprintf(stderr, "Data (%d bytes) exceeds remaining flash size!\n", endAddress[addressIndex]);
             err = -1;
             goto errorOccurred;
         }
@@ -191,23 +213,26 @@ union{
         }else{
             mask = pageSize - 1;
         }
-        startAddr &= ~mask;                  /* round down */
-        endAddr = (endAddr + mask) & ~mask;  /* round up */
-        printf("Uploading %d (0x%x) bytes starting at %d (0x%x)\n", endAddr - startAddr, endAddr - startAddr, startAddr, startAddr);
-        while(startAddr < endAddr){
-            buffer.data.reportId = 2;
-            memcpy(buffer.data.data, dataBuffer + startAddr, 128);
-            setUsbInt(buffer.data.address, startAddr, 3);
-            printf("\r0x%05x ... 0x%05x", startAddr, startAddr + (int)sizeof(buffer.data.data));
-            fflush(stdout);
-            if((err = usbSetReport(dev, USB_HID_REPORT_TYPE_FEATURE, buffer.bytes, sizeof(buffer.data))) != 0){
-                fprintf(stderr, "Error uploading data block: %s\n", usbErrorMessage(err));
-                continue;
-                goto errorOccurred;
-            }
-            startAddr += sizeof(buffer.data.data);
+        for (i = 0; i <= addressIndex; i++)
+        {
+           startAddress[i] &= ~mask;                  /* round down */
+           endAddress[i] = (endAddress[i] + mask) & ~mask;  /* round up */
+           printf("Uploading %d (0x%x) bytes starting at %d (0x%x)\n", endAddress[i] - startAddress[i], endAddress[i] - startAddress[i], startAddress[i], startAddress[i]);
+           while(startAddress[i] < endAddress[i]){
+               buffer.data.reportId = 2;
+               memcpy(buffer.data.data, dataBuffer + startAddress[i], 128);
+               setUsbInt(buffer.data.address, startAddress[i], 3);
+               printf("\r0x%05x ... 0x%05x", startAddress[i], startAddress[i] + (int)sizeof(buffer.data.data));
+               fflush(stdout);
+               if((err = usbSetReport(dev, USB_HID_REPORT_TYPE_FEATURE, buffer.bytes, sizeof(buffer.data))) != 0){
+                   fprintf(stderr, "Error uploading data block: %s\n", usbErrorMessage(err));
+                   continue;
+                   goto errorOccurred;
+               }
+               startAddress[i] += sizeof(buffer.data.data);
+           }
+           printf("\n");
         }
-        printf("\n");
     }
     if(leaveBootLoader){
         /* and now leave boot loader: */
@@ -250,13 +275,13 @@ char    *file = NULL;
     }else{
         file = argv[1];
     }
-    startAddress = sizeof(dataBuffer);
-    endAddress = 0;
+//    startAddress = sizeof(dataBuffer);
+//    endAddress = 0;
     if(file != NULL){   // an upload file was given, load the data
         memset(dataBuffer, -1, sizeof(dataBuffer));
-        if(parseIntelHex(file, dataBuffer, &startAddress, &endAddress))
+        if(parseIntelHex(file, dataBuffer))
             return 1;
-        if(startAddress >= endAddress){
+        if(startAddress[0] == endAddress[0]){
             fprintf(stderr, "No data in input file, exiting.\n");
             return 0;
         }
@@ -272,7 +297,9 @@ return 0;
 }
 #endif
     // if no file was given, endAddress is less than startAddress and no data is uploaded
-    if(uploadData(dataBuffer, startAddress, endAddress))
+
+
+    if(uploadData(dataBuffer))
         return 1;
     return 0;
 }
