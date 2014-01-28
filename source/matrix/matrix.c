@@ -407,8 +407,8 @@ uint8_t scankey(void)
             if (keyidx == KEY_NONE || keyidx == KEY_FN)
                 continue;
 
- 
-            cntKey(keyidx, 0xFFFF);
+            if(curBit)
+               cntKey(keyidx, 0xFFFF);
             
             if (!prevBit && curBit)   //pushed
             {

@@ -41,6 +41,9 @@ uint8_t expectReport = 0;       ///< flag to indicate if we expect an USB-report
 
 AppPtr_t Bootloader = (void *)BOOTLOADER_ADDRESS; 
 
+
+extern uint8_t swapAltGui;
+
 #define MOUSE_ENABLE 1
 
 /*------------------------------------------------------------------*
@@ -364,6 +367,13 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
             return 1;
         } else if (rq->bRequest == USBRQ_HID_SET_IDLE) {
             idleRate = rq->wValue.bytes[1];
+            if(idleRate == 0)    // windows
+            {
+               swapAltGui = 0;
+            }else
+            {
+               swapAltGui = 1;
+            }
             DEBUG_PRINT(("idleRate = %2x\n", idleRate));
         } else if (rq->bRequest == USBRQ_HID_GET_PROTOCOL) {
             if (rq->wValue.bytes[1] < 1) {
