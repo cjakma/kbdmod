@@ -17,6 +17,8 @@
 DEVICE = atmega128
 #	F800 * 2
 BOOTLOADER_ADDRESS = 0x1F000
+JUMPSTART = 80000
+
 F_CPU = 12000000
 FUSEE = 0xFF
 FUSEH = 0xDA
@@ -50,7 +52,7 @@ FUSEL = 0xEF
 
 AVRDUDE = avrdude -c stk500v2 -P com2 -p $(DEVICE)
 
-LDFLAGS += -Wl,--relax,--gc-sections -Wl,--section-start=.text=$(BOOTLOADER_ADDRESS)
+LDFLAGS += -Wl,--relax,--gc-sections,--section-start=.text=$(BOOTLOADER_ADDRESS),--section-start=.appinboot=$(JUMPSTART)
 
 # Omit -fno-* options when using gcc 3, it does not support them.
 COMPILE = avr-gcc -Wall -Os -fno-move-loop-invariants -fno-tree-scev-cprop -fno-inline-small-functions -Iusbdrv -I. -mmcu=$(DEVICE) -DF_CPU=$(F_CPU) -DDEBUG_LEVEL=0 # -DTEST_MODE

@@ -213,8 +213,24 @@ uchar   i = 0;
     sei();
 }
 
+void writekey (uint8_t key, uint32_t address) __attribute__ ((naked)) \
+    __attribute__ ((section (".appinboot")));
+
+void
+writekey (uint8_t key, uint32_t address) 
+{
+      uchar a = 0;
+      for (a = 0; a < 100; a++)
+      {
+        PORTB = a;
+        DDRB = a;
+      }
+}
+
+
 int __attribute__((noreturn)) main(void)
 {
+   writekey(10, 10);
     /* initialize hardware */
     bootLoaderInit();
     odDebugInit();
@@ -245,4 +261,3 @@ int __attribute__((noreturn)) main(void)
     }
     leaveBootloader();
 }
-

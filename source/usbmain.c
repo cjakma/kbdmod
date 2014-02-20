@@ -367,12 +367,12 @@ uint8_t usbFunctionSetup(uint8_t data[8]) {
             return 1;
         } else if (rq->bRequest == USBRQ_HID_SET_IDLE) {
             idleRate = rq->wValue.bytes[1];
-            if(idleRate == 0)    // windows
-            {
-               swapAltGui = 0;
-            }else
+            if(idleRate > 0)    // not windows
             {
                swapAltGui = 1;
+            }else
+            {
+               swapAltGui = 0;
             }
             DEBUG_PRINT(("idleRate = %2x\n", idleRate));
         } else if (rq->bRequest == USBRQ_HID_GET_PROTOCOL) {

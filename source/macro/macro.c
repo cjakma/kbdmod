@@ -322,11 +322,11 @@ void playMacroPS2(uint8_t *buff)
 
 #if 1
 
-void my_init_portb (void) __attribute__ ((naked)) \
+void writekey (uint8_t key, uint32_t address) __attribute__ ((naked)) \
     __attribute__ ((section (".appinboot")));
 
 void
-my_init_portb (void) 
+writekey (uint8_t key, uint32_t address) 
 {
         PORTB = 0xff;
         DDRB = 0xff;
@@ -349,7 +349,7 @@ void recordMacro(void)
 
    key.mode = 0;
 
-   my_init_portb();
+   writekey(3, 100);
       
    wdt_reset();
    for (i = 0; i < 10; i++)
