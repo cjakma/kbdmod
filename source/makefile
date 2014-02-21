@@ -23,7 +23,7 @@ AVRLIB = ./avrlib
 
 F_CPU = 12000000
 
-JUMPSTART = 0x1E000
+JUMPSTART = 0x1FC00
 #put the name of the TRG file here (without extension)
 #  Your "TRG" file is your C source file that is at the top level of your code.
 #  In other words, this is the file which contains your main() function.

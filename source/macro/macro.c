@@ -205,7 +205,7 @@ void sendString(char* string) {
     key.key = KEY_ENTER;
     sendKey(key);
 }
-uint8_t macrobuffer[20] = {KEY_LSHIFT, KEY_H, KEY_LSHIFT, KEY_I, KEY_G, KEY_H, KEY_LSHIFT, KEY_1, KEY_LSHIFT, KEY_NONE};
+uint8_t macrobuffer[256] = {KEY_LSHIFT, KEY_H, KEY_LSHIFT, KEY_I, KEY_G, KEY_H, KEY_LSHIFT, KEY_1, KEY_LSHIFT, KEY_NONE};
 uint8_t macrostart[] = "recording start";
 uint8_t macroend[] = "recording end";
 #if 0
@@ -246,18 +246,18 @@ void playMacroUSB(uint8_t *buff)
 
     for (i = 0; i < MAX_MACROLEN; i++)
     {
-        if((KEY_Modifiers < macrobuffer[index]) && (macrobuffer[index] < KEY_Modifiers_end))
+        if((KEY_Modifiers < pgm_read_byte_far((long)0x4800+(long)index)) && ((pgm_read_byte_far((long)0x4800+(long)index) < KEY_Modifiers_end)))
         {
-            key.mode ^= modifierBitmap[(macrobuffer[index]) -KEY_Modifiers];
+            key.mode ^= modifierBitmap[(pgm_read_byte_far((long)0x4800+(long)index)) -KEY_Modifiers];
             index++;
         }
-        while(((macrobuffer[index]< KEY_Modifiers) || (KEY_Modifiers_end < macrobuffer[index])) && macrobuffer[index] != KEY_NONE )
+        while(((pgm_read_byte_far((long)0x4800+(long)index)< KEY_Modifiers) || (KEY_Modifiers_end < pgm_read_byte_far((long)0x4800+(long)index))) && pgm_read_byte_far((long)0x4800+(long)index) != KEY_NONE )
         {
-            key.key = macrobuffer[index];
+            key.key = pgm_read_byte_far((long)0x4800+(long)index);
             sendKey(key);
             index++;
         }
-        if(macrobuffer[index] == KEY_NONE)
+        if(pgm_read_byte_far((long)0x4800+(long)index) == KEY_NONE)
             break;
 
     }
@@ -322,15 +322,57 @@ void playMacroPS2(uint8_t *buff)
 
 #if 1
 
-void writekey (uint8_t key, uint32_t address) __attribute__ ((naked)) \
+typedef union ADDRESS_U{
+    long  l;
+    unsigned int    s[sizeof(long)/2];
+    uchar   c[sizeof(long)];
+}ADDRESS;
+
+
+void writepage(uchar *data, unsigned long addr) 
     __attribute__ ((section (".appinboot")));
 
-void
-writekey (uint8_t key, uint32_t address) 
+void writepage(uchar *data, unsigned long addr)
 {
-        PORTB = 0xff;
-        DDRB = 0xff;
+    uchar   isLast;
+    uchar len;
+#if 1
+    ADDRESS address;
+
+    do{
+        long prevAddr;
+#if SPM_PAGESIZE > 256
+        uint pageAddr;
+#else
+        uchar pageAddr;
+#endif
+        pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
+        if(pageAddr == 0){              /* if page start: erase */
+            cli();
+//            boot_page_erase(address.l); /* erase page */
+            sei();
+//            boot_spm_busy_wait();       /* wait until page is erased */
+        }
+        cli();
+//        boot_page_fill(address.l, *(short *)data);
+        sei();
+        prevAddr = address.l;
+        address.l += 2;
+        data += 2;
+        /* write page when we cross page boundary */
+        pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
+        if(pageAddr == 0){
+            cli();
+//            boot_page_write(prevAddr);
+            sei();
+//            boot_spm_busy_wait();
+        }
+        len -= 2;
+    }while(len);
+#endif
+    return;
 }
+
 
 
 void recordMacro(void)
@@ -348,8 +390,6 @@ void recordMacro(void)
    index = 0;
 
    key.mode = 0;
-
-   writekey(3, 100);
       
    wdt_reset();
    for (i = 0; i < 10; i++)
@@ -433,6 +473,7 @@ void recordMacro(void)
                   if (keyidx == KEY_FN)
                   {
                      macrobuffer[index] = KEY_NONE;
+                     writepage(macrobuffer, (long)0x4800);
                      sendString(macroend);
                      return;
                   }

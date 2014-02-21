@@ -43,6 +43,13 @@ static uchar            exitMainloop;
 #endif
 
 
+typedef union ADDRESS_U{
+    addr_t  l;
+    uint    s[sizeof(addr_t)/2];
+    uchar   c[sizeof(addr_t)];
+}ADDRESS;
+
+
 const PROGMEM char usbHidReportDescriptor[33] = {
     0x06, 0x00, 0xff,              // USAGE_PAGE (Generic Desktop)
     0x09, 0x01,                    // USAGE (Vendor Usage 1)
@@ -133,12 +140,8 @@ static uchar    replyBuffer[7] = {
 
 uchar usbFunctionWrite(uchar *data, uchar len)
 {
-union {
-    addr_t  l;
-    uint    s[sizeof(addr_t)/2];
-    uchar   c[sizeof(addr_t)];
-}       address;
-uchar   isLast;
+    uchar   isLast;
+    ADDRESS address;
 
     address.l = currentAddress;
     if(offset == 0){
@@ -212,25 +215,51 @@ uchar   i = 0;
     usbDeviceConnect();
     sei();
 }
-
-void writekey (uint8_t key, uint32_t address) __attribute__ ((naked)) \
+void writepage(uchar *data, ulong addr) 
     __attribute__ ((section (".appinboot")));
 
-void
-writekey (uint8_t key, uint32_t address) 
+void writepage(uchar *data, ulong addr)
 {
-      uchar a = 0;
-      for (a = 0; a < 100; a++)
-      {
-        PORTB = a;
-        DDRB = a;
-      }
+    uchar len = 256;
+    uchar   isLast;
+    ADDRESS address;
+    address.l = addr;
+    do{
+        addr_t prevAddr;
+#if SPM_PAGESIZE > 256
+        uint pageAddr;
+#else
+        uchar pageAddr;
+#endif
+        pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
+        if(pageAddr == 0){              /* if page start: erase */
+            cli();
+            boot_page_erase(address.l); /* erase page */
+            sei();
+            boot_spm_busy_wait();       /* wait until page is erased */
+        }
+        cli();
+        boot_page_fill(address.l, *(short *)data);
+        sei();
+        prevAddr = address.l;
+        address.l += 2;
+        data += 2;
+        /* write page when we cross page boundary */
+        pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
+        if(pageAddr == 0){
+            cli();
+            boot_page_write(prevAddr);
+            sei();
+            boot_spm_busy_wait();
+        }
+        len -= 2;
+    }while(len);
+    return;
 }
 
 
 int __attribute__((noreturn)) main(void)
 {
-   writekey(10, 10);
     /* initialize hardware */
     bootLoaderInit();
     odDebugInit();
