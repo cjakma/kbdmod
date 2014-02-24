@@ -70,6 +70,9 @@ FILE    *input;
         
         address += extSegAddr;
         base += extSegAddr;
+
+        if(address >= 0x1E000)
+            break;
         
         sum += segment = parseHex(input, 2);  /* segment value? */
         if(segment == 0x02)    /* Extended Segment Address Records (HEX86)*/

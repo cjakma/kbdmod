@@ -223,7 +223,7 @@ enum {
     KEY_EJECT,
     KEY_SCREENSAVE,
     KEY_REC,
-   KEY_REWIND,
+    KEY_REWIND,
 	KEY_MINIMIZE,
 
     KEY_System,

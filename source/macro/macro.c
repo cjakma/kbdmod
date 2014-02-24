@@ -236,6 +236,26 @@ void playMacroUSB(uint8_t *buff)
     sendKey(key);
 }
 #else
+#define MACRO_ADDR_START 0x5000
+long MacroAddr[50] = {};
+
+uint8_t initMacroAddr(void)
+{
+    uint8_t i;
+    long address;
+    address = MACRO_ADDR_START;
+    
+    for (i = 0; i ++; i < 50)
+    {
+        MacroAddr[i] = address;
+        address += 0x400;           // 1024
+    }
+}
+
+uint8_t getkey(uint8_t key, uint16_t index)
+{
+
+}
 void playMacroUSB(uint8_t *buff)
 {
     uint8_t i;
@@ -246,18 +266,20 @@ void playMacroUSB(uint8_t *buff)
 
     for (i = 0; i < MAX_MACROLEN; i++)
     {
-        if((KEY_Modifiers < pgm_read_byte_far((long)0x4800+(long)index)) && ((pgm_read_byte_far((long)0x4800+(long)index) < KEY_Modifiers_end)))
+        if((KEY_Modifiers < pgm_read_byte_far((long)0x5000+(long)index)) && ((pgm_read_byte_far((long)0x5000+(long)index) < KEY_Modifiers_end)))
         {
-            key.mode ^= modifierBitmap[(pgm_read_byte_far((long)0x4800+(long)index)) -KEY_Modifiers];
+            key.mode ^= modifierBitmap[(pgm_read_byte_far((long)0x5000+(long)index)) -KEY_Modifiers];
             index++;
         }
-        while(((pgm_read_byte_far((long)0x4800+(long)index)< KEY_Modifiers) || (KEY_Modifiers_end < pgm_read_byte_far((long)0x4800+(long)index))) && pgm_read_byte_far((long)0x4800+(long)index) != KEY_NONE )
+        while(((pgm_read_byte_far((long)0x5000+(long)index)< KEY_Modifiers) || (KEY_Modifiers_end < pgm_read_byte_far((long)0x5000+(long)index))) && pgm_read_byte_far((long)0x5000+(long)index) != KEY_NONE )
         {
-            key.key = pgm_read_byte_far((long)0x4800+(long)index);
+            
+            wdt_reset();
+            key.key = pgm_read_byte_far((long)0x5000+(long)index);
             sendKey(key);
             index++;
         }
-        if(pgm_read_byte_far((long)0x4800+(long)index) == KEY_NONE)
+        if(pgm_read_byte_far((long)0x5000+(long)index) == KEY_NONE)
             break;
 
     }
@@ -473,7 +495,7 @@ void recordMacro(void)
                   if (keyidx == KEY_FN)
                   {
                      macrobuffer[index] = KEY_NONE;
-                     writepage(macrobuffer, (long)0x4800);
+                     writepage(macrobuffer, (long)0x5000);
                      sendString(macroend);
                      return;
                   }

@@ -12,30 +12,7 @@
 #define MAX_LAYER   8
 
 // Total 132 keys + one none
-#define NUM_KEY         212
 
-#define KEY_M48         236
-#define KEY_M49         237
-#define KEY_M50         238
-#define KEY_LED0        239
-#define KEY_LED1        240
-#define KEY_LED2        241
-#define KEY_LED3        242
-#define KEY_LED4        243
-#define KEY_LED5        244
-#define KEY_LED6        245
-#define KEY_LED7        246
-
-#define KEY_L0          247
-#define KEY_L1          248
-#define KEY_L2          249
-#define KEY_L3          250
-#define KEY_L4          251
-#define KEY_L5          252
-#define KEY_L6          253
-
-#define KEY_RESET       254
-#define KEY_FN          255
 
 
 
@@ -165,19 +142,23 @@ enum {
     KEY_APPS,		        // 102
     KEY_POWER_HID,
     KEY_KP_EQUAL,
-    KEY_F13,
-    KEY_F14,
-    KEY_F15,
-    KEY_F16,
-    KEY_F17,
-    KEY_F18,
-    KEY_F19,
-    KEY_F20,
+    
+    KEY_LED0,        //239
+    KEY_LED1,        //240
+    KEY_LED2,        //241
+    KEY_LED3,        //242
+    KEY_LED4,        //243
+    KEY_LED5,        //244
+    KEY_LED6,        //245
+    KEY_LED7,        //246
 
-    KEY_F21,        // 0x70
-    KEY_F22,
-    KEY_F23,
-    KEY_F24,
+    X, 
+    Y, 
+    KEY_RESET,       //254
+    KEY_FN,          //255
+
+
+
     KEY_EXECUTE,
     KEY_HELP,
     KEY_MENU,
@@ -198,13 +179,15 @@ enum {
     KEY_KL_SCL,
     KEY_KP_COMMA,
     KEY_EQUAL_SIGN,
-    KEY_INTL1,
-    KEY_INTL2,
-    KEY_INTL3,
-    KEY_INTL4,
-    KEY_INTL5,
-    KEY_INTL6,
-    KEY_INTL7,
+        KEY_L0,          //247
+    KEY_L1,          //248
+    KEY_L2,          //249
+    KEY_L3,          //250
+    KEY_L4,          //251
+        KEY_L5,          //252
+        KEY_L6,          //253
+        
+
     KEY_INTL8,
     KEY_INTL9,
     
@@ -212,11 +195,15 @@ enum {
     KEY_HANGLE,
     KEY_KATA,
     KEY_HIRA,
-    KEY_LANG5,
-    KEY_LANG6,
-    KEY_LANG7,
-    KEY_LANG8,
-    KEY_LANG9,
+        KEY_System,//KEY_LANG5,
+        KEY_POWER,//KEY_LANG6,
+        KEY_SLEEP, //KEY_LANG7,
+        KEY_WAKE, //KEY_LANG8,
+        
+        
+        NUM_KEY,  //KEY_LANG9,
+
+     
     KEY_ALT_ERASE,
     KEY_SYSREQ,
     KEY_CANCEL,
@@ -279,10 +266,58 @@ enum {
 	KEY_REWIND,
 	KEY_MINIMIZE,
 
-    KEY_System,
-    KEY_POWER,
-    KEY_SLEEP,
-    KEY_WAKE,
+
+
+    KEY_M01,        //KEY_F13,
+    KEY_M02,        //KEY_F14,
+    KEY_M03,        //KEY_F15,
+    KEY_M04,        //KEY_F16,
+    KEY_M05,        //KEY_F17,
+    KEY_M06,        //KEY_F18,
+    KEY_M07,        //KEY_F19,
+    KEY_M08,        //KEY_F20,
+    KEY_M09,        //KEY_F21,        // 0x70
+    KEY_M10,        //KEY_F22,
+    KEY_M11,        //KEY_F23,
+    KEY_M12,        //KEY_F24,
+    KEY_M13,        //KEY_INTL1,
+    KEY_M14,        //KEY_INTL2,
+    KEY_M15,        //KEY_INTL3,
+    KEY_M16,        //KEY_INTL4,
+    KEY_M17,        //KEY_INTL5,
+    KEY_M18,        //KEY_INTL6,
+    KEY_M19,        //KEY_INTL7,
+    KEY_M20,        
+    KEY_M21,        
+    KEY_M22,        
+    KEY_M23,       
+    KEY_M24,   
+    KEY_M25,        //213
+    KEY_M26,        //214
+    KEY_M27,         //215
+    KEY_M28,         //216
+    KEY_M29,         //217
+    KEY_M30,         //218
+    KEY_M31,         //219
+    KEY_M32,         //220
+    KEY_M33,         //221
+    KEY_M34,         //222
+    KEY_M35,         //223
+    KEY_M36,         //224
+    KEY_M37,         //225
+    KEY_M38,         //226
+    KEY_M39,         //227
+    KEY_M40,         //228
+    KEY_M41,         //229
+    KEY_M42,         //230
+    KEY_M43,         //231
+    KEY_M44,         //232
+    KEY_M45,         //233
+    KEY_M46,         //234
+    KEY_M47,         //235
+    KEY_M48,         //236
+    KEY_M49,         //237
+    KEY_M50,         //238
 };
 
 /* Generic Desktop Page(0x01) - system power control */

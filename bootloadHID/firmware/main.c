@@ -224,6 +224,8 @@ void writepage(uchar *data, ulong addr)
     uchar   isLast;
     ADDRESS address;
     address.l = addr;
+    
+    cli();
     do{
         addr_t prevAddr;
 #if SPM_PAGESIZE > 256
@@ -233,27 +235,23 @@ void writepage(uchar *data, ulong addr)
 #endif
         pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
         if(pageAddr == 0){              /* if page start: erase */
-            cli();
             boot_page_erase(address.l); /* erase page */
-            sei();
             boot_spm_busy_wait();       /* wait until page is erased */
         }
-        cli();
         boot_page_fill(address.l, *(short *)data);
-        sei();
         prevAddr = address.l;
         address.l += 2;
         data += 2;
         /* write page when we cross page boundary */
         pageAddr = address.s[0] & (SPM_PAGESIZE - 1);
         if(pageAddr == 0){
-            cli();
             boot_page_write(prevAddr);
-            sei();
             boot_spm_busy_wait();
         }
         len -= 2;
     }while(len);
+    boot_rww_enable();
+    sei();
     return;
 }
 
