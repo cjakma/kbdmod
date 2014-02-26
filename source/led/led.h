@@ -8,6 +8,7 @@ typedef enum
     LED_BLOCK_PRT,                // On/Off
     
     LED_BLOCK_ESC,
+    
     LED_BLOCK_Fx,
     LED_BLOCK_PAD,
     LED_BLOCK_FULL,
@@ -39,7 +40,7 @@ typedef enum
 extern LED_MODE led_mode;
 extern uint8_t LEDstate;     ///< current state of the LEDs
 extern uint8_t ledmodeIndex;
-extern uint8_t ledmode[9][11];
+extern uint8_t ledmode[4][11];
 void led_blink(int matrixState);
 void led_fader(void);
 void led_check(uint8_t forward);

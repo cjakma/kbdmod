@@ -25,9 +25,8 @@ static uint8_t *const ledport[] = {LED_NUM_PORT, LED_CAP_PORT,LED_SCR_PORT, LED_
 static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN, LED_SCR_PIN, LED_PRT_PIN, 
                                     LED_BLOCK_ESC_PIN,LED_BLOCK_Fx_PIN,LED_BLOCK_PAD_PIN,LED_BLOCK_FULL_PIN, 
                                     LED_BLOCK_WASD_PIN,LED_BLOCK_ARROW18_PIN, LED_BLOCK_ARROW30_PIN};
-#if 1
 uint8_t ledmodeIndex;
-uint8_t ledmode[9][11] ={ 
+uint8_t ledmode[4][11] ={ 
                     {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
                     LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
                     LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
@@ -42,40 +41,12 @@ uint8_t ledmode[9][11] ={
 
                     {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
                     LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
-                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
-
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},
-
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_OFF, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},
-                    
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF},
-
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-                    LED_EFFECT_OFF, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
-
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF}
-
-                    
+                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL}
 };
-
-#else
-static uint8_t ledmode[] = {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                            LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_PUSHED_LEVEL, 
-                            LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING};
-#endif
 
 
 static uint8_t speed[] = {0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4};
-static uint8_t brigspeed[] = {0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 10};
+static uint8_t brigspeed[] = {0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3};
 static uint8_t pwmDir[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint32_t pwmCounter[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -516,4 +487,119 @@ void led_pushed_level_cal(void)
 	}
 }
 
+uint8_t ledstart[] = "led change start";
+uint8_t ledend[] = "led change end";
 
+
+void recordLED(uint8_t ledkey)
+{
+    ledmodeIndex = ledkey - KEY_LED0;
+    int8_t col, row;
+    uint32_t prev, cur;
+    uint8_t prevBit, curBit;
+    uint8_t keyidx;
+    uint8_t matrixState = 0;
+    uint8_t retVal = 0;
+    int8_t i;
+    int16_t index;
+    long page;
+    uint8_t t_layer;
+    uint8_t ledblk;
+    long address;
+
+    index = 0;
+    page = 0;
+
+
+    wdt_reset();
+
+
+
+    sendString(ledstart);
+
+    for(col = 0; col < MAX_COL; col++)
+    {
+        for(row = 0; row < MAX_ROW; row++)
+        {
+            debounceMATRIX[col][row] = -1;
+        }
+    }
+
+    while(1)
+    {
+
+    wdt_reset();
+    matrixState = scanmatrix();
+
+    t_layer = 6;    // led block layer
+
+    // debounce cleared => compare last matrix and current matrix
+    for(col = 0; col < MAX_COL; col++)
+    {
+     prev = MATRIX[col];
+     cur  = curMATRIX[col];
+     MATRIX[col] = curMATRIX[col];
+     for(i = 0; i < MAX_ROW; i++)
+     {
+        prevBit = (uint8_t)prev & 0x01;
+        curBit = (uint8_t)cur & 0x01;
+        prev >>= 1;
+        cur >>= 1;
+
+        if (i < 8)
+        {
+           row = 10 + i;
+        }else if (i < 16)
+        {
+           row = -6 + i;
+        }else
+        {
+           row = -16 + i;
+        }
+        keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
+
+         if (keyidx == KEY_NONE)
+            continue;
+
+         if (!prevBit && curBit)   //pushed
+         {
+            debounceMATRIX[col][row] = 0;    //triger
+
+         }else if (prevBit && !curBit)  //released
+         {
+            debounceMATRIX[col][row] = 0;    //triger
+         }
+
+         if(debounceMATRIX[col][row] >= 0)
+         {                
+            if(debounceMATRIX[col][row]++ >= DEBOUNCE_MAX)
+            {
+               if(curBit)
+               {
+                    if (keyidx == KEY_FN)
+                    {
+                        //writepage(macrobuffer, address+(page*256));
+                        sendString(ledend);
+                        return;
+                    }else
+                    {
+                        ledblk = keyidx - KEY_LFX + 5;
+                        ledmode[ledmodeIndex][ledblk]++;
+                        if(ledmode[ledmodeIndex][ledblk] >= 8)
+                        {
+                            ledmode[ledmodeIndex][ledblk] = 0;
+                        }
+                        led_mode_change(ledblk,ledmode[ledmodeIndex][ledblk]);
+                    }
+               }else
+               {
+                
+               }
+
+               debounceMATRIX[col][row] = -1;
+            }
+        }
+    }
+    }
+    }
+}

@@ -16,8 +16,7 @@
 #include "ps2main.h"
 #include "keymap.h"
 #include "matrix.h"
-#define MAX_MACROLEN    10
-
+#include "macro.h"
 
 
 
@@ -205,39 +204,11 @@ void sendString(char* string) {
     key.key = KEY_ENTER;
     sendKey(key);
 }
-uint8_t macrobuffer[256] = {KEY_LSHIFT, KEY_H, KEY_LSHIFT, KEY_I, KEY_G, KEY_H, KEY_LSHIFT, KEY_1, KEY_LSHIFT, KEY_NONE};
+uint8_t macrobuffer[256] = {};
 uint8_t macrostart[] = "recording start";
 uint8_t macroend[] = "recording end";
-#if 0
-void playMacroUSB(uint8_t *buff)
-{
-    uint8_t i;
-    Key key;
-    key.mode = 0;
-    key.key = 0;
-    
-    for (i = 0; i < MAX_MACROLEN; i++)
-    {
-        if((KEY_Modifiers < *buff) && (*buff < KEY_Modifiers_end))
-            key.mode ^= modifierBitmap[(*buff++) -KEY_Modifiers];
 
-        while(((*buff < KEY_Modifiers) || (KEY_Modifiers_end < *buff)) && *buff != KEY_NONE )
-        {
-            key.key = *buff++;
-            sendKey(key);
-        }
-        if(*buff == KEY_NONE)
-            break;
-
-    }
-    
-    key.mode = 0;
-    key.key = 0;
-    sendKey(key);
-}
-#else
-#define MACRO_ADDR_START 0x5000
-long MacroAddr[50] = {};
+long MacroAddr[MAX_MACRO_INDEX] = {};
 
 uint8_t initMacroAddr(void)
 {
@@ -245,7 +216,7 @@ uint8_t initMacroAddr(void)
     long address;
     address = MACRO_ADDR_START;
     
-    for (i = 0; i ++; i < 50)
+    for (i = 0; i < MAX_MACRO_INDEX; i++)
     {
         MacroAddr[i] = address;
         address += 0x400;           // 1024
@@ -256,30 +227,32 @@ uint8_t getkey(uint8_t key, uint16_t index)
 {
 
 }
-void playMacroUSB(uint8_t *buff)
+void playMacroUSB(uint8_t macrokey)
 {
     uint8_t i;
     Key key;
     key.mode = 0;
     key.key = 0;
     uint8_t index = 0;
+    long address;
+    address = MacroAddr[macrokey - KEY_M01];
+    
 
-    for (i = 0; i < MAX_MACROLEN; i++)
+    for (i = 0; i < MAX_MACRO_LEN; i++)
     {
-        if((KEY_Modifiers < pgm_read_byte_far((long)0x5000+(long)index)) && ((pgm_read_byte_far((long)0x5000+(long)index) < KEY_Modifiers_end)))
+        if((KEY_Modifiers < pgm_read_byte_far(address)) && ((pgm_read_byte_far(address) < KEY_Modifiers_end)))
         {
-            key.mode ^= modifierBitmap[(pgm_read_byte_far((long)0x5000+(long)index)) -KEY_Modifiers];
-            index++;
+            key.mode ^= modifierBitmap[(pgm_read_byte_far(address)) -KEY_Modifiers];
+            address++;
         }
-        while(((pgm_read_byte_far((long)0x5000+(long)index)< KEY_Modifiers) || (KEY_Modifiers_end < pgm_read_byte_far((long)0x5000+(long)index))) && pgm_read_byte_far((long)0x5000+(long)index) != KEY_NONE )
+        while(((pgm_read_byte_far(address)< KEY_Modifiers) || (KEY_Modifiers_end < pgm_read_byte_far(address))) && pgm_read_byte_far(address) != KEY_NONE )
         {
-            
             wdt_reset();
-            key.key = pgm_read_byte_far((long)0x5000+(long)index);
+            key.key = pgm_read_byte_far(address);
             sendKey(key);
-            index++;
+            address++;
         }
-        if(pgm_read_byte_far((long)0x5000+(long)index) == KEY_NONE)
+        if(pgm_read_byte_far(address) == KEY_NONE)
             break;
 
     }
@@ -288,29 +261,31 @@ void playMacroUSB(uint8_t *buff)
     key.key = 0;
     sendKey(key);
 }
-#endif
 
 
 
-void playMacroPS2(uint8_t *buff)
+void playMacroPS2(uint8_t macrokey)
 {
     uint8_t i;
     Key key;
     uint8_t keyval;
     key.mode = 0;
     key.key = 0;
+    long address;
 
-    for (i = 0; i < MAX_MACROLEN; i++)
+    for (i = 0; i < MAX_MACRO_LEN; i++)
     {
-        if((KEY_Modifiers < *buff) && (*buff < KEY_Modifiers_end))
+        if((KEY_Modifiers < pgm_read_byte_far(address)) && (pgm_read_byte_far(address) < KEY_Modifiers_end))
         {
-            key.mode ^= modifierBitmap[(*buff) -KEY_Modifiers];
-            if(key.mode & modifierBitmap[(*buff) -KEY_Modifiers])
+            key.mode ^= modifierBitmap[pgm_read_byte_far(address) -KEY_Modifiers];
+            if(key.mode & modifierBitmap[pgm_read_byte_far(address) -KEY_Modifiers])
             {
-                putKey(*buff++,1);
+                putKey(pgm_read_byte_far(address),1);
+                address++;
             }else
             {
-                putKey(*buff++,0);
+                putKey(pgm_read_byte_far(address),0);
+                address++;
             }
             while((keyval = pop()) !=SPLIT)
             {
@@ -320,7 +295,7 @@ void playMacroPS2(uint8_t *buff)
             }
         }else
         {
-            putKey(*buff,1);
+            putKey(pgm_read_byte_far(address),1);
             while((keyval = pop()) !=SPLIT)
             {
                 while(!(kbd_flags & FLA_TX_OK));
@@ -328,7 +303,8 @@ void playMacroPS2(uint8_t *buff)
                 tx_state(keyval, STA_NORMAL);
             }
         
-            putKey(*buff++,0);
+            putKey(pgm_read_byte_far(address),0);
+            address++;
             while((keyval = pop()) !=SPLIT)
             {
                 while(!(kbd_flags & FLA_TX_OK));
@@ -337,7 +313,7 @@ void playMacroPS2(uint8_t *buff)
             }
         }
 
-        if(*buff == KEY_NONE)
+        if(pgm_read_byte_far(address) == KEY_NONE)
             return;
     }
 }
@@ -397,7 +373,7 @@ void writepage(uchar *data, unsigned long addr)
 
 
 
-void recordMacro(void)
+void recordMacro(uint8_t macrokey)
 {
    int8_t col, row;
    uint32_t prev, cur;
@@ -406,24 +382,24 @@ void recordMacro(void)
    uint8_t matrixState = 0;
    uint8_t retVal = 0;
    int8_t i;
-   int8_t index;
+   int16_t index;
+   long page;
    uint8_t t_layer;
    Key key;
+   long address;
+   address = MacroAddr[macrokey - KEY_M01];
+    
    index = 0;
+   page = 0;
 
    key.mode = 0;
       
    wdt_reset();
-   for (i = 0; i < 10; i++)
+   
+   for (i = 0; i == 255; i++)
       macrobuffer[i] = 0x00;
 
-   for (i = 0; i < 5; i++)
-   {
-      macrostart[i] = pgm_read_byte_far((long)0x11000+(long)i);
-   }
-
    sendString(macrostart);
-
 
    for(col = 0; col < MAX_COL; col++)
    {
@@ -469,14 +445,6 @@ void recordMacro(void)
          if (keyidx == KEY_NONE)
             continue;
 
-#if 0
-         if (!prevBit && curBit)   //pushed
-         {
-            if (processFNkeys(keyidx))
-            continue;
-         }
-#endif
-
          if (!prevBit && curBit)   //pushed
          {
             debounceMATRIX[col][row] = 0;    //triger
@@ -495,7 +463,7 @@ void recordMacro(void)
                   if (keyidx == KEY_FN)
                   {
                      macrobuffer[index] = KEY_NONE;
-                     writepage(macrobuffer, (long)0x5000);
+                     writepage(macrobuffer, address+(page*256));
                      sendString(macroend);
                      return;
                   }
@@ -510,7 +478,16 @@ void recordMacro(void)
                         key.key = macrobuffer[index];
                      }
                      sendKey(key);
-                     index++;
+                     
+                     if(index == 0xFF)
+                     {
+                         writepage(macrobuffer, address+(page*256));
+                         page++;
+                         index = 0;
+                     }else
+                     {
+                        index++;
+                     }
                   }
                }else
                {

@@ -195,6 +195,7 @@ int main(void)
    timer1PWMInit(8);
    timer3PWMInit(8);
    keymap_init();
+   initMacroAddr();
 
    if(usbmode)
    {

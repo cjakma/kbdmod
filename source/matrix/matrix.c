@@ -19,6 +19,7 @@
 #include "usbmain.h"
 #include "eepaddress.h"
 #include "macro.h"
+
 int16_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -31,6 +32,16 @@ uint8_t matrixFN[MAX_LAYER];           // (col << 4 | row)
 uint8_t layer = 0;
 uint8_t kbdsleepmode = 0;
 uint8_t ledPortBackup = 0;
+uint16_t macrokeypushedcnt;
+uint16_t ledkeypushedcnt;
+
+#define SWAP_TIMER  0x400
+uint8_t swapCtrlCaps = 0x80;
+uint8_t swapAltGui =  0x80;
+uint16_t cntLcaps = 0;
+uint16_t cntLctrl = 0;
+uint16_t cntLAlt = 0;
+uint16_t cntLGui = 0;
 
 
 extern int8_t usbmode;
@@ -113,79 +124,64 @@ uint8_t macrokeystring[3][30] = {
                              };
 
 
-uint8_t processFNkeys(uint8_t keyidx)
+uint8_t processPushedFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
     uint8_t ledblock;
-    switch(keyidx)
+
+    if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
-        case KEY_LED0:
-        case KEY_LED1:
-        case KEY_LED2:
-        case KEY_LED3:
-        {
-            ledmodeIndex = keyidx-KEY_LED0;
-            for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
-            {
-                led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
-            }
-            retVal = 1;
-            break;
-        }
-            
-        case KEY_LED4:
-        case KEY_LED5:
-        case KEY_LED6:
-        case KEY_LED7:
-        {
-            ledmodeIndex ++;
-            if ((ledmodeIndex > 8) || (ledmodeIndex < 4))
-                ledmodeIndex = 4;
-            for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
-            {
-                    led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
-            }
-            retVal = 1;
-            break;
-        }
-        case KEY_L0:
-        case KEY_L1:
-        case KEY_L2:
-        case KEY_L3:            
-        case KEY_L4:
-        case KEY_L5:
-        case KEY_L6:
-            layer = keyidx - KEY_L0;
-            eeprom_write_byte(EEPADDR_KEYLAYER, layer);
-            retVal = 1;
-            break;
-
-        case KEY_RESET:
-         {
-            extern AppPtr_t Bootloader;
-            Reset_AVR();
-        }
-            break;
-
-        case KEY_M48:
-            recordMacro();
-            retVal = 1;
-            break;
-            
-        case KEY_M49:
-        case KEY_M50:
-            if(usbmode)
-                playMacroUSB((uint8_t *)&macrokeystring[keyidx-KEY_M48][0]);
-            else
-                playMacroPS2((uint8_t *)&macrokeystring[keyidx-KEY_M48][0]);
-            retVal = 1;
-            break;
-            
-        default:
-            break;
+        retVal = 1;
+    }else if(keyidx >= KEY_LFX && keyidx <= KEY_LARR)
+    {
+        retVal = 1;
+    }else if(keyidx >= KEY_L0 && keyidx <= KEY_L6)
+    {
+        layer = keyidx - KEY_L0;
+        eeprom_write_byte(EEPADDR_KEYLAYER, layer);
+        retVal = 1;
+    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
+    {
+        retVal = 1;
+    }else if(keyidx == KEY_RESET)
+    {
+        extern AppPtr_t Bootloader;
+        Reset_AVR();
     }
     return retVal;
 }
+
+uint8_t processReleasedFNkeys(uint8_t keyidx)
+{
+    uint8_t retVal = 0;
+    uint8_t ledblock;
+
+    if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
+    {
+        ledmodeIndex = keyidx-KEY_LED0;
+        for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
+        {
+            led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
+        }
+        retVal = 1;
+    }else if(keyidx >= KEY_LFX && keyidx <= KEY_LARR)
+    {
+        retVal = 1;
+    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
+    {
+        if(usbmode)
+             playMacroUSB(keyidx);
+         else
+             playMacroPS2(keyidx);
+         retVal = 1;
+    }else if(keyidx == KEY_RESET)
+    {
+        extern AppPtr_t Bootloader;
+        Reset_AVR();
+    }
+    return retVal;
+}
+
 
 
 uint8_t getLayer(uint8_t FNcolrow)
@@ -262,13 +258,7 @@ uint8_t scanmatrix(void)
 }
 
 
-#define SWAP_TIMER  0x400
-uint8_t swapCtrlCaps = 0x80;
-uint8_t swapAltGui =  0x80;
-uint16_t cntLcaps = 0;
-uint16_t cntLctrl = 0;
-uint16_t cntLAlt = 0;
-uint16_t cntLGui = 0;
+
 
 uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
 {
@@ -320,6 +310,29 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
     {
         swapAltGui ^= 1;
         swapAltGui &= 0x7F;
+    }
+    if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
+    {
+        if (macrokeypushedcnt++ == SWAP_TIMER)
+        {
+            recordMacro(keyidx);
+            macrokeypushedcnt = 0;
+        }
+        if(clearmask == 0x0000)
+        {
+            macrokeypushedcnt = 0;
+        }
+    }else if (keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
+    {
+        if (ledkeypushedcnt++ == SWAP_TIMER)
+        {
+            recordLED(keyidx);
+            ledkeypushedcnt = 0;
+        }
+        if(clearmask == 0x0000)
+        {
+            ledkeypushedcnt = 0;
+        }
     }
 }
 
@@ -413,10 +426,12 @@ uint8_t scankey(void)
             if (!prevBit && curBit)   //pushed
             {
                 led_pushed_level_cal();          /* LED_EFFECT_PUSHED_LEVEL calculate */        
-                if (processFNkeys(keyidx))
+                if (processPushedFNkeys(keyidx))
                     continue;
             }else if (prevBit && !curBit)  //released
             {
+                if (processReleasedFNkeys(keyidx))
+                    continue;
                 cntKey(keyidx, 0x0000);
             }
 
