@@ -135,8 +135,8 @@ Key charToKey(char character) {
         case '#':
             key.key = KEY_HASH; break;
         case '@':
-            key.mode = MOD_SHIFT_LEFT;
-            key.key = KEY_HASH; break;
+            //key.mode = MOD_SHIFT_LEFT;
+            key.key = KEY_ENTER; break;
         case ';':
             key.key = KEY_COLON; break;
         case ':':
@@ -229,7 +229,7 @@ void sendString(char* string) {
 }
 uint8_t macrobuffer[256] = {};
 uint8_t macrostart[] = "recording start";
-uint8_t macroend[] = "recording end";
+uint8_t macroend[] = "@recording end";
 uint8_t macroresetstart[] = "macro reset";
 uint8_t macroresetdone[] = "done";
 
@@ -527,7 +527,6 @@ void recordMacro(uint8_t macrokey)
                   {
                      macrobuffer[index] = KEY_NONE;
                      writepage(macrobuffer, address+(page*256));
-                     sendString("");
                      sendString(macroend);
                      return;
                   }

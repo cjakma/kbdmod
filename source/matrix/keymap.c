@@ -15,7 +15,7 @@ const uint8_t PROGMEM keycode_set2[MAX_KEY] =	{
     0xF2, 0xF1, 0x63, 0x62, 0x5F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,     // KEY_HANJA (0x90)
     0x00, 0x00, 0x00, 0x00, 0x00,                                                                       // ~KEY_EXCEL (0xA4)
    		
-   	0x00,                                                                                               // KEY_Modifiers (0xA5)
+    0x00,                                                                                               // KEY_Modifiers (0xA5)
     0x14, 0x12, 0x11, 0x1F, 0x14, 0x59, 0x11, 0x27, 
     0x00,		                                                                                        // KEY_Modifiers_end (0xAE)
     0x00, 0x00, 0x00,                                                                                    // ~KEY_000(0xB1)

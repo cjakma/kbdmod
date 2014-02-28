@@ -221,92 +221,92 @@ enum {
 	KEY_RALT,           // 0x40
 	KEY_RGUI,           // 0x80
 	KEY_Modifiers_end,
-    KEY_RESERVED,
+   KEY_RESERVED,
 
-    KEY_00,             // 0xB0
-    KEY_000,
-    KEY_Consumers,
-    KEY_NEXT_TRK,
-    KEY_PREV_TRK,
-    KEY_STOP,
-    KEY_PLAY,
-    KEY_MUTE,
-    KEY_BASS_BST,
-    KEY_LOUDNESS,
-    KEY_VOL_UP,
-    KEY_VOL_DOWN,
-    KEY_BASS_UP,
-    KEY_BASS_DN,
-    KEY_TRE_UP,
-    KEY_TRE_DN,
+   KEY_00,             // 0xB0
+   KEY_000,
+   KEY_Consumers,
+   KEY_NEXT_TRK,
+   KEY_PREV_TRK,
+   KEY_STOP,
+   KEY_PLAY,
+   KEY_MUTE,
+   KEY_BASS_BST,
+   KEY_LOUDNESS,
+   KEY_VOL_UP,
+   KEY_VOL_DOWN,
+   KEY_BASS_UP,
+   KEY_BASS_DN,
+   KEY_TRE_UP,
+   KEY_TRE_DN,
 
-    KEY_MEDIA_SEL,      // 0xc0
-    KEY_MAIL,
-    KEY_CALC,
-    KEY_MYCOM,
-    KEY_WWW_SEARCH,
-    KEY_WWW_HOME,
-    KEY_WWW_BACK,
-    KEY_WWW_FORWARD,
-    KEY_WWW_STOP,
-    KEY_WWW_REFRESH,
-    KEY_WWW_FAVORITE,
-    KEY_EJECT,
-    KEY_SCREENSAVE,
-    KEY_REC,
+   KEY_MEDIA_SEL,      // 0xc0
+   KEY_MAIL,
+   KEY_CALC,
+   KEY_MYCOM,
+   KEY_WWW_SEARCH,
+   KEY_WWW_HOME,
+   KEY_WWW_BACK,
+   KEY_WWW_FORWARD,
+   KEY_WWW_STOP,
+   KEY_WWW_REFRESH,
+   KEY_WWW_FAVORITE,
+   KEY_EJECT,
+   KEY_SCREENSAVE,
+   KEY_REC,
 	KEY_REWIND,
 	KEY_MINIMIZE,
 
-    KEY_M01,            // 0xd0 //KEY_F13,
-    KEY_M02,            //KEY_F14,
-    KEY_M03,            //KEY_F15,
-    KEY_M04,            //KEY_F16,
-    KEY_M05,            //KEY_F17,
-    KEY_M06,            //KEY_F18,
-    KEY_M07,            //KEY_F19,
-    KEY_M08,            //KEY_F20,
-    KEY_M09,            //KEY_F21,        // 0x70
-    KEY_M10,            //KEY_F22,
-    KEY_M11,            //KEY_F23,
-    KEY_M12,            //KEY_F24,
-    KEY_M13,            //KEY_INTL1,
-    KEY_M14,            //KEY_INTL2,
-    KEY_M15,            //KEY_INTL3,
-    KEY_M16,            //KEY_INTL4,
+   KEY_M01,            // 0xd0 //KEY_F13,
+   KEY_M02,            //KEY_F14,
+   KEY_M03,            //KEY_F15,
+   KEY_M04,            //KEY_F16,
+   KEY_M05,            //KEY_F17,
+   KEY_M06,            //KEY_F18,
+   KEY_M07,            //KEY_F19,
+   KEY_M08,            //KEY_F20,
+   KEY_M09,            //KEY_F21,        // 0x70
+   KEY_M10,            //KEY_F22,
+   KEY_M11,            //KEY_F23,
+   KEY_M12,            //KEY_F24,
+   KEY_M13,            //KEY_INTL1,
+   KEY_M14,            //KEY_INTL2,
+   KEY_M15,            //KEY_INTL3,
+   KEY_M16,            //KEY_INTL4,
 
-    KEY_M17,            // 0xe0 //KEY_INTL5,
-    KEY_M18,            //KEY_INTL6,
-    KEY_M19,            //KEY_INTL7,
-    KEY_M20,        
-    KEY_M21,        
-    KEY_M22,        
-    KEY_M23,       
-    KEY_M24,   
-    KEY_M25,            //213
-    KEY_M26,            //214
-    KEY_M27,            //215
-    KEY_M28,            //216
-    KEY_M29,            //217
-    KEY_M30,            //218
-    KEY_M31,            //219
-    KEY_M32,            //220
+   KEY_M17,            // 0xe0 //KEY_INTL5,
+   KEY_M18,            //KEY_INTL6,
+   KEY_M19,            //KEY_INTL7,
+   KEY_M20,        
+   KEY_M21,        
+   KEY_M22,        
+   KEY_M23,       
+   KEY_M24,   
+   KEY_M25,            //213
+   KEY_M26,            //214
+   KEY_M27,            //215
+   KEY_M28,            //216
+   KEY_M29,            //217
+   KEY_M30,            //218
+   KEY_M31,            //219
+   KEY_M32,            //220
 
-    KEY_M33,            // 0xf0//221
-    KEY_M34,            //222
-    KEY_M35,            //223
-    KEY_M36,            //224
-    KEY_M37,            //225
-    KEY_M38,            //226
-    KEY_M39,            //227
-    KEY_M40,            //228
-    KEY_M41,            //229
-    KEY_M42,            //230
-    KEY_M43,            //231
-    KEY_M44,            //232
-    KEY_M45,            //233
-    KEY_M46,            //234
-    KEY_M47,            //235
-    KEY_M48             //236
+   KEY_M33,            // 0xf0//221
+   KEY_M34,            //222
+   KEY_M35,            //223
+   KEY_M36,            //224
+   KEY_M37,            //225
+   KEY_M38,            //226
+   KEY_M39,            //227
+   KEY_M40,            //228
+   KEY_M41,            //229
+   KEY_M42,            //230
+   KEY_M43,            //231
+   KEY_M44,            //232
+   KEY_M45,            //233
+   KEY_M46,            //234
+   KEY_M47,            //235
+   KEY_M48             //236
 };
 
 /* Generic Desktop Page(0x01) - system power control */

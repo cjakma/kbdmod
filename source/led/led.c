@@ -528,7 +528,7 @@ void led_pushed_level_cal(void)
 }
 
 uint8_t ledstart[] = "led change start";
-uint8_t ledend[] = "led change end";
+uint8_t ledend[] = "@led change end";
 uint8_t sledmode[8][15] = {"fading", "fading-pushon", "pushed-weight","pushon", "pushoff", "always", "caps", "off"}; 
 uint8_t sledblk[5][6] = {"Fx", "Pad", "Base", "WASD", "ARROW"};
 

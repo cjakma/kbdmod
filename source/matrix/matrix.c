@@ -476,6 +476,9 @@ uint8_t scankey(void)
                 cntKey(keyidx, 0x0000);
             }
 
+            if ((KEY_L0 <= keyidx && keyidx <= KEY_L6) || (KEY_LED0 <= keyidx && keyidx <= KEY_FN) || (KEY_M01 <= keyidx))
+               continue;
+            
             keyidx = swap_key(keyidx);
 
             if(usbmode)
