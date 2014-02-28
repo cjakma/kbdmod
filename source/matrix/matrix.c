@@ -34,7 +34,7 @@ uint8_t kbdsleepmode = 0;
 uint8_t ledPortBackup = 0;
 uint16_t macrokeypushedcnt;
 uint16_t ledkeypushedcnt;
-
+uint16_t macroresetcnt;
 #define SWAP_TIMER  0x400
 uint8_t swapCtrlCaps = 0x80;
 uint8_t swapAltGui =  0x80;
@@ -42,7 +42,6 @@ uint16_t cntLcaps = 0;
 uint16_t cntLctrl = 0;
 uint16_t cntLAlt = 0;
 uint16_t cntLGui = 0;
-
 
 extern int8_t usbmode;
 
@@ -82,7 +81,7 @@ void keymap_init(void)
 	int i, j, keyidx;
 
 	// set zero for every flags
-	for(i=0;i<NUM_KEY;i++)
+	for(i=0;i<MAX_KEY;i++)
 		KFLA[i]=0;
 	
 	// set flags
@@ -128,6 +127,17 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
     uint8_t ledblock;
+    uint8_t f1position;
+    uint8_t key;
+    
+    key = pgm_read_byte(keymap[layer]+((uint32_t)0*MAX_ROW)+(uint32_t)2);
+    if(key == KEY_F1)
+    {
+        f1position = 1;
+    }else
+    {
+        f1position = 0;
+    }
 
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
@@ -137,7 +147,7 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
         retVal = 1;
     }else if(keyidx >= KEY_L0 && keyidx <= KEY_L6)
     {
-        layer = keyidx - KEY_L0;
+        layer = keyidx - KEY_L0 - f1position;
         eeprom_write_byte(EEPADDR_KEYLAYER, layer);
         retVal = 1;
     }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
@@ -145,8 +155,13 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
         retVal = 1;
     }else if(keyidx == KEY_RESET)
     {
+        extern int portInit(void);
         extern AppPtr_t Bootloader;
+        portInit();
         Reset_AVR();
+    }else if(keyidx == KEY_MRESET)
+    {
+        retVal = 1;
     }
     return retVal;
 }
@@ -155,10 +170,21 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
     uint8_t ledblock;
-
+    uint8_t f1position;
+    uint8_t key;
+    
+    key = pgm_read_byte(keymap[layer]+((uint32_t)0*MAX_ROW)+(uint32_t)2);
+    if(key == KEY_F1)
+    {
+        f1position = 1;
+    }else
+    {
+        f1position = 0;
+    }
+    
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
-        ledmodeIndex = keyidx-KEY_LED0;
+        ledmodeIndex = keyidx-KEY_LED0-f1position;
         for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
@@ -178,6 +204,9 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     {
         extern AppPtr_t Bootloader;
         Reset_AVR();
+    }else if(keyidx == KEY_MRESET)
+    {
+        retVal = 1;
     }
     return retVal;
 }
@@ -333,6 +362,17 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
         {
             ledkeypushedcnt = 0;
         }
+    }else if (keyidx == KEY_MRESET)
+    {
+        if(macroresetcnt++ == SWAP_TIMER)
+        {
+            resetMacro();
+        }
+        if(clearmask == 0x0000)
+        {
+            macroresetcnt = 0;
+        }
+
     }
 }
 
@@ -380,6 +420,7 @@ uint8_t scankey(void)
     matrixState = scanmatrix();
 
 
+    led_ESCIndicater(layer);
 	//static int pushedLevel_prev = 0;
 
     /* LED Blinker */
@@ -477,7 +518,7 @@ uint8_t scankey(void)
                             svkeyidx[col][row] = keyidx;
                         }else
                         {
-                            if (keyidx <= KEY_WAKE)  // ignore FN keys
+                            if (keyidx <= KEY_M01)  // ignore FN keys
                               putKey(svkeyidx[col][row], 0);
                         }
                                                

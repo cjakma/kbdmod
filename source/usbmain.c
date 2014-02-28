@@ -535,7 +535,7 @@ uint8_t usbmain(void) {
     usbDeviceConnect();
     sei();
     
-    wdt_enable(WDTO_500MS);
+    wdt_enable(WDTO_1S);
 
     while (1) {
         // main event loop

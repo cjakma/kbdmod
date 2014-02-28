@@ -13,9 +13,10 @@
 #include "keymap.h"
 #include "matrix.h"
 #include "eepaddress.h"
+#include "macro.h"
 
 #define PUSHED_LEVEL_MAX        20
-
+#define LEDMODE_ADDRESS         0x9800
 
 
 static uint8_t *const ledport[] = {LED_NUM_PORT, LED_CAP_PORT,LED_SCR_PORT, LED_PRT_PORT, 
@@ -32,16 +33,16 @@ uint8_t ledmode[4][11] ={
                     LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
 
                     {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
-                    LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
 
                     {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, 
-                    LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON},
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
 
                     {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
-                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL}
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS}
 };
 
 
@@ -432,12 +433,51 @@ void led_3lockupdate(uint8_t LEDstate)
         }
 }
 
+#define LED_ESC_INDICATOR_MAXTIME 60
+#define LED_ESC_INDICATOR_MAXINDEX 16
+
+uint8_t ledESCIndicator[5][LED_ESC_INDICATOR_MAXINDEX] = {
+   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+   };
+
+uint8_t ledESCIndicatorTimer;
+uint8_t ledESCIndicatorIndex;
+
+void led_ESCIndicater(uint8_t layer)
+{
+    if(ledESCIndicatorTimer++ >= LED_ESC_INDICATOR_MAXTIME)
+    {
+        if(ledESCIndicator[layer][ledESCIndicatorIndex] == 1)
+        {
+            led_on(LED_BLOCK_ESC);
+        }else
+        {
+            led_off(LED_BLOCK_ESC);
+        }
+        if (ledESCIndicatorIndex++ >= LED_ESC_INDICATOR_MAXINDEX)
+        {
+            ledESCIndicatorIndex = 0;
+        }
+        ledESCIndicatorTimer = 0;
+    }
+}
+
 
 void led_mode_init(void)
 {
     LED_BLOCK ledblock;
-
+    int16_t i;
+    uint8_t *buf;
     ledmodeIndex = eeprom_read_byte(EEPADDR_LED_STATUS); 
+    buf = ledmode;
+    for (i = 0; i < sizeof(ledmode); i++)
+    {
+        *buf++ = pgm_read_byte_far(LEDMODE_ADDRESS+i);
+    }
     for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
     {
         led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
@@ -489,7 +529,8 @@ void led_pushed_level_cal(void)
 
 uint8_t ledstart[] = "led change start";
 uint8_t ledend[] = "led change end";
-
+uint8_t sledmode[8][15] = {"fading", "fading-pushon", "pushed-weight","pushon", "pushoff", "always", "caps", "off"}; 
+uint8_t sledblk[5][6] = {"Fx", "Pad", "Base", "WASD", "ARROW"};
 
 void recordLED(uint8_t ledkey)
 {
@@ -530,6 +571,13 @@ void recordLED(uint8_t ledkey)
 
     wdt_reset();
     matrixState = scanmatrix();
+
+    /* LED Blinker */
+    led_blink(matrixState);
+
+    /* LED Fader */
+    led_fader();
+    
 
     t_layer = 6;    // led block layer
 
@@ -578,14 +626,15 @@ void recordLED(uint8_t ledkey)
                {
                     if (keyidx == KEY_FN)
                     {
-                        //writepage(macrobuffer, address+(page*256));
+                        writepage(ledmode, LEDMODE_ADDRESS);
                         sendString(ledend);
                         return;
                     }else
                     {
                         ledblk = keyidx - KEY_LFX + 5;
-                        ledmode[ledmodeIndex][ledblk]++;
-                        if(ledmode[ledmodeIndex][ledblk] >= 8)
+//                        sendString(sledblk[ledblk]);
+//                        sendString(sledmode[ledmode[ledmodeIndex][ledblk]]);
+                        if(ledmode[ledmodeIndex][ledblk]++ >= 8)
                         {
                             ledmode[ledmodeIndex][ledblk] = 0;
                         }

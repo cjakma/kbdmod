@@ -153,7 +153,7 @@ enum {
     KEY_LASD,     //
 
     KEY_LARR,    // 0x70
-    Y, 
+    KEY_MRESET, 
     KEY_RESET,          //254
     KEY_FN,             //255
     KEY_EXECUTE,

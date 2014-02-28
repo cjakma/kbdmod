@@ -122,11 +122,9 @@ static inline void  bootLoaderInit(void)
     DDRD    = 0xBC; // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
 
     // switch on leds
-    DDRB  |= (1 << PINB6);
-    DDRD  |= ((1 << PIND5) | (1 << PIND3));
+    DDRD  |= ((1 << PIND5) | (1 << PIND3)| (1 << PIND2));
 
-    PORTB |= (1 << PINB6);
-    PORTD |= ((1 << PIND5) | (1 << PIND3));
+    PORTD |= ((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
     // choose matrix position for hotkey. we use KEY_KPminus, so we set row 13
     // and later look for pin 7
 	
@@ -157,29 +155,22 @@ static inline uint8_t bootLoaderCondition() {
         if (ledcounter == 127) {
             switch (ledstate) {
                 case 0:
-                    PORTB &= ~(1 << PINB6);
-    				PORTD &= ~((1 << PIND5) | (1 << PIND3));
-                    PORTB |= (1 << PINB6);
+    				PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
+                    PORTD |= (1 << PIND2);
                     ledstate = 1;
                     break;
                 case 1:
-                    PORTB &= ~(1 << PINB6);
-    				PORTD &= ~((1 << PIND5) | (1 << PIND3));
-
+                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
                 	PORTD |= (1 << PIND5);
                     ledstate = 2;
                     break;
                 case 2:
-                    PORTB &= ~(1 << PINB6);
-    				PORTD &= ~((1 << PIND5) | (1 << PIND3));
-
+                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
                 	PORTD |= (1 << PIND3);
                     ledstate = 3;
                     break;
                 default:
-                    PORTB &= ~(1 << PINB6);
-    				PORTD &= ~((1 << PIND5) | (1 << PIND3));
-
+                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
                 	PORTD |= (1 << PIND5);
                     ledstate = 0;
             }

@@ -33,7 +33,7 @@ const uint8_t PROGMEM keycode_set2[MAX_KEY] =	{
 };
 
 // key information for each keys
-uint8_t KFLA[NUM_KEY];
+uint8_t KFLA[MAX_KEY];
 
 const uint8_t PROGMEM keycode_set2_special[] = 
 { 	KEY_PRNSCR, KEY_PAUSE,
