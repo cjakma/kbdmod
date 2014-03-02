@@ -221,17 +221,14 @@ void sendString(char* string) {
 
     for (i = 0; i < strlen(string); i++) {
         key = charToKey(string[i]);
-       
-            sendKey(key);
+        sendKey(key);
     }
-    key.key = KEY_ENTER;
-    sendKey(key);
 }
 uint8_t macrobuffer[256] = {};
-uint8_t macrostart[] = "recording start";
-uint8_t macroend[] = "@recording end";
-uint8_t macroresetstart[] = "macro reset";
-uint8_t macroresetdone[] = "done";
+uint8_t macrostart[] = "recording start@";
+uint8_t macroend[] = "@recording end@";
+uint8_t macroresetstart[] = "macro erase@";
+uint8_t macroresetdone[] = "done@";
 
 long MacroAddr[MAX_MACRO_INDEX] = {};
 
@@ -277,10 +274,10 @@ void playMacroUSB(uint8_t macrokey)
         {
             if(esctoggle++ == 4)
             {
-                led_on(LED_BLOCK_ESC);
+                led_on(LED_PIN_ESC);
                 esctoggle = 0;
             }else{
-                led_off(LED_BLOCK_ESC);
+                led_off(LED_PIN_ESC);
             }
         
             wdt_reset();
@@ -320,10 +317,10 @@ void playMacroPS2(uint8_t macrokey)
     {
         if(esctoggle++ == 4)
         {
-            led_on(LED_BLOCK_ESC);
+            led_on(LED_PIN_ESC);
             esctoggle = 0;
         }else{
-            led_off(LED_BLOCK_ESC);
+            led_off(LED_PIN_ESC);
         }
         
         keyidx = pgm_read_byte_far(address++);
@@ -422,15 +419,16 @@ void resetMacro(void)
     long address;
     address = MACRO_ADDR_START;
 
-    for (i = 0; i <= 255; i++)
+    for (i = 0; i < 256; i++)
        macrobuffer[i] = 0x00;
     
     sendString(macroresetstart);
     for (i = 0; i < MAX_MACRO_INDEX; i++)
     {
-      wdt_reset();
-      writepage(macrobuffer, (long)MacroAddr[i]);
-      sendString(macroresetdone);
+      address = MacroAddr[i];
+      wdt_disable();
+      writepage(macrobuffer, address);
+      sendString("-");
     }
     sendString(macroresetdone);
 }
@@ -478,7 +476,7 @@ void recordMacro(uint8_t macrokey)
       wdt_reset();
       matrixState = scanmatrix();
       
-      t_layer = getLayer(matrixFN[layer]);
+      t_layer = layer;
 
       // debounce cleared => compare last matrix and current matrix
       for(col = 0; col < MAX_COL; col++)

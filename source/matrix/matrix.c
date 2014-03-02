@@ -20,7 +20,7 @@
 #include "eepaddress.h"
 #include "macro.h"
 
-int16_t scankeycntms = 0;
+uint16_t scankeycntms = 0;
 	
 // 17*8 bit matrix
 uint32_t MATRIX[MAX_COL];
@@ -42,6 +42,8 @@ uint16_t cntLcaps = 0;
 uint16_t cntLctrl = 0;
 uint16_t cntLAlt = 0;
 uint16_t cntLGui = 0;
+
+uint8_t isLED3000 = 0;
 
 extern int8_t usbmode;
 
@@ -108,6 +110,7 @@ void keymap_init(void)
         {
             debounceMATRIX[i][j] = -1;
         }
+        curMATRIX[i] = 0;
 	}
 
     layer = eeprom_read_byte(EEPADDR_KEYLAYER);
@@ -130,15 +133,6 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
     uint8_t f1position;
     uint8_t key;
     
-    key = pgm_read_byte(keymap[layer]+((uint32_t)0*MAX_ROW)+(uint32_t)2);
-    if(key == KEY_F1)
-    {
-        f1position = 1;
-    }else
-    {
-        f1position = 0;
-    }
-
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
         retVal = 1;
@@ -147,8 +141,13 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
         retVal = 1;
     }else if(keyidx >= KEY_L0 && keyidx <= KEY_L6)
     {
-        layer = keyidx - KEY_L0 - f1position;
+        layer = keyidx - KEY_L0;
+        
+        key = pgm_read_byte(keymap[layer]+((uint32_t)5*MAX_ROW)+(uint32_t)15);
+        isLED3000 = (key == KEY_LEFT)? 1 : 0;
+        
         eeprom_write_byte(EEPADDR_KEYLAYER, layer);
+        led_mode_init();
         retVal = 1;
     }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
     {
@@ -172,23 +171,15 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     uint8_t ledblock;
     uint8_t f1position;
     uint8_t key;
-    
-    key = pgm_read_byte(keymap[layer]+((uint32_t)0*MAX_ROW)+(uint32_t)2);
-    if(key == KEY_F1)
-    {
-        f1position = 1;
-    }else
-    {
-        f1position = 0;
-    }
-    
+        
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
-        ledmodeIndex = keyidx-KEY_LED0-f1position;
-        for (ledblock = 0; ledblock < LED_BLOCK_ALL; ledblock++)
+        ledmodeIndex = keyidx-KEY_LED0;
+        for (ledblock = 0; ledblock < LED_PIN_ALL; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
+        led_mode_save();
         retVal = 1;
     }else if(keyidx >= KEY_LFX && keyidx <= KEY_LARR)
     {
@@ -252,15 +243,18 @@ uint8_t scanmatrix(void)
     uint8_t vPinF;
 
 	uint8_t matrixState = 0;
-
+    uint8_t ledblock;
+    
     if (scankeycntms++ >= 60000)
     {
         scankeycntms--;
         kbdsleepmode = 1;
-        led_mode = LED_EFFECT_OFF;
-        timer1PWMBSet((uint16_t)(0));
-        timer1PWMBOn();
-        led_off(LED_BLOCK_ALL);
+        ledmodeIndex = 4;       // hidden OFF index
+
+        for (ledblock = 0; ledblock < LED_PIN_ALL; ledblock++)
+        {
+            led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
+        }
     }
     
 
@@ -277,7 +271,7 @@ uint8_t scanmatrix(void)
       vPinC = ~PINC;
       vPinF = ~PINF;
 
-      curMATRIX[col] = (uint32_t)vPinG << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
+      curMATRIX[col] = (uint32_t)(vPinG & 0x03) << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
       if(curMATRIX[col])
       {
          matrixState |= SCAN_DIRTY;
@@ -471,9 +465,9 @@ uint8_t scankey(void)
                     continue;
             }else if (prevBit && !curBit)  //released
             {
+                cntKey(keyidx, 0x0000);
                 if (processReleasedFNkeys(keyidx))
                     continue;
-                cntKey(keyidx, 0x0000);
             }
 
             if ((KEY_L0 <= keyidx && keyidx <= KEY_L6) || (KEY_LED0 <= keyidx && keyidx <= KEY_FN) || (KEY_M01 <= keyidx))

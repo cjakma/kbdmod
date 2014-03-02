@@ -29,35 +29,35 @@
 
 
 
-#define LED_BLOCK_WASD_PORT       (uint8_t *const)&PORTB
-#define LED_BLOCK_WASD_PIN        7
+#define LED_WASD_PORT       (uint8_t *const)&PORTB
+#define LED_WASD_PIN        7
 
-#define LED_BLOCK_PAD_PORT        (uint8_t *const)&PORTB
-#define LED_BLOCK_PAD_PIN         4
+#define LED_PAD_PORT        (uint8_t *const)&PORTB
+#define LED_PAD_PIN         4
 
-#define LED_BLOCK_ARROW18_PORT          (uint8_t *const)&PORTB
-#define LED_BLOCK_ARROW18_PIN           6
+#define LED_ARROW18_PORT          (uint8_t *const)&PORTB
+#define LED_ARROW18_PIN           6
 
-#define LED_BLOCK_ARROW30_PORT          (uint8_t *const)&PORTB
-#define LED_BLOCK_ARROW30_PIN           5
-
-
-#define LED_BLOCK_Fx_PORT         (uint8_t *const)&PORTE
-#define LED_BLOCK_Fx_PIN          3
-
-#define LED_BLOCK_FULL_PORT       (uint8_t *const)&PORTE
-#define LED_BLOCK_FULL_PIN        4
-
-#define LED_BLOCK_ESC_PORT        (uint8_t *const)&PORTE
-#define LED_BLOCK_ESC_PIN         5
+#define LED_ARROW30_PORT          (uint8_t *const)&PORTB
+#define LED_ARROW30_PIN           5
 
 
+#define LED_Fx_PORT         (uint8_t *const)&PORTE
+#define LED_Fx_PIN          3
 
-//#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
+#define LED_BASE_PORT       (uint8_t *const)&PORTE
+#define LED_BASE_PIN        4
+
+#define LED_ESC_PORT        (uint8_t *const)&PORTE
+#define LED_ESC_PIN         5
+
+
+
+#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
 
 #define BOOTLOADER_ADDRESS 0x1F000
 
 typedef void (*AppPtr_t) (void); 
-#define Reset_AVR Bootloader 
+//#define Reset_AVR Bootloader 
 
 #endif

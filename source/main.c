@@ -92,9 +92,9 @@ int portInit(void)
 //    1      SCK (ISP)
 //    2      N/A
 //    3      N/A
-//    4(OC0)       LED_BLOCK_WASD
-//    5(OC1A)     LED_BLOCK_PAD
-//    6(OC1B)     LED_BLOCK_PRT
+//    4(OC0)       LED_PIN_WASD
+//    5(OC1A)     LED_PIN_PAD
+//    6(OC1B)     LED_PIN_PRT
 //    7(OC1C)     LED_VESEL
     
 //    PD
@@ -111,9 +111,9 @@ int portInit(void)
 //    0(PDI)         MOSI
 //    1(PDO)        MISO
 //    2                N/A
-//    3(OC3A)     LED_BLOCK_Fx
-//    4(OC3B)     LED_BLOCK_FULL
-//    5(OC3C)     LED_BLOCK_ESC
+//    3(OC3A)     LED_PIN_Fx
+//    4(OC3B)     LED_PIN_BASE
+//    5(OC3C)     LED_PIN_ESC
 //    6                N/A
 //    7                N/A
 
@@ -132,11 +132,11 @@ int portInit(void)
     DDRG    = 0x00; // row 0, 1
 
 //  LED port
-	PORTB	= 0x0F;	// LED_VESEL, LED_BLOCK_PRT, LED_BLOCK_PAD, LED_BLOCK_WASD off          (00001111)
-	DDRB 	= 0xF0;	// LED_VESEL, LED_BLOCK_PRT, LED_BLOCK_PAD, LED_BLOCK_WASD OUT        (11110000)
+	PORTB	= 0x0F;	// LED_VESEL, LED_PIN_PRT, LED_PIN_PAD, LED_PIN_WASD off          (00001111)
+	DDRB 	= 0xF0;	// LED_VESEL, LED_PIN_PRT, LED_PIN_PAD, LED_PIN_WASD OUT        (11110000)
 
-	PORTE	= 0xC7;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    off                           (11000111)
-    DDRE	= 0x38;	// LED_BLOCK_ESC, LED_BLOCK_FULL, LED_BLOCK_Fx    OUT                         (00111000)
+	PORTE	= 0xC7;	// LED_PIN_ESC, LED_PIN_BASE, LED_PIN_Fx    off                           (11000111)
+    DDRE	= 0x38;	// LED_PIN_ESC, LED_PIN_BASE, LED_PIN_Fx    OUT                         (00111000)
 
 
     PORTD   = 0x40; // DPpull-up(Low), Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(0), D+(0)
