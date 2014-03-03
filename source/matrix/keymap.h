@@ -221,13 +221,9 @@ enum {
 	KEY_RALT,           // 0x40
 	KEY_RGUI,           // 0x80
 	KEY_Modifiers_end,
-   KEY_RESERVED,
 
-   KEY_00,             // 0xB0
-   KEY_000,
-   KEY_Consumers,
-   KEY_NEXT_TRK,
-   KEY_PREV_TRK,
+   KEY_NEXT_TRK,        
+   KEY_PREV_TRK,        // 0xB0
    KEY_STOP,
    KEY_PLAY,
    KEY_MUTE,
@@ -306,7 +302,11 @@ enum {
    KEY_M45,            //233
    KEY_M46,            //234
    KEY_M47,            //235
-   KEY_M48             //236
+   KEY_M48,            //236
+   KEY_M49,
+   KEY_M50,
+   KEY_M51,
+   KEY_M52
 };
 
 /* Generic Desktop Page(0x01) - system power control */

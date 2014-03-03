@@ -35,7 +35,13 @@ uint8_t ledPortBackup = 0;
 uint16_t macrokeypushedcnt;
 uint16_t ledkeypushedcnt;
 uint16_t macroresetcnt;
+uint16_t winkeylockcnt;
+uint16_t keylockcnt;
+uint8_t keylock = 0;
 #define SWAP_TIMER  0x400
+#define KEYLOCK_TIMER  0x600
+
+
 uint8_t swapCtrlCaps = 0x80;
 uint8_t swapAltGui =  0x80;
 uint16_t cntLcaps = 0;
@@ -116,6 +122,10 @@ void keymap_init(void)
     layer = eeprom_read_byte(EEPADDR_KEYLAYER);
     if (layer >= MAX_LAYER)
         layer = 0;
+    keyidx = pgm_read_byte(keymap[layer]+((uint32_t)5*MAX_ROW)+(uint32_t)15);
+        isLED3000 = (keyidx == KEY_LEFT)? 1 : 0;
+           
+   swap_load();
 }
 
 
@@ -280,8 +290,17 @@ uint8_t scanmatrix(void)
     return matrixState;
 }
 
+void swap_save(void)
+{
+   eeprom_write_byte(EEPADDR_SWAPALTGUI, swapAltGui);
+   eeprom_write_byte(EEPADDR_SWAPCTRLCAPS, swapCtrlCaps);
+}
 
-
+void swap_load(void)
+{
+   swapAltGui = eeprom_read_byte(EEPADDR_SWAPALTGUI);
+   swapCtrlCaps = eeprom_read_byte(EEPADDR_SWAPCTRLCAPS);
+}
 
 uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
 {
@@ -328,11 +347,13 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
     {
         swapCtrlCaps ^= 1;
         swapCtrlCaps &= 0x7F;
+        swap_save();
     }
     if((cntLGui == SWAP_TIMER) && (cntLAlt == SWAP_TIMER) && (swapAltGui & 0x80))
     {
         swapAltGui ^= 1;
         swapAltGui &= 0x7F;
+        swap_save();
     }
     if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
     {
@@ -367,12 +388,37 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
             macroresetcnt = 0;
         }
 
+    }else if ((keyidx == KEY_LGUI) || (keyidx == KEY_RGUI))
+    {
+       if(winkeylockcnt++ == KEYLOCK_TIMER)
+       {
+             keylock ^= 0x01;
+       }
+       if(clearmask == 0x0000)
+       {
+             winkeylockcnt = 0;
+       }
+    }else if (keyidx == KEY_FN)
+    {
+       if(keylockcnt++ == KEYLOCK_TIMER)
+       {
+             keylock ^= 0x02;
+       }
+       if(clearmask == 0x0000)
+       {
+             keylockcnt = 0;
+       }
     }
 }
 
 
 uint8_t swap_key(uint8_t keyidx)
 {
+    if(keylock & 0x02)
+    {
+      keyidx = KEY_NONE;
+      return;
+    }
     if(swapCtrlCaps & 0x01)
     {
         if(keyidx == KEY_CAPS)
@@ -395,6 +441,11 @@ uint8_t swap_key(uint8_t keyidx)
             keyidx = KEY_LALT;
         }
     }
+    if (keylock & 0x01)
+    {
+      if ((keyidx == KEY_LGUI) || (keyidx == KEY_RGUI))
+         keyidx = KEY_NONE;
+    }
     return keyidx;
 }
 
@@ -413,9 +464,9 @@ uint8_t scankey(void)
 
     matrixState = scanmatrix();
 
-
-    led_ESCIndicater(layer);
-	//static int pushedLevel_prev = 0;
+   led_PRTIndicater(keylock);
+   led_ESCIndicater(layer);
+   //static int pushedLevel_prev = 0;
 
     /* LED Blinker */
     led_blink(matrixState);
@@ -452,7 +503,7 @@ uint8_t scankey(void)
             }
             keyidx = pgm_read_byte(keymap[t_layer]+((uint32_t)col*MAX_ROW)+(uint32_t)row);
 
-            if (keyidx == KEY_NONE || keyidx == KEY_FN)
+            if (keyidx == KEY_NONE)
                 continue;
 
             if(curBit)
@@ -470,10 +521,11 @@ uint8_t scankey(void)
                     continue;
             }
 
-            if ((KEY_L0 <= keyidx && keyidx <= KEY_L6) || (KEY_LED0 <= keyidx && keyidx <= KEY_FN) || (KEY_M01 <= keyidx))
+            keyidx = swap_key(keyidx);
+
+            if ((KEY_L0 <= keyidx && keyidx <= KEY_L6) || (KEY_LED0 <= keyidx && keyidx <= KEY_FN) || (KEY_M01 <= keyidx) || (keyidx == KEY_NONE))
                continue;
             
-            keyidx = swap_key(keyidx);
 
             if(usbmode)
             {

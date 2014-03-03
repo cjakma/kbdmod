@@ -472,14 +472,14 @@ uint8_t buildHIDreports(uint8_t keyidx)
     if((keyidx > KEY_Modifiers) && (keyidx < KEY_Modifiers_end))
     {
         keyboardReport[0] |= modifierBitmap[keyidx-KEY_Modifiers];
-    }else if((keyidx > KEY_Consumers) && (keyidx < KEY_System))
+    }else if((keyidx >= KEY_NEXT_TRK) && (keyidx <= KEY_MINIMIZE))
     {
         extraReport.report_id = REPORT_ID_CONSUMER;
         extraReport.usage = KEYCODE2CONSUMER(keyidx);
         
         retval |= 0x04;                                                             // continue decoding to get modifiers
 
-    }else if((keyidx > KEY_System))
+    }else if((KEY_System <= keyidx) && (keyidx <= KEY_WAKE))
     {
         extraReport.report_id = REPORT_ID_SYSTEM;
         extraReport.usage = KEYCODE2SYSTEM(keyidx);

@@ -114,11 +114,12 @@ FILE    *input;
 //        fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", addressIndex, startAddress[addressIndex], addressIndex, endAddress[addressIndex]);
     }
 
-
+#ifdef DEBUG
     for(i = 0; i <= addressIndex; i++)
     {
        fprintf(stderr, "s[%d]=%x, e[%d]=%x \n", i, startAddress[i], i, endAddress[i]);
     }
+#endif
     fclose(input);
     return 0;
 }

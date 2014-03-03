@@ -4,6 +4,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
+#include <avr/eeprom.h>
+
 #include <util/delay.h>     /* for _delay_ms() */
 
 #include <stdio.h>
@@ -18,7 +20,7 @@
 #include "matrix.h"
 #include "macro.h"
 #include "led.h"
-
+#include "eepaddress.h"
 
 extern int8_t usbmode;
 /**
@@ -227,7 +229,7 @@ void sendString(char* string) {
 uint8_t macrobuffer[256] = {};
 uint8_t macrostart[] = "recording start@";
 uint8_t macroend[] = "@recording end@";
-uint8_t macroresetstart[] = "macro erase@";
+uint8_t macroresetstart[] = "macro erase";
 uint8_t macroresetdone[] = "done@";
 
 long MacroAddr[MAX_MACRO_INDEX] = {};
@@ -256,12 +258,19 @@ void playMacroUSB(uint8_t macrokey)
     Key key;
     key.mode = 0;
     key.key = 0;
-    uint8_t index = 0;
+    uint8_t mIndex = 0;
     long address;
     uint8_t esctoggle =0;
-    address = MacroAddr[macrokey - KEY_M01];
-    
 
+    mIndex = macrokey - KEY_M01;
+    address = MacroAddr[mIndex];
+    
+    if (eeprom_read_byte(EEPADDR_MACRO_SET+mIndex) == 0)  // not recorded
+    {
+        return;
+    }
+
+    
     keyidx = pgm_read_byte_far(address++);
     for (i = 0; i < MAX_MACRO_LEN; i++)
     {
@@ -415,21 +424,20 @@ void writepage(uint8_t *data, unsigned long addr)
 
 void resetMacro(void)
 {
-    uint16_t i;
+    uint8_t mIndex;
     long address;
-    address = MACRO_ADDR_START;
-
-    for (i = 0; i < 256; i++)
-       macrobuffer[i] = 0x00;
     
     sendString(macroresetstart);
-    for (i = 0; i < MAX_MACRO_INDEX; i++)
+    for (mIndex = 0; mIndex < MAX_MACRO_INDEX; mIndex++)
     {
-      address = MacroAddr[i];
-      wdt_disable();
-      writepage(macrobuffer, address);
+      wdt_reset();
+      eeprom_write_byte(EEPADDR_MACRO_SET+mIndex, 0);
       sendString("-");
     }
+    
+    eeprom_write_byte(EEPADDR_SWAPCTRLCAPS, 0x80);
+    eeprom_write_byte(EEPADDR_SWAPALTGUI, 0x80);
+
     sendString(macroresetdone);
 }
 
@@ -444,11 +452,13 @@ void recordMacro(uint8_t macrokey)
    uint8_t retVal = 0;
    int16_t i;
    int16_t index;
+   uint8_t mIndex;
    long page;
    uint8_t t_layer;
    Key key;
    long address;
-   address = MacroAddr[macrokey - KEY_M01];
+   mIndex = macrokey - KEY_M01;
+   address = MacroAddr[mIndex];
     
    index = 0;
    page = 0;
@@ -456,7 +466,10 @@ void recordMacro(uint8_t macrokey)
    key.mode = 0;
       
    wdt_reset();
+
    
+   cntKey(KEY_FN, 0x0000);
+
    for (i = 0; i <= 255; i++)
       macrobuffer[i] = 0x00;
 
@@ -525,6 +538,9 @@ void recordMacro(uint8_t macrokey)
                   {
                      macrobuffer[index] = KEY_NONE;
                      writepage(macrobuffer, address+(page*256));
+                     
+                     eeprom_write_byte(EEPADDR_MACRO_SET+mIndex, 1);
+
                      sendString(macroend);
                      return;
                   }

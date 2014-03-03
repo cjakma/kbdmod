@@ -476,23 +476,38 @@ void led_3lockupdate(uint8_t LEDstate)
         }
 }
 
-#define LED_ESC_INDICATOR_MAXTIME 60
-#define LED_ESC_INDICATOR_MAXINDEX 16
+#define LED_INDICATOR_MAXTIME 60
+#define LED_INDICATOR_MAXINDEX 16
 
-uint8_t ledESCIndicator[5][LED_ESC_INDICATOR_MAXINDEX] = {
+uint8_t ledESCIndicator[6][LED_INDICATOR_MAXINDEX] = {
    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
    {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
    {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-   {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-   };
+   {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0}
+};
+
+uint8_t ledPRTIndicator[6][LED_INDICATOR_MAXINDEX] = {
+   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+   {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+   {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+   {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+};
+
 
 uint8_t ledESCIndicatorTimer;
 uint8_t ledESCIndicatorIndex;
 
+uint8_t ledPRTIndicatorTimer;
+uint8_t ledPRTIndicatorIndex;
+
+
 void led_ESCIndicater(uint8_t layer)
 {
-    if(ledESCIndicatorTimer++ >= LED_ESC_INDICATOR_MAXTIME)
+    if(ledESCIndicatorTimer++ >= LED_INDICATOR_MAXTIME)
     {
         if(ledESCIndicator[layer][ledESCIndicatorIndex] == 1)
         {
@@ -501,13 +516,33 @@ void led_ESCIndicater(uint8_t layer)
         {
             led_off(LED_PIN_ESC);
         }
-        if (ledESCIndicatorIndex++ >= LED_ESC_INDICATOR_MAXINDEX)
+        if (++ledESCIndicatorIndex >= LED_INDICATOR_MAXINDEX)
         {
             ledESCIndicatorIndex = 0;
         }
         ledESCIndicatorTimer = 0;
     }
 }
+
+void led_PRTIndicater(uint8_t index)
+{
+    if(ledPRTIndicatorTimer++ >= LED_INDICATOR_MAXTIME)
+    {
+        if(ledPRTIndicator[index][ledPRTIndicatorIndex] == 1)
+        {
+            led_on(LED_PIN_PRT);
+        }else
+        {
+            led_off(LED_PIN_PRT);
+        }
+        if (++ledPRTIndicatorIndex >= LED_INDICATOR_MAXINDEX)
+        {
+            ledPRTIndicatorIndex = 0;
+        }
+        ledPRTIndicatorTimer = 0;
+    }
+}
+
 
 
 void led_mode_init(void)
