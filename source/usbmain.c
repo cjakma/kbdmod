@@ -520,7 +520,6 @@ void dumpreportBuffer(void)
 }
 #endif
 
-
 uint8_t usbmain(void) {
     uint8_t updateNeeded = 0;
     uint8_t idleCounter = 0;
@@ -529,6 +528,7 @@ uint8_t usbmain(void) {
 
     DEBUG_PRINT(("USB\n"));
     
+    cli();
     usbInit();
     usbDeviceDisconnect();  /* enforce re-enumeration, do this while interrupts are disabled! */
     _delay_ms(10);

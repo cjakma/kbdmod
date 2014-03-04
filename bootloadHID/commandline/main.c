@@ -229,7 +229,7 @@ union{
                printf("\r0x%05x ... 0x%05x", startAddress[i], startAddress[i] + (int)sizeof(buffer.data.data));
                fflush(stdout);
                if((err = usbSetReport(dev, USB_HID_REPORT_TYPE_FEATURE, buffer.bytes, sizeof(buffer.data))) != 0){
-                   fprintf(stderr, "Error uploading data block: %s\n", usbErrorMessage(err));
+                   //fprintf(stderr, "Error uploading data block: %s\n", usbErrorMessage(err));
                    continue;
                    goto errorOccurred;
                }

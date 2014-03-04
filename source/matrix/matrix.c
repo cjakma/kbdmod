@@ -20,7 +20,7 @@
 #include "eepaddress.h"
 #include "macro.h"
 
-uint16_t scankeycntms = 0;
+uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix
 uint32_t MATRIX[MAX_COL];
@@ -40,7 +40,7 @@ uint16_t keylockcnt;
 uint8_t keylock = 0;
 #define SWAP_TIMER  0x400
 #define KEYLOCK_TIMER  0x600
-
+#define KEYLOCK_COUNTER_START 0x8000
 
 uint8_t swapCtrlCaps = 0x80;
 uint8_t swapAltGui =  0x80;
@@ -171,6 +171,14 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
     }else if(keyidx == KEY_MRESET)
     {
         retVal = 1;
+    }else if(keyidx == KEY_KEYLOCK)
+    {
+         keylock ^= 0x02;
+         retVal = 1;
+    }else if(keyidx == KEY_WINKEYLOCK)
+    {
+         keylock ^= 0x01;
+         retVal = 1;
     }
     return retVal;
 }
@@ -185,7 +193,7 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
         ledmodeIndex = keyidx-KEY_LED0;
-        for (ledblock = 0; ledblock < LED_PIN_ALL; ledblock++)
+        for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_ARROW30; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
@@ -255,13 +263,13 @@ uint8_t scanmatrix(void)
 	uint8_t matrixState = 0;
     uint8_t ledblock;
     
-    if (scankeycntms++ >= 60000)
+    if (scankeycntms++ >= 136364)   // 5min
     {
         scankeycntms--;
         kbdsleepmode = 1;
         ledmodeIndex = 4;       // hidden OFF index
 
-        for (ledblock = 0; ledblock < LED_PIN_ALL; ledblock++)
+        for (ledblock = LED_PIN_PRT; ledblock < LED_PIN_ARROW30; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
@@ -357,57 +365,38 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
     }
     if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
     {
+         if(clearmask == 0x0000)
+        {
+            macrokeypushedcnt = 0;
+        }
         if (macrokeypushedcnt++ == SWAP_TIMER)
         {
             recordMacro(keyidx);
             macrokeypushedcnt = 0;
         }
-        if(clearmask == 0x0000)
-        {
-            macrokeypushedcnt = 0;
-        }
+        
     }else if (keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
+        if(clearmask == 0x0000)
+        {
+            ledkeypushedcnt = 0;
+        }
         if (ledkeypushedcnt++ == SWAP_TIMER)
         {
             recordLED(keyidx);
             ledkeypushedcnt = 0;
         }
-        if(clearmask == 0x0000)
-        {
-            ledkeypushedcnt = 0;
-        }
+        
     }else if (keyidx == KEY_MRESET)
     {
+         if(clearmask == 0x0000)
+        {
+            macroresetcnt = 0;
+        }
         if(macroresetcnt++ == SWAP_TIMER)
         {
             resetMacro();
         }
-        if(clearmask == 0x0000)
-        {
-            macroresetcnt = 0;
-        }
-
-    }else if ((keyidx == KEY_LGUI) || (keyidx == KEY_RGUI))
-    {
-       if(winkeylockcnt++ == KEYLOCK_TIMER)
-       {
-             keylock ^= 0x01;
-       }
-       if(clearmask == 0x0000)
-       {
-             winkeylockcnt = 0;
-       }
-    }else if (keyidx == KEY_FN)
-    {
-       if(keylockcnt++ == KEYLOCK_TIMER)
-       {
-             keylock ^= 0x02;
-       }
-       if(clearmask == 0x0000)
-       {
-             keylockcnt = 0;
-       }
     }
 }
 
@@ -464,8 +453,11 @@ uint8_t scankey(void)
 
     matrixState = scanmatrix();
 
-   led_PRTIndicater(keylock);
-   led_ESCIndicater(layer);
+   if(!kbdsleepmode)
+   {
+      led_PRTIndicater(keylock);
+      led_ESCIndicater(layer);
+   }
    //static int pushedLevel_prev = 0;
 
     /* LED Blinker */
@@ -506,7 +498,7 @@ uint8_t scankey(void)
             if (keyidx == KEY_NONE)
                 continue;
 
-            if(curBit)
+            if(curBit && !(keylock & 0x01))
                cntKey(keyidx, 0xFFFF);
             
             if (!prevBit && curBit)   //pushed

@@ -45,7 +45,7 @@ uint8_t ledmode[5][11] ={
         LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
         
         {LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-        LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+        LED_EFFECT_FADING, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
         LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF}
 };
 
@@ -146,6 +146,7 @@ void led_on(LED_BLOCK block)
         default:
             return;
     }
+    led_wave_off(block);
     *(ledport[block]) |= BV(ledpin[block]);
 }
 
@@ -345,7 +346,7 @@ void led_fader(void)
 {
     
     LED_BLOCK ledblock;
-    for (ledblock = LED_PIN_Fx; ledblock <= LED_PIN_ARROW18; ledblock++)
+    for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_ARROW30; ledblock++)
     {
         if((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING) || ((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
         {
@@ -476,7 +477,7 @@ void led_3lockupdate(uint8_t LEDstate)
         }
 }
 
-#define LED_INDICATOR_MAXTIME 60
+#define LED_INDICATOR_MAXTIME 90
 #define LED_INDICATOR_MAXINDEX 16
 
 uint8_t ledESCIndicator[6][LED_INDICATOR_MAXINDEX] = {
@@ -489,7 +490,7 @@ uint8_t ledESCIndicator[6][LED_INDICATOR_MAXINDEX] = {
 };
 
 uint8_t ledPRTIndicator[6][LED_INDICATOR_MAXINDEX] = {
-   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
@@ -556,8 +557,10 @@ void led_mode_init(void)
     {
         *buf++ = pgm_read_byte_far(LEDMODE_ADDRESS+i);
     }
-    for (ledblock = 0; ledblock < LED_PIN_ALL; ledblock++)
+    for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_ARROW30; ledblock++)
     {
+      pwmDir[ledblock ] = 0;
+      pwmCounter[ledblock] = 0;
         led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
     }
 }
@@ -625,10 +628,8 @@ void recordLED(uint8_t ledkey)
     int8_t i;
     int16_t index;
     long page;
-    uint8_t t_layer;
     uint8_t ledblk;
     long address;
-
     index = 0;
     page = 0;
 
@@ -661,7 +662,6 @@ void recordLED(uint8_t ledkey)
     led_fader();
     
 
-    t_layer = 6;    // led block layer
 
     // debounce cleared => compare last matrix and current matrix
     for(col = 0; col < MAX_COL; col++)
@@ -686,7 +686,7 @@ void recordLED(uint8_t ledkey)
         {
            row = -16 + i;
         }
-        keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
+        keyidx = pgm_read_byte(keymap[6]+(col*MAX_ROW)+row);
 
          if (keyidx == KEY_NONE)
             continue;
@@ -720,12 +720,16 @@ void recordLED(uint8_t ledkey)
                         {
                             ledmode[ledmodeIndex][ledblk] = LED_EFFECT_FADING;
                         }
-                        
                         sendString(sledblk[ledblk-5]);
                         sendString(sledmode[ledmode[ledmodeIndex][ledblk]]);
 
-                        led_mode_change(ledblk,ledmode[ledmodeIndex][ledblk]);
-                    }
+                         for (ledblk = LED_PIN_Fx; ledblk < LED_PIN_ARROW30; ledblk++)
+                         {
+                              pwmDir[ledblk ] = 0;
+                              pwmCounter[ledblk] = 0;
+                             led_mode_change(ledblk, ledmode[ledmodeIndex][ledblk]);
+                         }                    
+                     }
                }else
                {
                 
