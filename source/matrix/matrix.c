@@ -498,7 +498,7 @@ uint8_t scankey(void)
             if (keyidx == KEY_NONE)
                 continue;
 
-            if(curBit && !(keylock & 0x01))
+            if(curBit && !(keylock & 0x02))
                cntKey(keyidx, 0xFFFF);
             
             if (!prevBit && curBit)   //pushed
