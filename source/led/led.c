@@ -611,10 +611,10 @@ void led_pushed_level_cal(void)
 	}
 }
 
-uint8_t ledstart[] = "led change start@";
-uint8_t ledend[] = "@led change end@";
+uint8_t ledstart[] = "LED record mode - push any key@";
+uint8_t ledend[] = "LED record done@";
 uint8_t sledmode[8][15] = {"fading@", "fading-pushon@", "pushed-weight@","pushon@", "pushoff@", "always@", "caps@", "off@"}; 
-uint8_t sledblk[5][7] = {"Fx----", "Pad---", "Base--", "WASD--", "ARROW-"};
+uint8_t sledblk[5][7] = {"Fx----", "Pad---", "Base--", "WASD--", "Arrow-"};
 
 void recordLED(uint8_t ledkey)
 {
@@ -710,6 +710,19 @@ void recordLED(uint8_t ledkey)
                     {
                         writepage(ledmode, LEDMODE_ADDRESS);
                         led_mode_save();
+
+                        wdt_reset();
+                        sendString("===========================@");
+
+                        for (ledblk = LED_PIN_Fx; ledblk < LED_PIN_ARROW30; ledblk++)
+                        {
+                           wdt_reset();
+                           sendString(sledblk[ledblk-5]);
+                           sendString(sledmode[ledmode[ledmodeIndex][ledblk]]);
+                        }
+                        sendString("===========================@");
+                        wdt_reset();
+
                         sendString(ledend);
                         return;
                     }else
@@ -720,7 +733,11 @@ void recordLED(uint8_t ledkey)
                         {
                             ledmode[ledmodeIndex][ledblk] = LED_EFFECT_FADING;
                         }
+                        
+                        wdt_reset();
                         sendString(sledblk[ledblk-5]);
+                        
+                        wdt_reset();
                         sendString(sledmode[ledmode[ledmodeIndex][ledblk]]);
 
                          for (ledblk = LED_PIN_Fx; ledblk < LED_PIN_ARROW30; ledblk++)

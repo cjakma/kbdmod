@@ -227,9 +227,9 @@ void sendString(char* string) {
     }
 }
 uint8_t macrobuffer[256] = {};
-uint8_t macrostart[] = "recording start@";
-uint8_t macroend[] = "@recording end@";
-uint8_t macroresetstart[] = "macro erase";
+uint8_t macrostart[] = "MACRO record mode@";
+uint8_t macroend[] = "@record done@";
+uint8_t macroresetstart[] = "MACRO erase";
 uint8_t macroresetdone[] = "done@";
 
 long MacroAddr[MAX_MACRO_INDEX] = {};
@@ -539,6 +539,7 @@ void recordMacro(uint8_t macrokey)
                      macrobuffer[index] = KEY_NONE;
                      writepage(macrobuffer, address+(page*256));
                      
+                     wdt_reset();
                      eeprom_write_byte(EEPADDR_MACRO_SET+mIndex, 1);
 
                      sendString(macroend);
