@@ -381,6 +381,25 @@ typedef union ADDRESS_U{
     uchar   c[sizeof(long)];
 }ADDRESS;
 
+int8_t flash_writeinpage (uint8_t *data, unsigned long addr)
+{
+   if (addr < 0x6000)      // FW code area
+   {
+      
+      wdt_disable();
+      while(1)
+      {
+         led_ESCIndicater(5);
+         _delay_ms(1);
+      }
+      return -1;
+   }else{
+
+      writepage(data, addr);
+   }
+
+}
+
 void writepage(uint8_t *data, unsigned long addr)
 {
     uchar   isLast;
@@ -537,7 +556,7 @@ void recordMacro(uint8_t macrokey)
                   if (keyidx == KEY_FN)
                   {
                      macrobuffer[index] = KEY_NONE;
-                     writepage(macrobuffer, address+(page*256));
+                     flash_writeinpage(macrobuffer, address+(page*256));
                      
                      wdt_reset();
                      eeprom_write_byte(EEPADDR_MACRO_SET+mIndex, 1);
@@ -559,7 +578,7 @@ void recordMacro(uint8_t macrokey)
                      
                      if(index == 0xFF)
                      {
-                         writepage(macrobuffer, address+(page*256));
+                         flash_writeinpage(macrobuffer, address+(page*256));
                          page++;
                          index = 0;
                      }else

@@ -27,6 +27,8 @@ static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN, LED_SCR_PIN, LED_PRT_
                                     LED_ESC_PIN,LED_Fx_PIN,LED_PAD_PIN,LED_BASE_PIN, 
                                     LED_WASD_PIN,LED_ARROW18_PIN, LED_ARROW30_PIN};
 uint8_t ledmodeIndex;
+
+#define LEDMODE_ARRAY_SIZE 5*11
 uint8_t ledmode[5][11] ={ 
         {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
         LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
@@ -553,7 +555,7 @@ void led_mode_init(void)
     uint8_t *buf;
     ledmodeIndex = eeprom_read_byte(EEPADDR_LED_STATUS); 
     buf = ledmode;
-    for (i = 0; i < sizeof(ledmode); i++)
+    for (i = 0; i < LEDMODE_ARRAY_SIZE; i++)
     {
         *buf++ = pgm_read_byte_far(LEDMODE_ADDRESS+i);
     }
@@ -708,7 +710,7 @@ void recordLED(uint8_t ledkey)
                {
                     if (keyidx == KEY_FN)
                     {
-                        writepage(ledmode, LEDMODE_ADDRESS);
+                        flash_writeinpage(ledmode, LEDMODE_ADDRESS);
                         led_mode_save();
 
                         wdt_reset();
