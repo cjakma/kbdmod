@@ -31,7 +31,7 @@ unsigned char m_state;
 unsigned char lastSent;
 unsigned char lastState;
 static uint8_t TYPEMATIC_DELAY=2;
-static long TYPEMATIC_REPEAT=3;
+static long TYPEMATIC_REPEAT=10;
 
 
 // Queue operation -> push, pop
@@ -322,7 +322,7 @@ int processTX(void)
     		loopCnt++;
 
     		// if key is pressed until typmatic_delay, goes to repeat the last key
-    		if(loopCnt >= TYPEMATIC_DELAY*0+50) {
+    		if(loopCnt >= TYPEMATIC_DELAY*50+100) {
     			loopCnt=0;
     			lastMAKE_IDX=0;
     			m_state = STA_REPEAT;
