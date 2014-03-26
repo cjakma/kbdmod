@@ -51,6 +51,7 @@ uint16_t cntLGui = 0;
 
 uint8_t isLED3000 = 0;
 
+int8_t isFNpushed = 0;
 extern int8_t usbmode;
 
 
@@ -246,9 +247,20 @@ uint8_t getLayer(uint8_t FNcolrow)
 	}
 
     if(cur)
-        return 7;        // FN layer or beyondFN layer
+    {
+      isFNpushed = DEBOUNCE_MAX*2;
+      return 7;        // FN layer or beyondFN layer
+    }
     else
-        return layer;                   // Normal layer
+    {
+      if(isFNpushed)
+      {
+         return 7;        // FN layer or beyondFN layer
+      }else
+      {
+         return layer;                   // Normal layer
+      }
+    }
 }
 
 
@@ -295,6 +307,7 @@ uint8_t scanmatrix(void)
          matrixState |= SCAN_DIRTY;
       }
  	}
+
     return matrixState;
 }
 
@@ -453,6 +466,11 @@ uint8_t scankey(void)
 
     matrixState = scanmatrix();
 
+   if (matrixState == 0 && isFNpushed > 0)
+   {
+      isFNpushed--;
+   }
+
    if(!kbdsleepmode)
    {
       led_PRTIndicater(keylock);
@@ -467,7 +485,9 @@ uint8_t scankey(void)
     led_fader();
 
     clearReportBuffer();
+   
 	uint8_t t_layer = getLayer(matrixFN[layer]);
+  
 
 	// debounce cleared => compare last matrix and current matrix
 	for(col = 0; col < MAX_COL; col++)
