@@ -104,9 +104,9 @@ tsip.o		: tsip.c		tsip.h		global.h
 nmea.o		: nmea.c		nmea.h		global.h
 vt100.o		: vt100.c		vt100.h		global.h
 gps.o		: gps.c			gps.h		global.h
-main.o		: main.c		global.h	eepaddress.h	
+main.o		: main.c		global.h	hwaddress.h	
 keysta.o	: keysta.c		keysta.h	common_inc.h
-matrix/keymap.o	: matrix/keymap.c	matrix/keymap.h		matrix/matrix.h		led/led.h	eepaddress.h
+matrix/keymap.o	: matrix/keymap.c	matrix/keymap.h		matrix/matrix.h		led/led.h	hwaddress.h
 matrix/matrix.o	: matrix/matrix.c	matrix/matrix.h		usbmain.h			ps2main.h	macro/macro.h
 macro/macro.o	: macro/macro.c		macro/macro.h
 led/led.o	: led/led.c		led/led.h

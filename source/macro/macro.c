@@ -20,7 +20,7 @@
 #include "matrix.h"
 #include "macro.h"
 #include "led.h"
-#include "eepaddress.h"
+#include "hwaddress.h"
 
 extern int8_t usbmode;
 /**

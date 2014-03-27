@@ -12,11 +12,10 @@
 #include "timer128.h"
 #include "keymap.h"
 #include "matrix.h"
-#include "eepaddress.h"
+#include "hwaddress.h"
 #include "macro.h"
 
 #define PUSHED_LEVEL_MAX        20
-#define LEDMODE_ADDRESS         0x9800
 
 
 static uint8_t *const ledport[] = {LED_NUM_PORT, LED_CAP_PORT,LED_SCR_PORT, LED_PRT_PORT, 

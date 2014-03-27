@@ -19,7 +19,7 @@
 
 #include "hwport.h"
 #include "usbdrv.h"
-#include "eepaddress.h"
+#include "hwaddress.h"
 #include "matrix.h"
 
 

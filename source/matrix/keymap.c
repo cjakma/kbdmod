@@ -1,5 +1,5 @@
 #include "keymap.h"
-
+#include "hwaddress.h"
 
 const uint8_t PROGMEM keycode_set2[MAX_KEY] =	{
     0x00, 0x00, 0xFC, 0x00,
@@ -65,12 +65,12 @@ const uint8_t PROGMEM keycode_set2_proc_shift[] =
 	KEY_NONE };
 
 uint32_t keymap[MAX_LAYER] = {
-    0x9000, // FACTORY DEFAULT
-    0x9100,
-    0x9200,
-    0x9300,
-    0x9400,
-    0x9500,
-    0x9600, // LED LAYER
-    0x9700 // FN LAYER
+    KEYMAP_LAYER0, // FACTORY DEFAULT
+    KEYMAP_LAYER1,
+    KEYMAP_LAYER2,
+    KEYMAP_LAYER3,
+    KEYMAP_LAYER4,
+    KEYMAP_LAYER5,
+    KEYMAP_LAYER6, // LED LAYER
+    KEYMAP_LAYER7 // FN LAYER
 };

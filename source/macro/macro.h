@@ -1,6 +1,5 @@
 #define MAX_MACRO_INDEX     52
 #define MAX_MACRO_LEN       1024
-#define MACRO_ADDR_START    0x10000
 
 extern uint8_t initMacroAddr(void);
 

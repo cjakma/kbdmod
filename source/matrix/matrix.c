@@ -17,7 +17,7 @@
 #include "usbdrv.h"
 #include "matrix.h"
 #include "usbmain.h"
-#include "eepaddress.h"
+#include "hwaddress.h"
 #include "macro.h"
 
 uint32_t scankeycntms = 0;
