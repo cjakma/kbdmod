@@ -107,6 +107,26 @@ these macros are defined, the boot loader usees them.
 #ifndef __ASSEMBLER__   /* assembler cannot parse function definitions */
 #include <util/delay.h>
 
+#define KBDMOD_M7
+//#define KBDMOD_M5
+//#define KBDMOD_M3
+
+#ifdef KBDMOD_M7
+#define DDR_ROW0    DDRC
+#define PORT_ROW0   PORTC
+#define PIN_ROW0    PINC
+#define DDR_COL0    DDRA
+#define PORT_COL0   PORTA
+
+#else ifdef KBDMOD_M5
+#define DDR_ROW0    DDRG
+#define PORT_ROW0   PORTG
+#define PIN_ROW0    PING
+#define DDR_COL0    DDRA
+#define PORT_COL0   PORTA
+
+#endif
+
 
 uint8_t ledcounter = 0; ///< counter used to set the speed of the running light
 uint8_t ledstate = 0;   ///< state of the running light
@@ -127,24 +147,23 @@ static inline void  bootLoaderInit(void)
     PORTD |= ((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
     // choose matrix position for hotkey. we use KEY_KPminus, so we set row 13
     // and later look for pin 7
-	
-    DDRG  &= ~(1 << PING0);     // PINA0(row0) input
-    PORTG |= (1 << PING0);      // PINA0(pullUP)
 
-    DDRA  |= (1 << PINA0);      // PINB0(column0) output
-    PORTA &= ~(1 << PINA0);     // drive low
+    DDR_ROW0  &= ~(1 << PING0);     // PINA0(row0) input
+    PORT_ROW0 |= (1 << PING0);      // PINA0(pullUP)
+    DDR_COL0  |= (1 << PINA0);      // PINB0(column0) output
+    PORT_COL0 &= ~(1 << PINA0);     // drive low
 }
 
 //#define bootLoaderCondition()   ((PIND & (1 << 3)) == 0)   /* True if jumper is set */
 static inline uint8_t bootLoaderCondition() {
-	prevState = PING & (1 << PING0);
+	prevState = PIN_ROW0 & (1 << PING0);
 	while(counter<=10) {                            // PINA0 should be 0 for 10 cycles
-		if(prevState != (PING & (1 << PING0)))
+		if(prevState != (PIN_ROW0 & (1 << PING0)))
 			counter=0;
 		else
 			counter++;
 
-		prevState = (PING & (1 << PING0));
+		prevState = (PIN_ROW0 & (1 << PING0));
 	}
 	if(!prevState) isBootloader = 1;
 
