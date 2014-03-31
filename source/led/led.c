@@ -593,6 +593,7 @@ void led_mode_change (LED_BLOCK ledblock, int mode)
 
 void led_mode_save(void)
 {
+   return;
     eeprom_write_byte(EEPADDR_LED_STATUS, ledmodeIndex);
 }
 
@@ -677,16 +678,22 @@ void recordLED(uint8_t ledkey)
         prev >>= 1;
         cur >>= 1;
 
+#ifdef KBDMOD_M5
         if (i < 8)
         {
-           row = 10 + i;
+            row = 10+i;
         }else if (i < 16)
         {
-           row = -6 + i;
+            row = -6+i;
         }else
         {
-           row = -16 + i;
+            row = -16+i;
         }
+        
+#else ifdef KBDMOD_M7
+         row = i;
+#endif
+
         keyidx = pgm_read_byte(keymap[6]+(col*MAX_ROW)+row);
 
          if (keyidx == KEY_NONE)

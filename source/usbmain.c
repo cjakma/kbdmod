@@ -523,7 +523,7 @@ void dumpreportBuffer(void)
 uint8_t usbmain(void) {
     uint8_t updateNeeded = 0;
     uint8_t idleCounter = 0;
-    int interfaceCount = 0;
+    uint32_t interfaceCount = 0;
 	interfaceReady = 0;
 
     DEBUG_PRINT(("USB\n"));
@@ -531,16 +531,16 @@ uint8_t usbmain(void) {
     cli();
     usbInit();
     usbDeviceDisconnect();  /* enforce re-enumeration, do this while interrupts are disabled! */
-    _delay_ms(10);
+    _delay_ms(20);
     usbDeviceConnect();
     sei();
     
-    wdt_enable(WDTO_1S);
+    wdt_enable(WDTO_2S);
 
     while (1) {
         // main event loop
 
-        if(interfaceReady == 0 && interfaceCount++ > 4000){
+        if(interfaceReady == 0 && interfaceCount++ > 12000){
 			// move to ps/2
 		   Reset_AVR();
 			//break;

@@ -21,8 +21,8 @@ AVRLIB = ./avrlib
 #	MCU = atmega161
 	MCU = atmega128
 
-F_CPU = 12000000
-#F_CPU = 20000000
+#F_CPU = 12000000
+F_CPU = 20000000
 
 JUMPSTART = 0x1FC00
 #put the name of the TRG file here (without extension)
@@ -114,9 +114,9 @@ led/led.o	: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbmain.h 	usbconfig.h		matrix/matrix.h		usbdrv/usbdrv.h
 ps2main.o	: ps2main.c		ps2main.h	keysta.h	matrix/keymap.h	matrix/matrix.h	
 $(AVRLIB)/timer128.o	: $(AVRLIB)/timer128.c	$(AVRLIB)/timer128.h
-usbdrv/usbdrv.o	:	usbdrv/usbdrv.c		usbdrv/usbdrv.h	usbdrv/oddebug.h 
+usbdrv/usbdrv.o	:	usbdrv/usbdrv.c		usbdrv/usbdrv.h	usbdrv/oddebug.h
 usbdrv/oddebug.o :	usbdrv/oddebug.c 	usbdrv/oddebug.h
-usbdrv/usbdrvasm.o : usbdrv/usbdrvasm.asm usbdrv/usbdrvasm.S usbdrv/usbportability.h	usbdrv/usbdrv.h
+usbdrv/usbdrvasm.o : usbdrv/usbdrvasm.asm usbdrv/usbdrvasm.S usbdrv/usbportability.h	usbdrv/usbdrv.h  usbconfig.h
 
 all:
 #	rm -rf $(TRG)

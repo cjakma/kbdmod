@@ -119,8 +119,7 @@ void keymap_init(void)
         }
         curMATRIX[i] = 0;
 	}
-
-    layer = eeprom_read_byte(EEPADDR_KEYLAYER);
+   layer = eeprom_read_byte(EEPADDR_KEYLAYER);
     if (layer >= MAX_LAYER)
         layer = 0;
     keyidx = pgm_read_byte(keymap[layer]+((uint32_t)5*MAX_ROW)+(uint32_t)15);
@@ -160,7 +159,7 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
         eeprom_write_byte(EEPADDR_KEYLAYER, layer);
         led_mode_init();
         retVal = 1;
-    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
+    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M52)
     {
         retVal = 1;
     }else if(keyidx == KEY_RESET)
@@ -235,8 +234,9 @@ uint8_t getLayer(uint8_t FNcolrow)
 	DDRA  = BV(col);
 	PORTA = ~BV(col);
 	
-	_delay_us(10);
+	_delay_us(30);
 
+#ifdef KBDMOD_M5
 	if(row<2)	{				// for 0..7, PORTA 0 -> 7
 		cur = ~PING & BV(row);
 	}
@@ -245,7 +245,16 @@ uint8_t getLayer(uint8_t FNcolrow)
 	}else if(row >= 10 && row<18){
 	    cur = ~PINF & BV(row-10);
 	}
-
+#else ifdef KBDMOD_M7
+   if(row < 8)   {           // for 0..7, PORTA 0 -> 7
+      cur = ~PINC & BV(row);
+   }
+   else if(row < 16) {   // for 8..15, PORTC 7 -> 0
+      cur = ~PINF & BV(row-8);
+   }else{
+      cur = ~PING & BV(row-16);
+   }  
+#endif
     if(cur)
     {
       isFNpushed = DEBOUNCE_MAX*2;
@@ -266,14 +275,14 @@ uint8_t getLayer(uint8_t FNcolrow)
 
 uint8_t scanmatrix(void)
 {
-	uint8_t col, row;
-	uint8_t prev, cur;
-    uint8_t vPinG;
-    uint8_t vPinC;
-    uint8_t vPinF;
+   uint8_t col, row;
+   uint8_t prev, cur;
+   uint8_t vPinG;
+   uint8_t vPinC;
+   uint8_t vPinF;
 
-	uint8_t matrixState = 0;
-    uint8_t ledblock;
+   uint8_t matrixState = 0;
+   uint8_t ledblock;
     
     if (scankeycntms++ >= 136364)   // 5min
     {
@@ -295,13 +304,19 @@ uint8_t scanmatrix(void)
       DDRA  = BV(col);        //  only target col bit is output and others are input
       PORTA = ~BV(col);       //  only target col bit is LOW and other are pull-up
 
-      _delay_us(10);
+      _delay_us(30);
 
+#ifdef KBDMOD_M5
       vPinG = ~PING;
       vPinC = ~PINC;
       vPinF = ~PINF;
-
       curMATRIX[col] = (uint32_t)(vPinG & 0x03) << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
+#else ifdef KBDMOD_M7
+      vPinG = ~PING;
+      vPinC = ~PINC;
+      vPinF = ~PINF;
+      curMATRIX[col] = (uint32_t)(vPinG & 0x07) << 16 | (uint32_t)vPinF << 8 | (uint32_t)vPinC;
+#endif
       if(curMATRIX[col])
       {
          matrixState |= SCAN_DIRTY;
@@ -503,16 +518,21 @@ uint8_t scankey(void)
             prev >>= 1;
             cur >>= 1;
 
+#ifdef KBDMOD_M5
             if (i < 8)
             {
-                row = 10 + i;
+                row = 10+i;
             }else if (i < 16)
             {
-                row = -6 + i;
+                row = -6+i;
             }else
             {
-                row = -16 + i;
+                row = -16+i;
             }
+
+#else ifdef KBDMOD_M7
+            row = i;
+#endif
             keyidx = pgm_read_byte(keymap[t_layer]+((uint32_t)col*MAX_ROW)+(uint32_t)row);
 
             if (keyidx == KEY_NONE)

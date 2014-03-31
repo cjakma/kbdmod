@@ -118,12 +118,43 @@ these macros are defined, the boot loader usees them.
 #define DDR_COL0    DDRA
 #define PORT_COL0   PORTA
 
+#define DDR_LED0    DDRB
+#define DDR_LED1    DDRB
+#define DDR_LED2    DDRB
+#define DDR_LED3    DDRD
+
+#define PORT_LED0   PORTB
+#define PORT_LED1   PORTB
+#define PORT_LED2   PORTB
+#define PORT_LED3   PORTD
+
+#define PIN_LED0    1 << 0
+#define PIN_LED1    1 << 2
+#define PIN_LED2    1 << 3
+#define PIN_LED3    1 << 2
+
 #else ifdef KBDMOD_M5
 #define DDR_ROW0    DDRG
 #define PORT_ROW0   PORTG
 #define PIN_ROW0    PING
 #define DDR_COL0    DDRA
 #define PORT_COL0   PORTA
+
+#define DDR_LED0    DDRD
+#define DDR_LED1    DDRD
+#define DDR_LED2    DDRD
+#define DDR_LED3    DDRD
+
+#define PORT_LED0   PORTD
+#define PORT_LED1   PORTD
+#define PORT_LED2   PORTD
+#define PORT_LED3   PORTD
+
+#define PIN_LED0    1 << 2
+#define PIN_LED0    1 << 2
+#define PIN_LED0    1 << 5
+#define PIN_LED0    1 << 3
+
 
 #endif
 
@@ -135,16 +166,59 @@ static uint8_t isBootloader = 0;
 static int counter=0;
 static int prevState;
 
+static void ledOff()
+{
+   PORT_LED0 &= ~(PIN_LED0);
+   PORT_LED1 &= ~(PIN_LED1);
+   PORT_LED2 &= ~(PIN_LED2);
+   PORT_LED3 &= ~(PIN_LED3);            
+}
+
+static void ledInit()
+{
+   DDR_LED0 |= (PIN_LED0);
+   DDR_LED1 |= (PIN_LED1);
+   DDR_LED2 |= (PIN_LED2);
+   DDR_LED3 |= (PIN_LED3); 
+
+}
+
+static void ledOn(uint8_t pin)
+{
+   switch (pin)
+   {
+      case 0:
+         PORT_LED0 |= PIN_LED0;
+         break;
+      
+      case 1:
+         PORT_LED1 |= PIN_LED1;
+         break;
+      
+      case 2:
+         PORT_LED2 |= PIN_LED2;
+         break;
+      
+      case 3:
+         PORT_LED3 |= PIN_LED3;
+         break;
+
+      default:
+         break;   
+   }
+
+}
+
 static inline void  bootLoaderInit(void)
 {
 	// 5v -> 3.3v for USB
-	PORTD	= 0x40; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(pull-up), D+(0)
+	 PORTD	= 0x40; // Zener(pull-up), LED_SCR, LED_CAPS, LED_NUM (0ff), D-(pull-up), D+(0)
     DDRD    = 0xBC; // Zener(OUT), LED_SCR, LED_CAPS, LED_NUM (OUT), D-(INPUT), D+(INPUT)
 
     // switch on leds
-    DDRD  |= ((1 << PIND5) | (1 << PIND3)| (1 << PIND2));
+    ledInit();
+    ledOff();
 
-    PORTD |= ((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
     // choose matrix position for hotkey. we use KEY_KPminus, so we set row 13
     // and later look for pin 7
 
@@ -174,23 +248,43 @@ static inline uint8_t bootLoaderCondition() {
         if (ledcounter == 127) {
             switch (ledstate) {
                 case 0:
-    				PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
-                    PORTD |= (1 << PIND2);
-                    ledstate = 1;
+                  ledOff();
+                  ledOn(0);
+                  ledstate = 1;
                     break;
                 case 1:
-                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
-                	PORTD |= (1 << PIND5);
+                   ledOff();
+                   ledOn(1);
                     ledstate = 2;
                     break;
                 case 2:
-                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
-                	PORTD |= (1 << PIND3);
+                   ledOff();
+                   ledOn(2);
                     ledstate = 3;
                     break;
+
+
+                case 3:
+                   ledOff();
+                   ledOn(3);
+                    ledstate = 4;
+                    break;
+
+                case 4:
+                   ledOff();
+                   ledOn(2);
+                    ledstate = 5;
+                    break;
+
+                case 5:
+                   ledOff();
+                   ledOn(1);
+                    ledstate = 0;
+                    break;
+
                 default:
-                    PORTD &= ~((1 << PIND5) | (1 << PIND3) | (1 << PIND2));
-                	PORTD |= (1 << PIND5);
+                   ledOff();
+
                     ledstate = 0;
             }
             ledcounter = 0;

@@ -7,7 +7,7 @@
 //#define PS2AVR
 
 #define MAX_COL     6
-#define MAX_ROW     18
+#define MAX_ROW     19
 
 #define MAX_KEY     256
 

@@ -379,7 +379,7 @@ int processTX(void)
 uint8_t ps2main(void)
 {
     int keyval=0;
-	m_state = STA_WAIT_RESET;
+	 m_state = STA_WAIT_RESET;
     cli();
 
     DEBUG_PRINT(("PS/2\n"));
@@ -387,7 +387,7 @@ uint8_t ps2main(void)
 
 	kbd_init();
     
-    wdt_enable(WDTO_1S);
+    wdt_enable(WDTO_2S);
     sei();
 
 	while(1) {

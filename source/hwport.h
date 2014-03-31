@@ -4,7 +4,8 @@
 #include <avr/io.h>
 #include <avr/wdt.h>
 
-
+#define KBDMOD_M7
+//#define KBDMOD_M5
 
 #define USB_LEVEL_SHIFT_PORT    PORTD
 #define USB_LEVEL_SHIFT_DDR     DDRD

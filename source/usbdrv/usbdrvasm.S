@@ -73,7 +73,7 @@ the file appropriate for the given clock rate.
 #if USB_INTR_PENDING < 0x40 /* This is an I/O address, use in and out */
 #   define  USB_LOAD_PENDING(reg)   in reg, USB_INTR_PENDING
 #   define  USB_STORE_PENDING(reg)  out USB_INTR_PENDING, reg
-#else   /* It's a memory address, use lds and sts */
+#else   /* It is a memory address, use lds and sts */
 #   define  USB_LOAD_PENDING(reg)   lds reg, USB_INTR_PENDING
 #   define  USB_STORE_PENDING(reg)  sts USB_INTR_PENDING, reg
 #endif

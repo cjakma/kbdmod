@@ -158,12 +158,13 @@ int8_t checkInterface(void)
 	DDRA  = BV(2);        //  col2
 	PORTA = ~BV(2);       //
 
-    _delay_us(10);
+    _delay_us(30);
 
     vPinG = ~PING;
     vPinC = ~PINC;
     vPinF = ~PINF;
 
+#ifdef KBDMOD_M5
     if (vPinC & 0x20)   // col2-row7 => U
     {
         cur_usbmode = 1;
@@ -172,10 +173,25 @@ int8_t checkInterface(void)
     {
         cur_usbmode = 0;
         eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
-    }else
+    }
+
+#else ifdef KBDMOD_M7
+   if (vPinC & 0x80)   // col2-row7 => U
+   {
+       cur_usbmode = 1;
+       eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
+   }else if (vPinF & 0x04) // col2-row10 => P
+   {
+       cur_usbmode = 0;
+       eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
+   }
+
+#endif
+    else
     {
         cur_usbmode = eeprom_read_byte(EEPADDR_USBPS2_MODE);                   
     }
+    
     return cur_usbmode;
 }        
     
