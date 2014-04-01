@@ -44,6 +44,8 @@
 
 #define QUEUE_SIZE 200
 
+uint8_t pop(void);
+void push(uint8_t item);
 
 extern void putKey(uint8_t keyidx, uint8_t isPushed);
 extern void tx_state(unsigned char x, unsigned char newstate);

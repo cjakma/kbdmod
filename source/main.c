@@ -21,7 +21,7 @@
 #include "usbdrv.h"
 #include "hwaddress.h"
 #include "matrix.h"
-
+#include "macro.h"
 
 int8_t usbmode;
 extern uint8_t usbmain(void);
@@ -146,13 +146,18 @@ int portInit(void)
 }
 
 
+#ifdef KBDMOD_M5
+#define CHECK_U (~PINC & 0x20)  // col2-row7 => U
+#define CHECK_P (~PINF & 0x01)  // col2-row10 => P
+#else //KBDMOD_M7
+#define CHECK_U (~PINC & 0x80)
+#define CHECK_P (~PINF & 0x04)
 
-
+#endif
 
 
 int8_t checkInterface(void)
 {
-    uint8_t vPinG, vPinC, vPinF;
     uint8_t cur_usbmode = 0;
 
 	DDRA  = BV(2);        //  col2
@@ -160,43 +165,23 @@ int8_t checkInterface(void)
 
     _delay_us(30);
 
-    vPinG = ~PING;
-    vPinC = ~PINC;
-    vPinF = ~PINF;
-
-#ifdef KBDMOD_M5
-    if (vPinC & 0x20)   // col2-row7 => U
+    if (CHECK_U)   
     {
         cur_usbmode = 1;
         eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
-    }else if (vPinF & 0x01) // col2-row10 => P
+    }else if (CHECK_P)
     {
         cur_usbmode = 0;
         eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
-    }
-
-#else ifdef KBDMOD_M7
-   if (vPinC & 0x80)   // col2-row7 => U
-   {
-       cur_usbmode = 1;
-       eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
-   }else if (vPinF & 0x04) // col2-row10 => P
-   {
-       cur_usbmode = 0;
-       eeprom_write_byte(EEPADDR_USBPS2_MODE, cur_usbmode);
-   }
-
-#endif
-    else
+    }else
     {
-        cur_usbmode = eeprom_read_byte(EEPADDR_USBPS2_MODE);                   
+        cur_usbmode = eeprom_read_byte(EEPADDR_USBPS2_MODE);
+        if (cur_usbmode > 1)
+            cur_usbmode = 1;    //default USB
     }
-    
     return cur_usbmode;
 }        
     
-
-
 
 int main(void)
 {

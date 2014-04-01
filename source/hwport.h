@@ -39,8 +39,8 @@
 #define LED_ARROW18_PORT          (uint8_t *const)&PORTB
 #define LED_ARROW18_PIN           6
 
-#define LED_ARROW30_PORT          (uint8_t *const)&PORTB
-#define LED_ARROW30_PIN           5
+#define LED_VESEL_PORT          (uint8_t *const)&PORTB
+#define LED_VESEL_PIN           5
 
 
 #define LED_Fx_PORT         (uint8_t *const)&PORTE
@@ -53,8 +53,9 @@
 #define LED_ESC_PIN         5
 
 
+#define Reset_AVR()
 
-#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
+//#define Reset_AVR() wdt_enable(WDTO_30MS); while(1) {}
 
 #define BOOTLOADER_ADDRESS 0x1F000
 

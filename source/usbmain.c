@@ -542,7 +542,7 @@ uint8_t usbmain(void) {
 
         if(interfaceReady == 0 && interfaceCount++ > 12000){
 			// move to ps/2
-		   Reset_AVR();
+//		   Reset_AVR();
 			//break;
 		}
                 
@@ -551,8 +551,10 @@ uint8_t usbmain(void) {
 
         updateNeeded = scankey();   // changes?
         if (updateNeeded == 0)      //debounce
+        {
+            
             continue;
-        
+        }
         if (idleRate == 0)                  // report only when the change occured
         {
             if (cmpReportBuffer() == 0)     // exactly same status?

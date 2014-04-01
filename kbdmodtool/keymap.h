@@ -121,10 +121,10 @@ enum {
     KEY_LASD,     //
 
     KEY_LARR,    // 0x70
+    KEY_LVESEL,   
     KEY_MRESET, 
     KEY_RESET,          //254
     KEY_FN,             //255
-    KEY_EXECUTE,
     KEY_HELP,
     KEY_MENU,
     KEY_SEL,

@@ -20,6 +20,8 @@
 #include "hwaddress.h"
 #include "macro.h"
 
+#include "ps2main.h"
+
 uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -55,6 +57,11 @@ int8_t isFNpushed = 0;
 extern int8_t usbmode;
 
 
+static void swap_load(void)
+{
+   swapAltGui = eeprom_read_byte(EEPADDR_SWAPALTGUI);
+   swapCtrlCaps = eeprom_read_byte(EEPADDR_SWAPCTRLCAPS);
+}
 
 static uint8_t findFNkey(void)
 {
@@ -139,8 +146,6 @@ uint8_t macrokeystring[3][30] = {
 uint8_t processPushedFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
-    uint8_t ledblock;
-    uint8_t f1position;
     uint8_t key;
     
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
@@ -165,7 +170,6 @@ uint8_t processPushedFNkeys(uint8_t keyidx)
     }else if(keyidx == KEY_RESET)
     {
         extern int portInit(void);
-        extern AppPtr_t Bootloader;
         portInit();
         Reset_AVR();
     }else if(keyidx == KEY_MRESET)
@@ -187,13 +191,11 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
 {
     uint8_t retVal = 0;
     uint8_t ledblock;
-    uint8_t f1position;
-    uint8_t key;
         
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
         ledmodeIndex = keyidx-KEY_LED0;
-        for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_ARROW30; ledblock++)
+        for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_VESEL; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
@@ -211,7 +213,6 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
          retVal = 1;
     }else if(keyidx == KEY_RESET)
     {
-        extern AppPtr_t Bootloader;
         Reset_AVR();
     }else if(keyidx == KEY_MRESET)
     {
@@ -245,7 +246,7 @@ uint8_t getLayer(uint8_t FNcolrow)
 	}else if(row >= 10 && row<18){
 	    cur = ~PINF & BV(row-10);
 	}
-#else ifdef KBDMOD_M7
+#else // KBDMOD_M7
    if(row < 8)   {           // for 0..7, PORTA 0 -> 7
       cur = ~PINC & BV(row);
    }
@@ -275,11 +276,8 @@ uint8_t getLayer(uint8_t FNcolrow)
 
 uint8_t scanmatrix(void)
 {
-   uint8_t col, row;
-   uint8_t prev, cur;
-   uint8_t vPinG;
-   uint8_t vPinC;
-   uint8_t vPinF;
+   uint8_t col;
+   uint8_t vPinC, vPinF, vPinG;
 
    uint8_t matrixState = 0;
    uint8_t ledblock;
@@ -290,7 +288,7 @@ uint8_t scanmatrix(void)
         kbdsleepmode = 1;
         ledmodeIndex = 4;       // hidden OFF index
 
-        for (ledblock = LED_PIN_PRT; ledblock < LED_PIN_ARROW30; ledblock++)
+        for (ledblock = LED_PIN_PRT; ledblock < LED_PIN_VESEL; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
@@ -311,7 +309,7 @@ uint8_t scanmatrix(void)
       vPinC = ~PINC;
       vPinF = ~PINF;
       curMATRIX[col] = (uint32_t)(vPinG & 0x03) << 16 | (uint32_t)vPinC << 8 | (uint32_t)vPinF;
-#else ifdef KBDMOD_M7
+#else // KBDMOD_M7
       vPinG = ~PING;
       vPinC = ~PINC;
       vPinF = ~PINF;
@@ -330,12 +328,6 @@ void swap_save(void)
 {
    eeprom_write_byte(EEPADDR_SWAPALTGUI, swapAltGui);
    eeprom_write_byte(EEPADDR_SWAPCTRLCAPS, swapCtrlCaps);
-}
-
-void swap_load(void)
-{
-   swapAltGui = eeprom_read_byte(EEPADDR_SWAPALTGUI);
-   swapCtrlCaps = eeprom_read_byte(EEPADDR_SWAPCTRLCAPS);
 }
 
 uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
@@ -426,6 +418,7 @@ uint8_t cntKey(uint8_t keyidx, uint8_t clearmask)
             resetMacro();
         }
     }
+    return 0;
 }
 
 
@@ -434,7 +427,7 @@ uint8_t swap_key(uint8_t keyidx)
     if(keylock & 0x02)
     {
       keyidx = KEY_NONE;
-      return;
+      return keyidx;
     }
     if(swapCtrlCaps & 0x01)
     {
@@ -475,7 +468,6 @@ uint8_t scankey(void)
 	uint8_t keyidx;
 	uint8_t matrixState = 0;
 	uint8_t retVal = 0;
-    uint8_t debounce = 0;
     int8_t i;
 
 
@@ -530,7 +522,7 @@ uint8_t scankey(void)
                 row = -16+i;
             }
 
-#else ifdef KBDMOD_M7
+#else // KBDMOD_M7
             row = i;
 #endif
             keyidx = pgm_read_byte(keymap[t_layer]+((uint32_t)col*MAX_ROW)+(uint32_t)row);
@@ -539,7 +531,7 @@ uint8_t scankey(void)
                 continue;
 
             if(curBit && !(keylock & 0x02))
-               cntKey(keyidx, 0xFFFF);
+               cntKey(keyidx, 0xFF);
             
             if (!prevBit && curBit)   //pushed
             {

@@ -14,7 +14,7 @@ typedef enum
     LED_PIN_BASE,
     LED_PIN_WASD,                   
     LED_PIN_ARROW18,
-    LED_PIN_ARROW30,
+    LED_PIN_VESEL,
     LED_PIN_ALL
 }LED_BLOCK;    
 
@@ -51,6 +51,13 @@ void led_pushed_level_cal(void);
 
 void led_on(LED_BLOCK block);
 void led_off(LED_BLOCK block);
+void led_wave_on(LED_BLOCK block);
+void led_wave_off(LED_BLOCK block);
+void led_wave_set(LED_BLOCK block, uint16_t duty);
+
+
 void led_ESCIndicater(uint8_t layer);
 void led_PRTIndicater(uint8_t index);
+
+void recordLED(uint8_t ledkey);
 

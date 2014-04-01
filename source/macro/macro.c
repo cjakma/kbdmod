@@ -221,8 +221,9 @@ void sendString(char* string) {
     uint8_t i;
     Key key;
 
-    for (i = 0; i < strlen(string); i++) {
-        key = charToKey(string[i]);
+    while(string[i] != NULL && i < 64) // limit to 64 charater to send at once.
+    {
+        key = charToKey(string[i++]);
         sendKey(key);
     }
 }
@@ -535,7 +536,7 @@ void recordMacro(uint8_t macrokey)
                 row = -16+i;
             }
 
-#else ifdef KBDMOD_M7
+#else // KBDMOD_M7
                         row = i;
 #endif
 

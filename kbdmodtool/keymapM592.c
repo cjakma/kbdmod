@@ -2,7 +2,7 @@
 #include "keymap.h"
 
 #define MAX_COL     6
-#define MAX_ROW     18
+#define MAX_ROW     19
 
 #define MAX_LAYER   8
 #define MAXHEXLINE 32	/* the maximum number of bytes to put in one line */
