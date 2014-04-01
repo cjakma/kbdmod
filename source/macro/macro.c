@@ -218,7 +218,7 @@ void sendKey(Key keytosend)
  * \param string string to send
  */
 void sendString(char* string) {
-    uint8_t i;
+    uint8_t i = 0;
     Key key;
 
     while(string[i] != NULL && i < 64) // limit to 64 charater to send at once.
