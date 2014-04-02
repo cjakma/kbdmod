@@ -192,7 +192,6 @@ void sendKey(Key keytosend)
     if(usbmode)
     {
         usbSendReport(keytosend.mode, keytosend.key);
-        usbSendReport(0, 0);
     }else
     {
         putKey(keytosend.key,1);
@@ -212,6 +211,14 @@ void sendKey(Key keytosend)
     }
 }
 
+
+void clearKey(void)
+{
+    if(usbmode)
+    {
+        usbSendReport(0, 0);
+    }
+}
 /**
  * Send a string to the computer. This function converts each character of an
  * ASCII-string to a key-structure and uses sendKey() to send it.
@@ -219,14 +226,23 @@ void sendKey(Key keytosend)
  */
 void sendString(char* string) {
     uint8_t i = 0;
-    Key key;
+    uint8_t keychar, oldkeychar;
+    Key key, oldKey;
 
     while(string[i] != NULL && i < 64) // limit to 64 charater to send at once.
     {
-        key = charToKey(string[i++]);
+        keychar = string[i++];
+        key = charToKey(keychar);
         wdt_reset();
+
+        if(keychar == oldkeychar)
+        {
+            clearKey();
+        }
+        oldkeychar = keychar;
         sendKey(key);
     }
+    clearKey();
 }
 uint8_t macrobuffer[256] = {};
 uint8_t macrostart[] = "MACRO record mode@";
@@ -256,22 +272,22 @@ uint8_t getkey(uint8_t key, uint16_t index)
 void playMacroUSB(uint8_t macrokey)
 {
     uint8_t i;
-    uint8_t keyidx;
+    uint8_t keyidx, oldKeyidx = 0;
     Key key;
     key.mode = 0;
     key.key = 0;
     uint8_t mIndex = 0;
     long address;
-    uint8_t esctoggle =0;
-
+    uint8_t esctoggle = 0;
+    uint8_t macroSET;
     mIndex = macrokey - KEY_M01;
     address = MacroAddr[mIndex];
-    
-    if (eeprom_read_byte(EEPADDR_MACRO_SET+mIndex) == 0)  // not recorded
+
+    macroSET = eeprom_read_byte(EEPADDR_MACRO_SET+mIndex);
+    if (macroSET != 1)      // MACRO not recorded
     {
         return;
     }
-
     
     keyidx = pgm_read_byte_far(address++);
     for (i = 0; i < MAX_MACRO_LEN; i++)
@@ -292,6 +308,13 @@ void playMacroUSB(uint8_t macrokey)
             }
         
             wdt_reset();
+            if(keyidx == oldKeyidx)
+            {
+                key.key = 0;
+                sendKey(key);
+            }
+            oldKeyidx = keyidx;
+            
             key.key = keyidx;
             sendKey(key);
             keyidx = pgm_read_byte_far(address++);
@@ -532,13 +555,15 @@ void recordMacro(uint8_t macrokey)
             }else if (i < 16)
             {
                 row = -6+i;
-            }else
+            }else if (i < 18)
             {
                 row = -16+i;
+            }else
+            {
+                continue;
             }
-
 #else // KBDMOD_M7
-                        row = i;
+            row = i;
 #endif
 
             keyidx = pgm_read_byte(keymap[t_layer]+(col*MAX_ROW)+row);
@@ -583,7 +608,9 @@ void recordMacro(uint8_t macrokey)
                         key.key = macrobuffer[index];
                      }
                      sendKey(key);
-                     
+                        key.mode = 0;
+                        key.key = 0;
+                        sendKey(key);
                      if(index == 0xFF)
                      {
                          flash_writeinpage(macrobuffer, address+(page*256));
@@ -601,6 +628,10 @@ void recordMacro(uint8_t macrokey)
                      macrobuffer[index++] = keyidx;
                      key.key = KEY_SLASH;
                      sendKey(key);
+                    key.mode = 0;
+                    key.key = 0;
+                    sendKey(key);
+
                   }
                }
 

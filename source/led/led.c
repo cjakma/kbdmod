@@ -51,8 +51,8 @@ uint8_t ledmode[5][11] ={
 };
 
 
-static uint8_t speed[] = {1, 1, 1, 1, 9, 9, 9, 9, 9, 9, 9};
-static uint8_t brigspeed[] = {1, 1, 1, 1, 7, 7, 7, 7, 7, 7, 7};
+static uint8_t speed[] = {1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5};
+static uint8_t brigspeed[] = {1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3};
 static uint8_t pwmDir[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint32_t pwmCounter[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 

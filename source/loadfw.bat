@@ -1,3 +1,2 @@
-bootloadHID.exe kbdmodmx.hex
-bootloadHID.exe -r keymap.hex
+bootloadHID.exe -r kbdmodmx.hex
 pause;

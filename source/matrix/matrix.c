@@ -59,8 +59,12 @@ extern int8_t usbmode;
 
 static void swap_load(void)
 {
-   swapAltGui = eeprom_read_byte(EEPADDR_SWAPALTGUI);
-   swapCtrlCaps = eeprom_read_byte(EEPADDR_SWAPCTRLCAPS);
+    swapAltGui = eeprom_read_byte(EEPADDR_SWAPALTGUI);
+    if(swapAltGui != 1)
+        swapAltGui = 0;     
+    swapCtrlCaps = eeprom_read_byte(EEPADDR_SWAPCTRLCAPS);
+    if(swapCtrlCaps != 1)
+        swapCtrlCaps = 0; 
 }
 
 static uint8_t findFNkey(void)
@@ -235,7 +239,7 @@ uint8_t getLayer(uint8_t FNcolrow)
 	DDRA  = BV(col);
 	PORTA = ~BV(col);
 	
-	_delay_us(30);
+	_delay_us(10);
 
 #ifdef KBDMOD_M5
 	if(row<2)	{				// for 0..7, PORTA 0 -> 7
@@ -282,7 +286,7 @@ uint8_t scanmatrix(void)
    uint8_t matrixState = 0;
    uint8_t ledblock;
     
-    if (scankeycntms++ >= 136364)   // 5min
+    if (scankeycntms++ >= 36364 && kbdsleepmode == 0)   // 5min
     {
         scankeycntms--;
         kbdsleepmode = 1;
@@ -302,7 +306,7 @@ uint8_t scanmatrix(void)
       DDRA  = BV(col);        //  only target col bit is output and others are input
       PORTA = ~BV(col);       //  only target col bit is LOW and other are pull-up
 
-      _delay_us(30);
+      _delay_us(120);
 
 #ifdef KBDMOD_M5
       vPinG = ~PING;
@@ -517,9 +521,12 @@ uint8_t scankey(void)
             }else if (i < 16)
             {
                 row = -6+i;
-            }else
+            }else if (i < 18)
             {
                 row = -16+i;
+            }else
+            {
+                continue;
             }
 
 #else // KBDMOD_M7

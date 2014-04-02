@@ -541,8 +541,7 @@ uint8_t usbmain(void) {
         // main event loop
 
         if(interfaceReady == 0 && interfaceCount++ > 12000){
-			// move to ps/2
-//		   Reset_AVR();
+		   Reset_AVR();
 			//break;
 		}
                 

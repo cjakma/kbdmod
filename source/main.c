@@ -163,7 +163,7 @@ int8_t checkInterface(void)
 	DDRA  = BV(2);        //  col2
 	PORTA = ~BV(2);       //
 
-    _delay_us(30);
+    _delay_us(100);
 
     if (CHECK_U)   
     {

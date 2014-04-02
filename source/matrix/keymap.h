@@ -3,9 +3,6 @@
 
 #include <avr/pgmspace.h>
 
-#define MX3018
-//#define PS2AVR
-
 #define MAX_COL     6
 #define MAX_ROW     19
 
