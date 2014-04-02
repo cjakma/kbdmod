@@ -224,6 +224,7 @@ void sendString(char* string) {
     while(string[i] != NULL && i < 64) // limit to 64 charater to send at once.
     {
         key = charToKey(string[i++]);
+        wdt_reset();
         sendKey(key);
     }
 }

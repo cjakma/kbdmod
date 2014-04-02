@@ -21,8 +21,9 @@ AVRLIB = ./avrlib
 #	MCU = atmega161
 	MCU = atmega128
 
-#F_CPU = 12000000
-F_CPU = 20000000
+F_CPU = 12000000
+#F_CPU = 16000000
+#F_CPU = 20000000
 
 JUMPSTART = 0x1FC00
 #put the name of the TRG file here (without extension)
