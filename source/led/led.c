@@ -61,10 +61,6 @@ static uint8_t pushedLevel[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint16_t pushedLevelDuty[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint8_t LEDstate;     ///< current state of the LEDs
 
-extern uint16_t scankeycntms;
-extern uint8_t kbdsleepmode;
-
-extern uint8_t isLED3000;
 
 void led_off(LED_BLOCK block)
 {
@@ -333,15 +329,7 @@ void led_blink(int matrixState)
                     break;
                 default :
                     break;
-            }
-            scankeycntms = 0;
-            if (kbdsleepmode == 1)
-            {
-                led_mode_init();
-                led_3lockupdate(LEDstate);
-                kbdsleepmode = 0;
-            }
-             
+            }             
         }else{          // none of keys is pushed
             switch(ledmode[ledmodeIndex][ledblock])
                  {

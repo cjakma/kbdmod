@@ -286,7 +286,7 @@ uint8_t scanmatrix(void)
    uint8_t matrixState = 0;
    uint8_t ledblock;
     
-    if (scankeycntms++ >= 36364 && kbdsleepmode == 0)   // 5min
+    if (scankeycntms++ >= 16364 && kbdsleepmode == 0)   // 5min
     {
         scankeycntms--;
         kbdsleepmode = 1;
@@ -322,9 +322,17 @@ uint8_t scanmatrix(void)
       if(curMATRIX[col])
       {
          matrixState |= SCAN_DIRTY;
+         scankeycntms = 0;
+         if (kbdsleepmode == 1)
+         {
+             led_mode_init();
+             led_3lockupdate(LEDstate);
+             kbdsleepmode = 0;
+         }
       }
  	}
 
+    
     return matrixState;
 }
 
