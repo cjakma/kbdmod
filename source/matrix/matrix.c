@@ -22,6 +22,7 @@
 
 #include "ps2main.h"
 
+#define STANDBY_LOOP    136363  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
 uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -285,10 +286,12 @@ uint8_t scanmatrix(void)
 
    uint8_t matrixState = 0;
    uint8_t ledblock;
+
+    if (scankeycntms++ >= STANDBY_LOOP)
+        scankeycntms = STANDBY_LOOP;
     
-    if (scankeycntms++ >= 16364 && kbdsleepmode == 0)   // 5min
+    if (scankeycntms == STANDBY_LOOP && kbdsleepmode == 0)   // 5min
     {
-        scankeycntms--;
         kbdsleepmode = 1;
         ledmodeIndex = 4;       // hidden OFF index
 
@@ -306,8 +309,8 @@ uint8_t scanmatrix(void)
       DDRA  = BV(col);        //  only target col bit is output and others are input
       PORTA = ~BV(col);       //  only target col bit is LOW and other are pull-up
 
-      _delay_us(120);
-
+      _delay_us(10);
+      
 #ifdef KBDMOD_M5
       vPinG = ~PING;
       vPinC = ~PINC;
@@ -322,6 +325,7 @@ uint8_t scanmatrix(void)
       if(curMATRIX[col])
       {
          matrixState |= SCAN_DIRTY;
+         
          scankeycntms = 0;
          if (kbdsleepmode == 1)
          {
@@ -517,8 +521,8 @@ uint8_t scankey(void)
         MATRIX[col] = curMATRIX[col];
 		for(i = 0; i < MAX_ROW; i++)
 		{
-            prevBit = (uint8_t)prev & 0x01;
-            curBit = (uint8_t)cur & 0x01;
+            prevBit = (uint8_t)(prev & 0x01);
+            curBit = (uint8_t)(cur & 0x01);
             prev >>= 1;
             cur >>= 1;
 

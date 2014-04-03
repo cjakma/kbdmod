@@ -88,10 +88,10 @@ int portInit(void)
 //    PF        0:7      row 10:17
     
 //    PB
-//    0      N/A
+//    0      INDI0
 //    1      SCK (ISP)
-//    2      N/A
-//    3      N/A
+//    2      INDI1
+//    3      INDI2
 //    4(OC0)       LED_PIN_WASD
 //    5(OC1A)     LED_PIN_PAD
 //    6(OC1B)     LED_PIN_PRT
@@ -133,7 +133,7 @@ int portInit(void)
 
 //  LED port
 	PORTB	= 0x0F;	// LED_VESEL, LED_PIN_PRT, LED_PIN_PAD, LED_PIN_WASD off          (00001111)
-	DDRB 	= 0xF0;	// LED_VESEL, LED_PIN_PRT, LED_PIN_PAD, LED_PIN_WASD OUT        (11110000)
+	DDRB 	= 0xFF;	// LED_VESEL, LED_PIN_PRT, LED_PIN_PAD, LED_PIN_WASD OUT        (11110000)
 
 	PORTE	= 0xC7;	// LED_PIN_ESC, LED_PIN_BASE, LED_PIN_Fx    off                           (11000111)
     DDRE	= 0x38;	// LED_PIN_ESC, LED_PIN_BASE, LED_PIN_Fx    OUT                         (00111000)
@@ -163,7 +163,7 @@ int8_t checkInterface(void)
 	DDRA  = BV(2);        //  col2
 	PORTA = ~BV(2);       //
 
-    _delay_us(100);
+    _delay_us(10);
 
     if (CHECK_U)   
     {

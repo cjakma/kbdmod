@@ -140,10 +140,10 @@
 // default prescale settings for the timers
 // these settings are applied when you call
 // timerInit or any of the timer<x>Init
-#define TIMER0PRESCALE		TIMER_CLK_DIV256	    ///< timer 0 prescaler default
-#define TIMER1PRESCALE		TIMER_CLK_DIV256		///< timer 1 prescaler default
-#define TIMER2PRESCALE		TIMER_CLK_DIV256		///< timer 2 prescaler default
-#define TIMER3PRESCALE		TIMER_CLK_DIV256		///< timer 3 prescaler default
+#define TIMER0PRESCALE		TIMER_CLK_DIV64       ///< timer 0 prescaler default
+#define TIMER1PRESCALE		TIMER_CLK_DIV64		///< timer 1 prescaler default
+#define TIMER2PRESCALE		TIMER_CLK_DIV64		///< timer 2 prescaler default
+#define TIMER3PRESCALE		TIMER_CLK_DIV64		///< timer 3 prescaler default
 
 // interrupt macros for attaching user functions to timer interrupts
 // use these with timerAttach( intNum, function )

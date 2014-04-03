@@ -6,8 +6,8 @@
 
 #KBD= M587
 #KBD= M586
-KBD= M592
-#KBD= M7
+#KBD= M592
+KBD= M7
 EXE_SUFFIX= .exe
 
 CC=				gcc

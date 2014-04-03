@@ -54,12 +54,15 @@ uint8_t ledmode[5][11] ={
 static uint8_t speed[] = {1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5};
 static uint8_t brigspeed[] = {1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3};
 static uint8_t pwmDir[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-static uint32_t pwmCounter[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint16_t pwmCounter[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 static int16_t pushedLevelStay[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint8_t pushedLevel[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 static uint16_t pushedLevelDuty[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint8_t LEDstate;     ///< current state of the LEDs
+
+extern uint16_t scankeycntms;
+
 
 
 void led_off(LED_BLOCK block)
@@ -350,7 +353,7 @@ void led_blink(int matrixState)
 void led_fader(void)
 {
     
-    LED_BLOCK ledblock;
+    uint8_t ledblock;
     for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_VESEL; ledblock++)
     {
         if((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING) || ((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
@@ -660,7 +663,6 @@ void recordLED(uint8_t ledkey)
 
     wdt_reset();
     matrixState = scanmatrix();
-    scankeycntms = 0;
 
     /* LED Blinker */
     led_blink(matrixState);
