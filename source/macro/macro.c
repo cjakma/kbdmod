@@ -273,13 +273,18 @@ void playMacroUSB(uint8_t macrokey)
 {
     uint8_t i;
     uint8_t keyidx, oldKeyidx = 0;
-    Key key;
-    key.mode = 0;
-    key.key = 0;
+
     uint8_t mIndex = 0;
-    long address;
     uint8_t esctoggle = 0;
     uint8_t macroSET;
+    long address;
+
+
+    Key key;
+    
+    key.mode = 0;
+    key.key = 0;
+
     mIndex = macrokey - KEY_M01;
     address = MacroAddr[mIndex];
 
@@ -337,14 +342,26 @@ void playMacroPS2(uint8_t macrokey)
 {
     uint8_t i;
     uint8_t keyidx;
-    Key key;
     uint8_t keyval;
+    long address;
+    uint8_t macroSET;
+
+    Key key;
     key.mode = 0;
     key.key = 0;
-    long address;
+    
+    uint8_t mIndex = 0;
     uint8_t esctoggle =0;
 
-    address = MacroAddr[macrokey - KEY_M01];
+    mIndex = macrokey - KEY_M01;
+    address = MacroAddr[mIndex];
+    
+
+    macroSET = eeprom_read_byte(EEPADDR_MACRO_SET+mIndex);
+     if (macroSET != 1)      // MACRO not recorded
+     {
+         return;
+     }
 
 
     for (i = 0; i < MAX_MACRO_LEN; i++)
@@ -608,9 +625,8 @@ void recordMacro(uint8_t macrokey)
                         key.key = macrobuffer[index];
                      }
                      sendKey(key);
-                        key.mode = 0;
-                        key.key = 0;
-                        sendKey(key);
+                    clearKey();
+
                      if(index == 0xFF)
                      {
                          flash_writeinpage(macrobuffer, address+(page*256));
@@ -628,9 +644,8 @@ void recordMacro(uint8_t macrokey)
                      macrobuffer[index++] = keyidx;
                      key.key = KEY_SLASH;
                      sendKey(key);
-                    key.mode = 0;
-                    key.key = 0;
-                    sendKey(key);
+                    clearKey();
+
 
                   }
                }

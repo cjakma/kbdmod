@@ -22,7 +22,7 @@
 
 #include "ps2main.h"
 
-#define STANDBY_LOOP    136363  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
+#define STANDBY_LOOP    13000  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
 uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -209,7 +209,7 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     }else if(keyidx >= KEY_LFX && keyidx <= KEY_LARR)
     {
         retVal = 1;
-    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M48)
+    }else if(keyidx >= KEY_M01 && keyidx <= KEY_M52)
     {
         if(usbmode)
              playMacroUSB(keyidx);
