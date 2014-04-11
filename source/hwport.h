@@ -10,22 +10,22 @@
 #define USB_LEVEL_SHIFT_DDR     DDRD
 #define USB_LEVEL_SHIFT_PIN     6
 
-#define PS2_CLK_PULLUP_PORT    PORTD
-#define PS2_CLK_PULLUP_DDR     DDRD
-#define PS2_CLK_PULLUP_PIN     7
+#define PS2_CLK_PULLUP_PORT     PORTD
+#define PS2_CLK_PULLUP_DDR      DDRD
+#define PS2_CLK_PULLUP_PIN      7
 
 
 #define LED_PRT_PORT        (uint8_t *const)&PORTD
-#define LED_PRT_PIN			2
+#define LED_PRT_PIN         2
 
 #define LED_NUM_PORT        (uint8_t *const)&PORTD
-#define LED_NUM_PIN			3
+#define LED_NUM_PIN         3
 
-#define LED_CAP_PORT        (uint8_t *const)&PORTD
-#define LED_CAP_PIN			4
+#define LED_CAP_PORT            (uint8_t *const)&PORTD
+#define LED_CAP_PIN         4
 
 #define LED_SCR_PORT        (uint8_t *const)&PORTD
-#define LED_SCR_PIN			5
+#define LED_SCR_PIN         5
 
 
 
@@ -35,11 +35,11 @@
 #define LED_PAD_PORT        (uint8_t *const)&PORTB
 #define LED_PAD_PIN         4
 
-#define LED_ARROW18_PORT          (uint8_t *const)&PORTB
-#define LED_ARROW18_PIN           6
+#define LED_ARROW18_PORT    (uint8_t *const)&PORTB
+#define LED_ARROW18_PIN     6
 
-#define LED_VESEL_PORT          (uint8_t *const)&PORTB
-#define LED_VESEL_PIN           5
+#define LED_VESEL_PORT      (uint8_t *const)&PORTB
+#define LED_VESEL_PIN       5
 
 
 #define LED_Fx_PORT         (uint8_t *const)&PORTE
