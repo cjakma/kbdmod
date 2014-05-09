@@ -531,9 +531,6 @@ void recordMacro(uint8_t macrokey)
    
    cntKey(KEY_FN, 0x0000);
 
-   for (i = 0; i <= 255; i++)
-      macrobuffer[i] = 0x00;
-
    sendString(macrostart);
 
    for(col = 0; col < MAX_COL; col++)
@@ -605,13 +602,14 @@ void recordMacro(uint8_t macrokey)
                {
                   if (keyidx == KEY_FN)
                   {
+                     sendString(macroend);
+
                      macrobuffer[index] = KEY_NONE;
                      flash_writeinpage(macrobuffer, address+(page*256));
                      
                      wdt_reset();
                      eeprom_write_byte(EEPADDR_MACRO_SET+mIndex, 1);
 
-                     sendString(macroend);
                      return;
                   }
                   else

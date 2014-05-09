@@ -15,30 +15,28 @@
 
 AVRLIB = ./avrlib
 
-########### change this lines according to your project ##################
-#put the name of the TRG mcu here (at90s8515, at90s8535, attiny22, atmega603 etc.)
-#	MCU = atmega32
-#	MCU = atmega161
-	MCU = atmega128
+#put the name of the TRG file here (without extension)
+#  Your "TRG" file is your C source file that is at the top level of your code.
+#  In other words, this is the file which contains your main() function.
+	TRG = KBDMOD_M5
+#   TRG = KBDMOD_M7
+#   TRG = KBDMOD_M3
+
+
 
 F_CPU = 12000000
 #F_CPU = 16000000
 #F_CPU = 20000000
 
-JUMPSTART = 0x1FC00
-#put the name of the TRG file here (without extension)
-#  Your "TRG" file is your C source file that is at the top level of your code.
-#  In other words, this is the file which contains your main() function.
 
-	TRG = kbdmodmx
+
 
 #put your C sourcefiles here 
 #  Here you must list any C source files which are used by your TRG file.
 #  They will be compiled in the order you list them, so it's probably best
 #  to list $(TRG).c, your top-level TRG file, last.
 
-	SRC = $(AVRLIB)/timer128.c \
-			usbdrv/usbdrv.c usbdrv/oddebug.c \
+	SRC :=   usbdrv/usbdrv.c usbdrv/oddebug.c \
 			matrix/matrix.c matrix/keymap.c \
 			macro/macro.c \
 			led/led.c \
@@ -64,10 +62,24 @@ JUMPSTART = 0x1FC00
 
 #assembler flags
 	ASFLAGS = -Wa, -gstabs -DF_CPU=$(F_CPU)
+    
 #TRG out
 	OUT = $(TRG)
+    
+########### change this lines according to your project ##################
+#put the name of the TRG mcu here (at90s8515, at90s8535, attiny22, atmega603 etc.)
+ifeq ($(TRG),KBDMOD_M3)
+	MCU = atmega32
+    JUMPSTART = 0x7C00
+    SRC := $(SRC) $(AVRLIB)/timer.c
+else
+	MCU = atmega128
+    JUMPSTART = 0x1FC00
+    SRC := $(SRC) $(AVRLIB)/timer128.c
+endif    
+    
 #compiler flags
-	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes $(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst)
+	CPFLAGS	= -g -Os -Wall -Wstrict-prototypes $(INC) -I$(AVRLIB) -DF_CPU=$(F_CPU)UL -Wa,-ahlms=$(<:.c=.lst) -D$(TRG)
 
 #linker flags
 	LDFLAGS = -Wl,-Map=$(TRG).map,--cref,--section-start=.appinboot=$(JUMPSTART)
@@ -115,6 +127,7 @@ led/led.o	: led/led.c		led/led.h
 usbmain.o 	: usbmain.c		usbmain.h 	usbconfig.h		matrix/matrix.h		usbdrv/usbdrv.h
 ps2main.o	: ps2main.c		ps2main.h	keysta.h	matrix/keymap.h	matrix/matrix.h	
 $(AVRLIB)/timer128.o	: $(AVRLIB)/timer128.c	$(AVRLIB)/timer128.h
+$(AVRLIB)/timer.o	: $(AVRLIB)/timer.c	$(AVRLIB)/timer.h
 usbdrv/usbdrv.o	:	usbdrv/usbdrv.c		usbdrv/usbdrv.h	usbdrv/oddebug.h
 usbdrv/oddebug.o :	usbdrv/oddebug.c 	usbdrv/oddebug.h
 usbdrv/usbdrvasm.o : usbdrv/usbdrvasm.asm usbdrv/usbdrvasm.S usbdrv/usbportability.h	usbdrv/usbdrv.h  usbconfig.h

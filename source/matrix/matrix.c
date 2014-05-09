@@ -22,7 +22,7 @@
 
 #include "ps2main.h"
 
-#define STANDBY_LOOP    13000  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
+#define STANDBY_LOOP    187500  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
 uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix

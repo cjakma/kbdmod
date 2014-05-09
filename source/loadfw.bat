@@ -1,2 +1,2 @@
-bootloadHID.exe -r kbdmodmx.hex
+bootloadHID.exe -r KBDMOD_M5.hex
 pause;

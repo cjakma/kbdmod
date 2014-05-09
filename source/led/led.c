@@ -723,8 +723,7 @@ void recordLED(uint8_t ledkey)
                {
                     if (keyidx == KEY_FN)
                     {
-                        flash_writeinpage(ledmode, LEDMODE_ADDRESS);
-                        led_mode_save();
+
 
                         wdt_reset();
                         sendString("===========================@");
@@ -739,6 +738,10 @@ void recordLED(uint8_t ledkey)
                         wdt_reset();
 
                         sendString(ledend);
+
+                        flash_writeinpage(ledmode, LEDMODE_ADDRESS);
+                        led_mode_save();
+                        
                         return;
                     }else
                     {

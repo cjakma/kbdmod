@@ -1,2 +1,2 @@
-bootloadHID.exe -r keymap.hex
+bootloadHID.exe -r keymap_92.hex
 pause;
