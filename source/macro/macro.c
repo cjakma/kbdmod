@@ -22,7 +22,7 @@
 #include "led.h"
 #include "hwaddress.h"
 
-extern int8_t usbmode;
+extern int8_t isUSB;
 /**
  * Send a single report to the computer. This function is not used during
  * normal typing, it is only used to send non-pressed keys to simulate input.
@@ -189,7 +189,7 @@ Key charToKey(char character) {
 void sendKey(Key keytosend) 
 {
     uint8_t keyval = 0;
-    if(usbmode)
+    if(isUSB)
     {
         usbSendReport(keytosend.mode, keytosend.key);
     }else
@@ -214,7 +214,7 @@ void sendKey(Key keytosend)
 
 void clearKey(void)
 {
-    if(usbmode)
+    if(isUSB)
     {
         usbSendReport(0, 0);
     }

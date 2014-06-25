@@ -129,7 +129,11 @@ void timer3Init(void)
 	timer3SetPrescaler( TIMER3PRESCALE );	// set prescaler
 	outb(TCNT3H, 0);						// reset TCNT3
 	outb(TCNT3L, 0);
-//	sbi(ETIMSK, TOIE3);						// enable TCNT3 overflow
+}
+
+void timer3IntEnable(void)
+{
+	sbi(ETIMSK, TOIE3);						// enable TCNT3 overflow
 }
 
 void timer0SetPrescaler(u08 prescale)
@@ -504,8 +508,8 @@ void timer3PWMInit(u08 bitRes)
 	outb(OCR3BH, 0);
 	outb(OCR3BL, 0);
 	// clear output compare value B
-	outb(OCR3CH, 0);
-	outb(OCR3CL, 0);
+//	outb(OCR3CH, 0);
+//	outb(OCR3CL, 0);
 }
 
 void timer3PWMInitICR(u16 topcount)

@@ -1,5 +1,3 @@
-
-
 enum {
 	KEY_NONE=0,
     ErrorRollOver,

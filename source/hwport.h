@@ -12,6 +12,20 @@
 #define PS2_CLK_PULLUP_DDR      DDRD
 #define PS2_CLK_PULLUP_PIN      7
 
+#define LED_NONE_PORT       (uint8_t *const)&PORTB
+#define LED_NONE_PIN        0
+
+#define LED_INDI0_PORT      (uint8_t *const)&PORTB
+#define LED_INDI0_PIN       0
+
+#define LED_INDI1_PORT      (uint8_t *const)&PORTB
+#define LED_INDI1_PIN       2
+
+#define LED_INDI2_PORT      (uint8_t *const)&PORTB
+#define LED_INDI2_PIN       3
+
+#define LED_INDI3_PORT      (uint8_t *const)&PORTD
+#define LED_INDI3_PIN       2
 
 #define LED_PRT_PORT        (uint8_t *const)&PORTD
 #define LED_PRT_PIN         2

@@ -15,7 +15,13 @@ typedef enum
     LED_PIN_WASD,                   
     LED_PIN_ARROW18,
     LED_PIN_VESEL,
-    LED_PIN_ALL
+    LED_PIN_ALL,
+
+    LED_PIN_INDI0,
+    LED_PIN_INDI1,
+    LED_PIN_INDI2,
+    LED_PIN_INDI3,
+    LED_PIN_MAX
 }LED_BLOCK;    
 
 typedef enum

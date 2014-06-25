@@ -20,11 +20,14 @@
 
 static uint8_t *const ledport[] = {LED_NUM_PORT, LED_CAP_PORT,LED_SCR_PORT, LED_PRT_PORT, 
                                     LED_ESC_PORT,LED_Fx_PORT,LED_PAD_PORT, LED_BASE_PORT, 
-                                    LED_WASD_PORT,LED_ARROW18_PORT, LED_VESEL_PORT};
+                                    LED_WASD_PORT,LED_ARROW18_PORT, LED_VESEL_PORT,LED_NONE_PORT,
+                                    LED_INDI0_PORT,LED_INDI1_PORT,LED_INDI2_PORT,LED_INDI3_PORT};
     
 static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN, LED_SCR_PIN, LED_PRT_PIN, 
                                     LED_ESC_PIN,LED_Fx_PIN,LED_PAD_PIN,LED_BASE_PIN, 
-                                    LED_WASD_PIN,LED_ARROW18_PIN, LED_VESEL_PIN};
+                                    LED_WASD_PIN,LED_ARROW18_PIN, LED_VESEL_PIN, LED_NONE_PIN,
+                                    LED_INDI0_PIN,LED_INDI1_PIN,LED_INDI2_PIN,LED_INDI3_PIN};
+
 uint8_t ledmodeIndex;
 
 #define LEDMODE_ARRAY_SIZE 5*11
@@ -80,6 +83,10 @@ void led_off(LED_BLOCK block)
         case LED_PIN_BASE:
         case LED_PIN_WASD:
         case LED_PIN_VESEL:
+        case LED_PIN_INDI0:
+        case LED_PIN_INDI1:
+        case LED_PIN_INDI2:
+        case LED_PIN_INDI3:
             break;                    
 
         case LED_PIN_PAD:
@@ -125,6 +132,10 @@ void led_on(LED_BLOCK block)
         case LED_PIN_BASE:
         case LED_PIN_WASD:
         case LED_PIN_VESEL:
+        case LED_PIN_INDI0:
+        case LED_PIN_INDI1:
+        case LED_PIN_INDI2:
+        case LED_PIN_INDI3:
             break;                    
 
         case LED_PIN_PAD:
@@ -354,7 +365,7 @@ void led_fader(void)
 {
     
     uint8_t ledblock;
-    for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_VESEL; ledblock++)
+    for (ledblock = LED_PIN_Fx; ledblock < LED_PIN_VESEL; ledblock++)
     {
         if((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING) || ((ledmode[ledmodeIndex][ledblock] == LED_EFFECT_FADING_PUSH_ON) && (scankeycntms > 1000)))
         {
@@ -567,7 +578,7 @@ void led_mode_init(void)
     {
         *buf++ = pgm_read_byte_far(LEDMODE_ADDRESS+i);
     }
-    for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_VESEL; ledblock++)
+    for (ledblock = LED_PIN_Fx; ledblock < LED_PIN_VESEL; ledblock++)
     {
       pwmDir[ledblock ] = 0;
       pwmCounter[ledblock] = 0;
@@ -610,7 +621,7 @@ void led_pushed_level_cal(void)
     LED_BLOCK ledblock;
 	// update pushed level
 	
-    for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_ALL; ledblock++)
+    for (ledblock = LED_PIN_Fx; ledblock < LED_PIN_ALL; ledblock++)
     { 
         if(pushedLevel[ledblock] < PUSHED_LEVEL_MAX)
         {

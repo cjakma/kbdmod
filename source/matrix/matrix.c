@@ -55,7 +55,7 @@ uint16_t cntLGui = 0;
 uint8_t isLED3000 = 0;
 
 int8_t isFNpushed = 0;
-extern int8_t usbmode;
+extern int8_t isUSB;
 
 
 static void swap_load(void)
@@ -200,7 +200,7 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
     {
         ledmodeIndex = keyidx-KEY_LED0;
-        for (ledblock = LED_PIN_ESC; ledblock < LED_PIN_VESEL; ledblock++)
+        for (ledblock = LED_PIN_Fx; ledblock < LED_PIN_VESEL; ledblock++)
         {
             led_mode_change(ledblock, ledmode[ledmodeIndex][ledblock]);
         }
@@ -211,7 +211,7 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
         retVal = 1;
     }else if(keyidx >= KEY_M01 && keyidx <= KEY_M52)
     {
-        if(usbmode)
+        if(isUSB)
              playMacroUSB(keyidx);
          else
              playMacroPS2(keyidx);
@@ -496,7 +496,9 @@ uint8_t scankey(void)
 
    if(!kbdsleepmode)
    {
+#ifdef KBDMOD_M5
       led_PRTIndicater(keylock);
+#endif
       led_ESCIndicater(layer);
    }
    //static int pushedLevel_prev = 0;
@@ -570,7 +572,7 @@ uint8_t scankey(void)
                continue;
             
 
-            if(usbmode)
+            if(isUSB)
             {
                 if(curBit)
                 {

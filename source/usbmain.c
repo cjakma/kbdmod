@@ -519,6 +519,7 @@ void dumpreportBuffer(void)
     DEBUG_PRINT(("\n"));
 }
 #endif
+extern uint8_t countertick;
 
 uint8_t usbmain(void) {
     uint8_t updateNeeded = 0;
@@ -527,6 +528,8 @@ uint8_t usbmain(void) {
 	interfaceReady = 0;
 
     DEBUG_PRINT(("USB\n"));
+
+
     
     cli();
     usbInit();
@@ -539,6 +542,15 @@ uint8_t usbmain(void) {
 
     while (1) {
         // main event loop
+
+        if(countertick > 100)
+        {
+            led_on(LED_PIN_INDI3);
+        }else
+        {
+            led_off(LED_PIN_INDI3);
+        }
+
 
         if(interfaceReady == 0 && interfaceCount++ > 12000){
 		   Reset_AVR();
