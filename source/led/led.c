@@ -30,8 +30,8 @@ static uint8_t const ledpin[] = {LED_NUM_PIN, LED_CAP_PIN, LED_SCR_PIN, LED_PRT_
 
 uint8_t ledmodeIndex;
 
-#define LEDMODE_ARRAY_SIZE 5*11
-uint8_t ledmode[5][11] ={ 
+#define LEDMODE_ARRAY_SIZE 8*11
+uint8_t ledmode[8][11] ={ 
         {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
         LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
         LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
@@ -47,10 +47,22 @@ uint8_t ledmode[5][11] ={
         {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
         LED_EFFECT_ALWAYS, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
         LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
+
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
+
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
+        LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
+
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, 
+        LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON},
         
         {LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-        LED_EFFECT_FADING, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-        LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF}
+        LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+        LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},       
 };
 
 
@@ -571,7 +583,7 @@ void led_mode_init(void)
     int16_t i;
     uint8_t *buf;
     ledmodeIndex = eeprom_read_byte(EEPADDR_LED_STATUS); 
-    if (ledmodeIndex > 4)
+    if (ledmodeIndex > 8)
         ledmodeIndex = 0;
     buf = ledmode;
     for (i = 0; i < LEDMODE_ARRAY_SIZE; i++)
@@ -749,9 +761,13 @@ void recordLED(uint8_t ledkey)
                         wdt_reset();
 
                         sendString(ledend);
+                        wdt_reset();
 
                         flash_writeinpage(ledmode, LEDMODE_ADDRESS);
+                        
+                        wdt_reset();
                         led_mode_save();
+                        wdt_reset();
                         
                         return;
                     }else

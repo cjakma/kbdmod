@@ -22,7 +22,7 @@
 
 #include "ps2main.h"
 
-#define STANDBY_LOOP    187500  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
+#define STANDBY_LOOP    163043  // scan matix entry is 2.2msec @ 12Mh x-tal : 5min
 uint32_t scankeycntms = 0;
 	
 // 17*8 bit matrix
@@ -197,7 +197,7 @@ uint8_t processReleasedFNkeys(uint8_t keyidx)
     uint8_t retVal = 0;
     uint8_t ledblock;
         
-    if(keyidx >= KEY_LED0 && keyidx <= KEY_LED3)
+    if(keyidx >= KEY_LED0 && keyidx <= KEY_LASD)
     {
         ledmodeIndex = keyidx-KEY_LED0;
         for (ledblock = LED_PIN_Fx; ledblock < LED_PIN_VESEL; ledblock++)
@@ -293,7 +293,7 @@ uint8_t scanmatrix(void)
     if (scankeycntms == STANDBY_LOOP && kbdsleepmode == 0)   // 5min
     {
         kbdsleepmode = 1;
-        ledmodeIndex = 4;       // hidden OFF index
+        ledmodeIndex = 7;       // hidden OFF index
 
         for (ledblock = LED_PIN_PRT; ledblock < LED_PIN_VESEL; ledblock++)
         {

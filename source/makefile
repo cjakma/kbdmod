@@ -18,8 +18,8 @@ AVRLIB = ./avrlib
 #put the name of the TRG file here (without extension)
 #  Your "TRG" file is your C source file that is at the top level of your code.
 #  In other words, this is the file which contains your main() function.
-#	TRG = KBDMOD_M5
-   TRG = KBDMOD_M7
+	TRG = KBDMOD_M5
+#   TRG = KBDMOD_M7
 #   TRG = KBDMOD_M3
 
 

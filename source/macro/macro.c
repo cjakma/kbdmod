@@ -241,7 +241,8 @@ void sendString(char* string) {
         }
         oldkeychar = keychar;
         sendKey(key);
-    }
+    }   
+    _delay_us(100);
     clearKey();
 }
 uint8_t macrobuffer[256] = {};

@@ -431,26 +431,38 @@ typedef enum
 }LED_MODE;
 
 #define LEDMODE_ADDRESS 0x9800
-unsigned char  ledmode[5][11] ={ 
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
+unsigned char  ledmode[8][11] ={ 
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
+        
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
+        LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
+        
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, 
+        LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON},
+        
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
+        LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
 
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
-                    LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
 
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, 
-                    LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON},
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
+        LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
 
-                    {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-                    LED_EFFECT_ALWAYS, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
-                    LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
-
-                    {LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-                    LED_EFFECT_FADING, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-                    LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF}
+        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, 
+        LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON},
+        
+        {LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+        LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
+        LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},       
 };
 
 
@@ -469,12 +481,12 @@ int keymAddress[MAX_LAYER] = {
 int addressExtended = 0;
 
 
-char getKeyIdx(const char *keystring)
+short getKeyIdx(const char *keystring)
 {
     unsigned int i;
     unsigned char temp;
     printf("%s", keystring);
-//    scanf("%c", &temp);
+    //scanf("%c", &temp);
     for (i = 0; i < 256; i++)
     {
         if(strcmp(keystring, keycode[i]) == 0)
@@ -484,7 +496,7 @@ char getKeyIdx(const char *keystring)
         }
     }
     printf("ERROR: matrix is invalied ! \n");
-    return 0;
+    return -1;
 }
 
 
@@ -513,7 +525,7 @@ int interprete(const char *filename, char *pbuf)
         {
             len = fread(&str[j], 1, 1, fp);
 //            printf("%c\n", str[j]);
-            if(str[j] == ',' || str[j] == ' ')           // seperate
+            if(str[j] == ',' || str[j] == ' '|| str[j] == '}')           // seperate
             {
                 str[j] = '\0';
                 break;
@@ -527,9 +539,10 @@ int interprete(const char *filename, char *pbuf)
 
         // 3. get key
         keyidx = getKeyIdx(str);
-
+		if(keyidx == -1)
+			continue;
         // 4. put key to matrix
-        *pbuf++ = keyidx;
+        *pbuf++ = (char)keyidx;
     }        
     fclose(fp);
     return 0;
@@ -600,12 +613,15 @@ int main(int argc, char *argv[])
    int layer;
    int address;
    unsigned char *keymap;
-   
+    unsigned char temp;
+
    FILE *fp = fopen("keymap.hex", "w");
 
-
-   interprete("keymapM592.txt", &(keymap_code[layer][0][0]));
-
+//    printf("%s\n", argv[1]);
+//    scanf("%c", &temp);
+    
+   interprete(argv[1], &(keymap_code[layer][0][0]));
+ 
 
 
    for (layer = 0; layer < MAX_LAYER ; layer++)

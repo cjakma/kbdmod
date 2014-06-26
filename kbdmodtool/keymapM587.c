@@ -73,6 +73,7 @@ unsigned char keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
             KEY_CALC,
             KEY_MYCOM,
             KEY_WWW_SEARCH,
+			KEY_NONE
             }, // COL0
         		{KEY_WWW_HOME,
             KEY_WWW_BACK,

@@ -144,10 +144,10 @@ enum {
     KEY_LED1,           //
     KEY_LED2,           //
     KEY_LED3,           //
-    KEY_LFX,       //
-    KEY_LPAD,      //
-    KEY_LFULL,     //
-    KEY_LASD,     //
+    KEY_LFX,        //KEY_LED4
+    KEY_LPAD,       //KEY_LED5
+    KEY_LFULL,      //KEY_LED6
+    KEY_LASD,       //KEY_LED7
     
     KEY_LARR,    // 0x70
     KEY_LVESEL,   
