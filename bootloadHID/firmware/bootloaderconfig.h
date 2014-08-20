@@ -107,8 +107,8 @@ these macros are defined, the boot loader usees them.
 #ifndef __ASSEMBLER__   /* assembler cannot parse function definitions */
 #include <util/delay.h>
 
-#define KBDMOD_M7
-//#define KBDMOD_M5
+//#define KBDMOD_M7
+#define KBDMOD_M5
 //#define KBDMOD_M3
 
 #ifdef KBDMOD_M7
@@ -151,9 +151,9 @@ these macros are defined, the boot loader usees them.
 #define PORT_LED3   PORTD
 
 #define PIN_LED0    1 << 2
-#define PIN_LED0    1 << 2
-#define PIN_LED0    1 << 5
-#define PIN_LED0    1 << 3
+#define PIN_LED1    1 << 2
+#define PIN_LED2    1 << 5
+#define PIN_LED3    1 << 3
 
 
 #endif

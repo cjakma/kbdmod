@@ -496,6 +496,7 @@ short getKeyIdx(const char *keystring)
         }
     }
     printf("ERROR: matrix is invalied ! \n");
+    scanf("%c", &temp);
     return -1;
 }
 
@@ -517,7 +518,7 @@ int interprete(const char *filename, char *pbuf)
             {
                 return 0;
             }
-            printf("%c : %d", str[i], len);
+//            printf("%c : %d", str[i], len);
         }while(str[i] != 'K' && str[i] != 'E' && str[i] != 'P');
 
         // 2. parse a "KEY_xxx"
@@ -525,7 +526,7 @@ int interprete(const char *filename, char *pbuf)
         {
             len = fread(&str[j], 1, 1, fp);
 //            printf("%c\n", str[j]);
-            if(str[j] == ',' || str[j] == ' '|| str[j] == '}')           // seperate
+            if(str[j] == ',' || str[j] == ' '|| str[j] == '}'|| str[j] == '\n'|| str[j] == '\t'|| str[j] == '\r')           // seperate
             {
                 str[j] = '\0';
                 break;
@@ -609,16 +610,28 @@ int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
 
 int main(int argc, char *argv[])
 {
-   
-   int layer;
-   int address;
-   unsigned char *keymap;
+    int layer;
+    int address;
+    unsigned char *keymap;
     unsigned char temp;
+    int fnamelen;
+    char *fname;
+    
+    if(argc != 2)
+    {
+        printf("USAGE : mkkeymap.exe keymap.txt \n");
+        return -1;
+    }
+    fnamelen = strlen(argv[1]);
+    fname = malloc(fnamelen+1);
+    memset(fname, '\0', fnamelen);
+    memcpy(fname, argv[1], fnamelen-4);
+    strcat(fname, ".hex");
 
-   FILE *fp = fopen("keymap.hex", "w");
+    printf("%s \n", fname);
+      
+    FILE *fp = fopen(fname, "w");
 
-//    printf("%s\n", argv[1]);
-//    scanf("%c", &temp);
     
    interprete(argv[1], &(keymap_code[layer][0][0]));
  

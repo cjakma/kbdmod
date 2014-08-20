@@ -4,10 +4,6 @@
 # Creation Date: 2014-01-04
 # Tabsize: 4
 
-#KBD= M587
-#KBD= M586
-KBD= M592
-#KBD= M7
 EXE_SUFFIX= .exe
 
 CC=				gcc
@@ -17,8 +13,8 @@ LIBS=			$(USBLIBS)
 ARCH_COMPILE=	
 ARCH_LINK=		
 
-OBJ=		keymap$(KBD).o
-PROGRAM=	keymap$(KBD)$(EXE_SUFFIX)
+OBJ=		mkkeymap.o
+PROGRAM=	mkkeymap$(EXE_SUFFIX)
 
 all: $(PROGRAM)
 
