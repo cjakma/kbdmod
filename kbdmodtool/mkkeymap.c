@@ -10,280 +10,280 @@
 
 
 const char *keycode[256] = {
-        "KEY_NONE",
+        "K_NONE",
         "ErrorRollOver",
         "POSTFail",
         "ErrorUndefined",
-        "KEY_A",              // 0x04
-        "KEY_B",
-        "KEY_C",
-        "KEY_D",
-        "KEY_E",
-        "KEY_F",
-        "KEY_G",
-        "KEY_H",
-        "KEY_I",
-        "KEY_J",
-        "KEY_K",
-        "KEY_L",
+        "K_A",              // 0x04
+        "K_B",
+        "K_C",
+        "K_D",
+        "K_E",
+        "K_F",
+        "K_G",
+        "K_H",
+        "K_I",
+        "K_J",
+        "K_K",
+        "K_L",
     
-        "KEY_M",              // 0x10
-        "KEY_N",
-        "KEY_O",
-        "KEY_P",
-        "KEY_Q",
-        "KEY_R",
-        "KEY_S",
-        "KEY_T",
-        "KEY_U",
-        "KEY_V",
-        "KEY_W",
-        "KEY_X",
-        "KEY_Y",
-        "KEY_Z",
-        "KEY_1",              //       1 and !
-        "KEY_2",              //       2 and @
+        "K_M",              // 0x10
+        "K_N",
+        "K_O",
+        "K_P",
+        "K_Q",
+        "K_R",
+        "K_S",
+        "K_T",
+        "K_U",
+        "K_V",
+        "K_W",
+        "K_X",
+        "K_Y",
+        "K_Z",
+        "K_1",              //       1 and !
+        "K_2",              //       2 and @
     
-        "KEY_3",              // 0x20  3 and #
-        "KEY_4",              //       4 and $
-        "KEY_5",              //       5 and %
-        "KEY_6",              //       6 and ^
-        "KEY_7",              //       7 and &
-        "KEY_8",              //       8 and *
-        "KEY_9",              //       9 and (
-        "KEY_0",              // 0x27  0 and )
-        "KEY_ENTER",          // 0x28  enter
-        "KEY_ESC",            // 0x29
-        "KEY_BKSP",           // 0x2A  backspace
-        "KEY_TAB",            // 0x2B
-        "KEY_SPACE",          // 0x2C
-        "KEY_MINUS",          // 0x2D  - and _
-        "KEY_EQUAL",          // 0x2E  = and +
-        "KEY_LBR",            // 0x2F  [ and {
+        "K_3",              // 0x20  3 and #
+        "K_4",              //       4 and $
+        "K_5",              //       5 and %
+        "K_6",              //       6 and ^
+        "K_7",              //       7 and &
+        "K_8",              //       8 and *
+        "K_9",              //       9 and (
+        "K_0",              // 0x27  0 and )
+        "K_ENTER",          // 0x28  enter
+        "K_ESC",            // 0x29
+        "K_BKSP",           // 0x2A  backspace
+        "K_TAB",            // 0x2B
+        "K_SPACE",          // 0x2C
+        "K_MINUS",          // 0x2D  - and _
+        "K_EQUAL",          // 0x2E  = and +
+        "K_LBR",            // 0x2F  [ and {
     
-        "KEY_RBR",            // 0x30  ] and }
-        "KEY_BKSLASH",        // 0x31  \ and |
-        "KEY_Europe1",        // 0x32  non-US # and ~
-        "KEY_COLON",          // 0x33  ; and :
-        "KEY_QUOTE",          // 0x34  ' and "
-        "KEY_HASH",           // 0x35  grave accent and tilde
-        "KEY_COMMA",          // 0x36  ", and <
-        "KEY_DOT",            // 0x37  . and >
-        "KEY_SLASH",          // 0x38  / and ?
-        "KEY_CAPS",           // 0x39
-        "KEY_F1",
-        "KEY_F2",
-        "KEY_F3",
-        "KEY_F4",
-        "KEY_F5",
-        "KEY_F6",
+        "K_RBR",            // 0x30  ] and }
+        "K_BKSLASH",        // 0x31  \ and |
+        "K_Europe1",        // 0x32  non-US # and ~
+        "K_COLON",          // 0x33  ; and :
+        "K_QUOTE",          // 0x34  ' and "
+        "K_HASH",           // 0x35  grave accent and tilde
+        "K_COMMA",          // 0x36  ", and <
+        "K_DOT",            // 0x37  . and >
+        "K_SLASH",          // 0x38  / and ?
+        "K_CAPS",           // 0x39
+        "K_F1",
+        "K_F2",
+        "K_F3",
+        "K_F4",
+        "K_F5",
+        "K_F6",
     
-        "KEY_F7",             // 0x40
-        "KEY_F8",
-        "KEY_F9",
-        "KEY_F10",
-        "KEY_F11",
-        "KEY_F12",
-        "KEY_PRNSCR",
-        "KEY_SCRLCK",
-        "KEY_PAUSE",          //Break
-        "KEY_INSERT",
-        "KEY_HOME",
-        "KEY_PGUP",
-        "KEY_DEL",
-        "KEY_END",
-        "KEY_PGDN",
-        "KEY_RIGHT",
+        "K_F7",             // 0x40
+        "K_F8",
+        "K_F9",
+        "K_F10",
+        "K_F11",
+        "K_F12",
+        "K_PRNSCR",
+        "K_SCRLCK",
+        "K_PAUSE",          //Break
+        "K_INSERT",
+        "K_HOME",
+        "K_PGUP",
+        "K_DEL",
+        "K_END",
+        "K_PGDN",
+        "K_RIGHT",
         
-        "KEY_LEFT",           // 0x50
-        "KEY_DOWN",
-        "KEY_UP",
-        "KEY_NUMLOCK",        // Clear
-        "KEY_KP_SLASH",
-        "KEY_KP_AST",
-        "KEY_KP_MINUS",
-        "KEY_KP_PLUS",
-        "KEY_KP_ENTER",
-        "KEY_KP_1",           // End
-        "KEY_KP_2",           // Down Arrow
-        "KEY_KP_3",           // Page Down
-        "KEY_KP_4",           // Left Arrow
-        "KEY_KP_5",
-        "KEY_KP_6",           // Right Arrow
-        "KEY_KP_7",           // Home
+        "K_LEFT",           // 0x50
+        "K_DOWN",
+        "K_UP",
+        "K_NUMLOCK",        // Clear
+        "K_KP_SLASH",
+        "K_KP_AST",
+        "K_KP_MINUS",
+        "K_KP_PLUS",
+        "K_KP_ENTER",
+        "K_KP_1",           // End
+        "K_KP_2",           // Down Arrow
+        "K_KP_3",           // Page Down
+        "K_KP_4",           // Left Arrow
+        "K_KP_5",
+        "K_KP_6",           // Right Arrow
+        "K_KP_7",           // Home
         
-        "KEY_KP_8",           // 0x60  Up Arrow
-        "KEY_KP_9",           // Page Up
-        "KEY_KP_0",           // Insert
-        "KEY_KP_DOT",         // Delete
-        "KEY_Europe2",        // non-US \ and |
-        "KEY_APPS",           // 102
-        "KEY_POWER_HID",
-        "KEY_KP_EQUAL",
-        "KEY_LED0",           //
-        "KEY_LED1",           //
-        "KEY_LED2",           //
-        "KEY_LED3",           //
-        "KEY_LFX",       //
-        "KEY_LPAD",      //
-        "KEY_LFULL",     //
-        "KEY_LASD",     //
+        "K_KP_8",           // 0x60  Up Arrow
+        "K_KP_9",           // Page Up
+        "K_KP_0",           // Insert
+        "K_KP_DOT",         // Delete
+        "K_Europe2",        // non-US \ and |
+        "K_APPS",           // 102
+        "K_POWER_HID",
+        "K_KP_EQUAL",
+        "K_LED0",           //
+        "K_LED1",           //
+        "K_LED2",           //
+        "K_LED3",           //
+        "K_LFX",       //
+        "K_LPAD",      //
+        "K_LFULL",     //
+        "K_LASD",     //
     
-        "KEY_LARR",    // 0x70
-        "KEY_LVESEL",   
-        "KEY_MRESET", 
-        "KEY_RESET",          //254
-        "KEY_FN",             //255
-        "KEY_HELP",
-        "KEY_MENU",
-        "KEY_SEL",
-        "KEY_STOP_HID",
-        "KEY_AGAIN",
-        "KEY_UNDO",
-        "KEY_CUT",
-        "KEY_COPY",
-        "KEY_PASTE",
-        "KEY_FIND",
-        "KEY_MUTE_HID",
+        "K_LARR",    // 0x70
+        "K_LVESEL",   
+        "K_MRESET", 
+        "K_RESET",          //254
+        "K_FN",             //255
+        "K_HELP",
+        "K_MENU",
+        "K_SEL",
+        "K_STOP_HID",
+        "K_AGAIN",
+        "K_UNDO",
+        "K_CUT",
+        "K_COPY",
+        "K_PASTE",
+        "K_FIND",
+        "K_MUTE_HID",
         
-        "KEY_VOLUP",          // 0x80
-        "KEY_VOLDN",
-        "KEY_KL_CAP",
-        "KEY_KL_NUM",
-        "KEY_KL_SCL",
-        "KEY_KP_COMMA",
-        "KEY_EQUAL_SIGN",
-        "KEY_L0",             //
-        "KEY_L1",             //
-        "KEY_L2",             //
-        "KEY_L3",             //
-        "KEY_L4",             //
-        "KEY_L5",             //
-        "KEY_L6",             //
-        "KEY_INTL8",
-        "KEY_INTL9",
+        "K_VOLUP",          // 0x80
+        "K_VOLDN",
+        "K_KL_CAP",
+        "K_KL_NUM",
+        "K_KL_SCL",
+        "K_KP_COMMA",
+        "K_EQUAL_SIGN",
+        "K_L0",             //
+        "K_L1",             //
+        "K_L2",             //
+        "K_L3",             //
+        "K_L4",             //
+        "K_L5",             //
+        "K_L6",             //
+        "K_INTL8",
+        "K_INTL9",
         
-        "KEY_HANJA",          // 0x90
-        "KEY_HANGLE",
-        "KEY_KATA",
-        "KEY_HIRA",
-        "KEY_System",         //KEY_LANG5,
-        "KEY_POWER",          //KEY_LANG6,
-        "KEY_SLEEP",          //KEY_LANG7,
-        "KEY_WAKE",           //KEY_LANG8,
-        "KEY_KEYLOCK",        //KEY_LANG9,
-        "KEY_WINKEYLOCK",
-        "KEY_SYSREQ",
-        "KEY_CANCEL",
-        "KEY_CLEAR",
-        "KEY_PRIOR",
-        "KEY_RETURN",
-        "KEY_SPERATOR",
+        "K_HANJA",          // 0x90
+        "K_HANGLE",
+        "K_KATA",
+        "K_HIRA",
+        "K_System",         //K_LANG5,
+        "K_POWER",          //K_LANG6,
+        "K_SLEEP",          //K_LANG7,
+        "K_WAKE",           //K_LANG8,
+        "K_KEYLOCK",        //K_LANG9,
+        "K_WINKEYLOCK",
+        "K_SYSREQ",
+        "K_CANCEL",
+        "K_CLEAR",
+        "K_PRIOR",
+        "K_RETURN",
+        "K_SPERATOR",
         
-        "KEY_OUT",            // 0xA0
-        "KEY_OPER",
-        "KEY_CLR_AGIN",
-        "KEY_CRSEL",
-        "KEY_EXCEL",
+        "K_OUT",            // 0xA0
+        "K_OPER",
+        "K_CLR_AGIN",
+        "K_CRSEL",
+        "K_EXCEL",
         
     /* These are NOT standard USB HID - handled specially in decoding", 
          so they will be mapped to the modifier byte in the USB report */
-        "KEY_Modifiers",
-        "KEY_LCTRL",          // 0x01
-        "KEY_LSHIFT",         // 0x02
-        "KEY_LALT",           // 0x04
-        "KEY_LGUI",           // 0x08
-        "KEY_RCTRL",          // 0x10
-        "KEY_RSHIFT",         // 0x20
-        "KEY_RALT",           // 0x40
-        "KEY_RGUI",           // 0x80
-        "KEY_Modifiers_end",
+        "K_Modifiers",
+        "K_LCTRL",          // 0x01
+        "K_LSHIFT",         // 0x02
+        "K_LALT",           // 0x04
+        "K_LGUI",           // 0x08
+        "K_RCTRL",          // 0x10
+        "K_RSHIFT",         // 0x20
+        "K_RALT",           // 0x40
+        "K_RGUI",           // 0x80
+        "K_Modifiers_end",
     
-       "KEY_NEXT_TRK",        
-       "KEY_PREV_TRK",        // 0xB0
-       "KEY_STOP",
-       "KEY_PLAY",
-       "KEY_MUTE",
-       "KEY_BASS_BST",
-       "KEY_LOUDNESS",
-       "KEY_VOL_UP",
-       "KEY_VOL_DOWN",
-       "KEY_BASS_UP",
-       "KEY_BASS_DN",
-       "KEY_TRE_UP",
-       "KEY_TRE_DN",
+       "K_NEXT_TRK",        
+       "K_PREV_TRK",        // 0xB0
+       "K_STOP",
+       "K_PLAY",
+       "K_MUTE",
+       "K_BASS_BST",
+       "K_LOUDNESS",
+       "K_VOL_UP",
+       "K_VOL_DOWN",
+       "K_BASS_UP",
+       "K_BASS_DN",
+       "K_TRE_UP",
+       "K_TRE_DN",
     
-       "KEY_MEDIA_SEL",      // 0xc0
-       "KEY_MAIL",
-       "KEY_CALC",
-       "KEY_MYCOM",
-       "KEY_WWW_SEARCH",
-       "KEY_WWW_HOME",
-       "KEY_WWW_BACK",
-       "KEY_WWW_FORWARD",
-       "KEY_WWW_STOP",
-       "KEY_WWW_REFRESH",
-       "KEY_WWW_FAVORITE",
-       "KEY_EJECT",
-       "KEY_SCREENSAVE",
-       "KEY_REC",
-        "KEY_REWIND",
-        "KEY_MINIMIZE",
+       "K_MEDIA_SEL",      // 0xc0
+       "K_MAIL",
+       "K_CALC",
+       "K_MYCOM",
+       "K_WWW_SEARCH",
+       "K_WWW_HOME",
+       "K_WWW_BACK",
+       "K_WWW_FORWARD",
+       "K_WWW_STOP",
+       "K_WWW_REFRESH",
+       "K_WWW_FAVORITE",
+       "K_EJECT",
+       "K_SCREENSAVE",
+       "K_REC",
+        "K_REWIND",
+        "K_MINIMIZE",
     
-       "KEY_M01",            // 0xd0 //KEY_F13,
-       "KEY_M02",            //KEY_F14,
-       "KEY_M03",            //KEY_F15,
-       "KEY_M04",            //KEY_F16,
-       "KEY_M05",            //KEY_F17,
-       "KEY_M06",            //KEY_F18,
-       "KEY_M07",            //KEY_F19,
-       "KEY_M08",            //KEY_F20,
-       "KEY_M09",            //KEY_F21,        // 0x70
-       "KEY_M10",            //KEY_F22,
-       "KEY_M11",            //KEY_F23,
-       "KEY_M12",            //KEY_F24,
-       "KEY_M13",            //KEY_INTL1,
-       "KEY_M14",            //KEY_INTL2,
-       "KEY_M15",            //KEY_INTL3,
-       "KEY_M16",            //KEY_INTL4,
+       "K_M01",            // 0xd0 //K_F13,
+       "K_M02",            //K_F14,
+       "K_M03",            //K_F15,
+       "K_M04",            //K_F16,
+       "K_M05",            //K_F17,
+       "K_M06",            //K_F18,
+       "K_M07",            //K_F19,
+       "K_M08",            //K_F20,
+       "K_M09",            //K_F21,        // 0x70
+       "K_M10",            //K_F22,
+       "K_M11",            //K_F23,
+       "K_M12",            //K_F24,
+       "K_M13",            //K_INTL1,
+       "K_M14",            //K_INTL2,
+       "K_M15",            //K_INTL3,
+       "K_M16",            //K_INTL4,
     
-       "KEY_M17",            // 0xe0 //KEY_INTL5,
-       "KEY_M18",            //KEY_INTL6,
-       "KEY_M19",            //KEY_INTL7,
-       "KEY_M20",        
-       "KEY_M21",        
-       "KEY_M22",        
-       "KEY_M23",       
-       "KEY_M24",   
-       "KEY_M25",            //213
-       "KEY_M26",            //214
-       "KEY_M27",            //215
-       "KEY_M28",            //216
-       "KEY_M29",            //217
-       "KEY_M30",            //218
-       "KEY_M31",            //219
-       "KEY_M32",            //220
+       "K_M17",            // 0xe0 //K_INTL5,
+       "K_M18",            //K_INTL6,
+       "K_M19",            //K_INTL7,
+       "K_M20",        
+       "K_M21",        
+       "K_M22",        
+       "K_M23",       
+       "K_M24",   
+       "K_M25",            //213
+       "K_M26",            //214
+       "K_M27",            //215
+       "K_M28",            //216
+       "K_M29",            //217
+       "K_M30",            //218
+       "K_M31",            //219
+       "K_M32",            //220
     
-       "KEY_M33",            // 0xf0//221
-       "KEY_M34",            //222
-       "KEY_M35",            //223
-       "KEY_M36",            //224
-       "KEY_M37",            //225
-       "KEY_M38",            //226
-       "KEY_M39",            //227
-       "KEY_M40",            //228
-       "KEY_M41",            //229
-       "KEY_M42",            //230
-       "KEY_M43",            //231
-       "KEY_M44",            //232
-       "KEY_M45",            //233
-       "KEY_M46",            //234
-       "KEY_M47",            //235
-       "KEY_M48",            //236
-       "KEY_M49",
-       "KEY_M50",
-       "KEY_M51",
-       "KEY_M52"
+       "K_M33",            // 0xf0//221
+       "K_M34",            //222
+       "K_M35",            //223
+       "K_M36",            //224
+       "K_M37",            //225
+       "K_M38",            //226
+       "K_M39",            //227
+       "K_M40",            //228
+       "K_M41",            //229
+       "K_M42",            //230
+       "K_M43",            //231
+       "K_M44",            //232
+       "K_M45",            //233
+       "K_M46",            //234
+       "K_M47",            //235
+       "K_M48",            //236
+       "K_M49",
+       "K_M50",
+       "K_M51",
+       "K_M52"
 };
     
 
@@ -291,132 +291,7 @@ const char *keycode[256] = {
 // Total 132 keys + one none
 
 
-unsigned char keymap_code[MAX_LAYER][MAX_COL][MAX_ROW] =  {
-	{
-		// LAYER 0 : normal
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_F9,     KEY_F10,    KEY_F11,    KEY_F12,    KEY_FN,     KEY_PRNSCR, KEY_SCRLCK, KEY_PAUSE, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
-	},
-	{	
-		// LAYER 1 : normal
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_F9,     KEY_F10,    KEY_F11,    KEY_F12,    KEY_FN,     KEY_PRNSCR, KEY_SCRLCK, KEY_PAUSE, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,KEY_NONE,KEY_NONE,         KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
-	},
-	{	
-         // LAYER 2 : normal
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_2,     KEY_F1,     KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7, KEY_F8,     KEY_F9, KEY_F10,    KEY_F11,    KEY_F12,    KEY_NONE,   KEY_FN,     KEY_PRNSCR, KEY_SCRLCK, KEY_PAUSE, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,KEY_NONE,KEY_NONE,         KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
-
-	},
-	{	
-        // LAYER 3 : 1800
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_F1,     KEY_F2, KEY_F3, KEY_F4,	KEY_F5, KEY_F6, KEY_F7, KEY_F8,     KEY_F9, KEY_F10,    KEY_F11,    KEY_F12,    KEY_DEL,    KEY_FN,     KEY_HOME,   KEY_PGUP,   KEY_NUMLOCK, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_END,    KEY_PGDN,   KEY_KP_MINUS, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_KP_7,   KEY_KP_8,   KEY_KP_9, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_KP_4,   KEY_KP_5,   KEY_KP_6, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_UP,     KEY_NONE,   KEY_KP_1,   KEY_KP_2,   KEY_KP_3, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT,  KEY_KP_0,   KEY_KP_DOT, KEY_NONE}  // COL5
-
-	},
-	{	
-        // LAYER 4 : normal
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{ KEY_NEXT_TRK,
-            KEY_PREV_TRK,
-            KEY_STOP,
-            KEY_PLAY,
-            KEY_MUTE,
-            KEY_BASS_BST,
-            KEY_LOUDNESS,
-            KEY_VOL_UP,
-            KEY_VOL_DOWN,
-            KEY_BASS_UP,
-            KEY_BASS_DN,
-            KEY_TRE_UP,
-            KEY_TRE_DN,
-            KEY_MEDIA_SEL,
-            KEY_MAIL,
-            KEY_CALC,
-            KEY_MYCOM,
-            KEY_WWW_SEARCH,
-            KEY_WWW_SEARCH,
-            }, // COL0
-        		{KEY_WWW_HOME,
-            KEY_WWW_BACK,
-            KEY_WWW_FORWARD,
-            KEY_WWW_STOP,
-            KEY_WWW_REFRESH,
-            KEY_WWW_FAVORITE,
-            KEY_EJECT,
-            KEY_SCREENSAVE,
-            KEY_REC,
-        	KEY_REWIND,
-        	KEY_MINIMIZE,
-
-            KEY_System,
-            KEY_POWER,
-            KEY_SLEEP,
-            KEY_WAKE,KEY_WAKE,KEY_VOL_UP,KEY_BASS_DN,KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,KEY_NONE,KEY_NONE,         KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
-
-	},
-	{	
-         // LAYER 5 : normal
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_5,     KEY_F1,     KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7, KEY_F8,     KEY_F9, KEY_F10,    KEY_F11,    KEY_F12,    KEY_NONE,   KEY_FN,   KEY_PRNSCR, KEY_SCRLCK, KEY_PAUSE, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,KEY_NONE,KEY_NONE,         KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
-
-	},
-	{
-         // LAYER 6: normal
-        // ROW0        ROW1            ROW2     ROW3     ROW4   ROW5    ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-        {KEY_LFX,   KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_FN,     KEY_LFX,    KEY_LFX,    KEY_LFX, KEY_NONE}, // COL0
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL1
-        {KEY_LFULL, KEY_LFULL,  KEY_LASD,   KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_NONE,   KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL2
-        {KEY_LFULL, KEY_LASD,   KEY_LASD,   KEY_LASD,   KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_NONE,   KEY_NONE,   KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL3
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LARR,   KEY_NONE,   KEY_LPAD,   KEY_LARR,   KEY_LPAD, KEY_NONE},  // COL4
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LARR,   KEY_LARR,   KEY_LARR,   KEY_LARR,   KEY_LARR, KEY_NONE}  // COL5
-
-     },
-        
-
-	{	
-		// LAYER  FN
-		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_L0,    KEY_M02,    KEY_M03,  KEY_M04,  KEY_M05,  KEY_M06,  KEY_M07,  KEY_M08,  KEY_M09, KEY_M10,  KEY_M11, KEY_M12,   KEY_M13,    KEY_M48,     KEY_FN,     KEY_MRESET, KEY_KEYLOCK,    KEY_RESET, KEY_NONE}, // COL0
-		{KEY_M01,   KEY_L1,     KEY_L2,   KEY_L3,   KEY_L4,	KEY_LED0, KEY_LED1, KEY_LED2, KEY_LED3,KEY_9,    KEY_0,   KEY_M48,   KEY_M49,    KEY_BKSP,    KEY_NONE,   KEY_KP_AST, KEY_KP_SLASH,   KEY_KP_PLUS, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_M14,    KEY_M15,  KEY_M16,  KEY_M17,  KEY_M18,  KEY_M19,  KEY_M20,  KEY_M21, KEY_M22,  KEY_M23, KEY_M24,   KEY_M25,    KEY_M26,     KEY_NONE,   KEY_KP_7,   KEY_KP_8,       KEY_KP_9, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_M27,    KEY_M28,  KEY_M29,  KEY_M30,  KEY_M31,  KEY_M32,  KEY_M33,  KEY_M34, KEY_M35,  KEY_M36, KEY_M37,   KEY_ENTER,  KEY_NONE,    KEY_NONE,   KEY_KP_4,   KEY_KP_5,       KEY_KP_6, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_M38,    KEY_M39,  KEY_M40,  KEY_M41,  KEY_M42,  KEY_M43,  KEY_M44,  KEY_M45, KEY_M46,  KEY_M47, KEY_NONE,  KEY_RSHIFT, KEY_NONE,    KEY_NONE,   KEY_KP_1,   KEY_KP_2,       KEY_KP_3, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_WINKEYLOCK,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_WINKEYLOCK,KEY_APPS,KEY_RCTRL,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT,  KEY_KP_0,   KEY_KP_DOT, KEY_NONE}  // COL5
-
-	}
-	
- };
-
+unsigned char keymap_code[MAX_LAYER][MAX_COL][MAX_ROW];
 typedef enum
 {
     LED_EFFECT_FADING          = 0,
@@ -521,7 +396,7 @@ int interprete(const char *filename, char *pbuf)
 //            printf("%c : %d", str[i], len);
         }while(str[i] != 'K' && str[i] != 'E' && str[i] != 'P');
 
-        // 2. parse a "KEY_xxx"
+        // 2. parse a "K_xxx"
         for (j = 1; j<256; j++)
         {
             len = fread(&str[j], 1, 1, fp);

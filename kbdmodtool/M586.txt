@@ -1,107 +1,107 @@
 {
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_NONE,   KEY_F9,		KEY_F10,    KEY_F11,    KEY_F12,    KEY_PRNSCR, KEY_SCRLCK, KEY_FN, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+		{K_ESC,   K_NONE,   K_F1, K_F2, K_F3,	K_F4,	K_F5, K_F6, K_F7,     K_F8, K_NONE,   K_F9,		K_F10,    K_F11,    K_F12,    K_PRNSCR, K_SCRLCK, K_FN, K_NONE}, // COL0
+		{K_HASH,  K_1,      K_2,  K_3,  K_4,  K_5,  K_6,  K_7,  K_8,      K_9,  K_0,      K_MINUS,  K_EQUAL,  K_BKSP,   K_NONE,   K_INSERT, K_HOME,   K_PGUP, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS, K_RCTRL,  K_NONE,   K_NONE,   K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 	},
 	{
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_NONE,   KEY_F9,		KEY_F10,    KEY_F11,    KEY_F12,    KEY_PRNSCR, KEY_SCRLCK, KEY_FN, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+		{K_ESC,   K_NONE,   K_F1, K_F2, K_F3,	K_F4,	K_F5, K_F6, K_F7,     K_F8, K_NONE,   K_F9,		K_F10,    K_F11,    K_F12,    K_PRNSCR, K_SCRLCK, K_FN, K_NONE}, // COL0
+		{K_HASH,  K_1,      K_2,  K_3,  K_4,  K_5,  K_6,  K_7,  K_8,      K_9,  K_0,      K_MINUS,  K_EQUAL,  K_BKSP,   K_NONE,   K_INSERT, K_HOME,   K_PGUP, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS, K_RCTRL,  K_NONE,   K_NONE,   K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 	},
 	{
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_NONE,   KEY_F9,		KEY_F10,    KEY_F11,    KEY_F12,    KEY_PRNSCR, KEY_SCRLCK, KEY_FN, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+		{K_ESC,   K_NONE,   K_F1, K_F2, K_F3,	K_F4,	K_F5, K_F6, K_F7,     K_F8, K_NONE,   K_F9,		K_F10,    K_F11,    K_F12,    K_PRNSCR, K_SCRLCK, K_FN, K_NONE}, // COL0
+		{K_HASH,  K_1,      K_2,  K_3,  K_4,  K_5,  K_6,  K_7,  K_8,      K_9,  K_0,      K_MINUS,  K_EQUAL,  K_BKSP,   K_NONE,   K_INSERT, K_HOME,   K_PGUP, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS, K_RCTRL,  K_NONE,   K_NONE,   K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 	},
 	{
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_NONE,   KEY_F9,		KEY_F10,    KEY_F11,    KEY_F12,    KEY_PRNSCR, KEY_SCRLCK, KEY_FN, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+		{K_ESC,   K_NONE,   K_F1, K_F2, K_F3,	K_F4,	K_F5, K_F6, K_F7,     K_F8, K_NONE,   K_F9,		K_F10,    K_F11,    K_F12,    K_PRNSCR, K_SCRLCK, K_FN, K_NONE}, // COL0
+		{K_HASH,  K_1,      K_2,  K_3,  K_4,  K_5,  K_6,  K_7,  K_8,      K_9,  K_0,      K_MINUS,  K_EQUAL,  K_BKSP,   K_NONE,   K_INSERT, K_HOME,   K_PGUP, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS, K_RCTRL,  K_NONE,   K_NONE,   K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 	},
 	{	
         // LAYER 4 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{ KEY_NEXT_TRK,
-            KEY_PREV_TRK,
-            KEY_STOP,
-            KEY_PLAY,
-            KEY_MUTE,
-            KEY_BASS_BST,
-            KEY_LOUDNESS,
-            KEY_VOL_UP,
-            KEY_VOL_DOWN,
-            KEY_BASS_UP,
-            KEY_BASS_DN,
-            KEY_TRE_UP,
-            KEY_TRE_DN,
-            KEY_MEDIA_SEL,
-            KEY_MAIL,
-            KEY_CALC,
-            KEY_MYCOM,
-            KEY_WWW_SEARCH,
-			KEY_NONE
+		{ K_NEXT_TRK,
+            K_PREV_TRK,
+            K_STOP,
+            K_PLAY,
+            K_MUTE,
+            K_BASS_BST,
+            K_LOUDNESS,
+            K_VOL_UP,
+            K_VOL_DOWN,
+            K_BASS_UP,
+            K_BASS_DN,
+            K_TRE_UP,
+            K_TRE_DN,
+            K_MEDIA_SEL,
+            K_MAIL,
+            K_CALC,
+            K_MYCOM,
+            K_WWW_SEARCH,
+			K_NONE
             }, // COL0
-        		{KEY_WWW_HOME,
-            KEY_WWW_BACK,
-            KEY_WWW_FORWARD,
-            KEY_WWW_STOP,
-            KEY_WWW_REFRESH,
-            KEY_WWW_FAVORITE,
-            KEY_EJECT,
-            KEY_SCREENSAVE,
-            KEY_REC,
-        	KEY_REWIND,
-        	KEY_MINIMIZE,
+        		{K_WWW_HOME,
+            K_WWW_BACK,
+            K_WWW_FORWARD,
+            K_WWW_STOP,
+            K_WWW_REFRESH,
+            K_WWW_FAVORITE,
+            K_EJECT,
+            K_SCREENSAVE,
+            K_REC,
+        	K_REWIND,
+        	K_MINIMIZE,
 
-            KEY_System,
-            KEY_POWER,
-            KEY_SLEEP,
-            KEY_WAKE,KEY_WAKE,KEY_VOL_UP,KEY_FN, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS,KEY_RCTRL,KEY_NONE,KEY_NONE,         KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+            K_System,
+            K_POWER,
+            K_SLEEP,
+            K_WAKE,K_WAKE,K_VOL_UP,K_FN, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS,K_RCTRL,K_NONE,K_NONE,         K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 
 	},
 	{
 		// LAYER 0 : normal
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_ESC,   KEY_NONE,   KEY_F1, KEY_F2, KEY_F3,	KEY_F4,	KEY_F5, KEY_F6, KEY_F7,     KEY_F8, KEY_NONE,   KEY_F9,		KEY_F10,    KEY_F11,    KEY_F12,    KEY_PRNSCR, KEY_SCRLCK, KEY_FN, KEY_NONE}, // COL0
-		{KEY_HASH,  KEY_1,      KEY_2,  KEY_3,  KEY_4,  KEY_5,  KEY_6,  KEY_7,  KEY_8,      KEY_9,  KEY_0,      KEY_MINUS,  KEY_EQUAL,  KEY_BKSP,   KEY_NONE,   KEY_INSERT, KEY_HOME,   KEY_PGUP, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_Q,      KEY_W,  KEY_E,  KEY_R,  KEY_T,  KEY_Y,  KEY_U,  KEY_I,      KEY_O,  KEY_P,      KEY_LBR,    KEY_RBR,    KEY_BKSLASH,KEY_NONE,   KEY_DEL,    KEY_END,    KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_A,      KEY_S,  KEY_D,  KEY_F,  KEY_G,  KEY_H,  KEY_J,  KEY_K,      KEY_L,  KEY_COLON,  KEY_QUOTE,  KEY_ENTER,  KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_NONE, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_Z,      KEY_X,  KEY_C,  KEY_V,  KEY_B,  KEY_N,  KEY_M,  KEY_COMMA,  KEY_DOT,KEY_SLASH,  KEY_NONE,   KEY_RSHIFT, KEY_NONE,   KEY_NONE,   KEY_NONE,   KEY_UP,     KEY_NONE, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_LGUI,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_RGUI,KEY_APPS, KEY_RCTRL,  KEY_NONE,   KEY_NONE,   KEY_LEFT,   KEY_DOWN,   KEY_RIGHT, KEY_NONE}  // COL5
+		{K_ESC,   K_NONE,   K_F1, K_F2, K_F3,	K_F4,	K_F5, K_F6, K_F7,     K_F8, K_NONE,   K_F9,		K_F10,    K_F11,    K_F12,    K_PRNSCR, K_SCRLCK, K_FN, K_NONE}, // COL0
+		{K_HASH,  K_1,      K_2,  K_3,  K_4,  K_5,  K_6,  K_7,  K_8,      K_9,  K_0,      K_MINUS,  K_EQUAL,  K_BKSP,   K_NONE,   K_INSERT, K_HOME,   K_PGUP, K_NONE},  // COL1
+		{K_TAB,   K_Q,      K_W,  K_E,  K_R,  K_T,  K_Y,  K_U,  K_I,      K_O,  K_P,      K_LBR,    K_RBR,    K_BKSLASH,K_NONE,   K_DEL,    K_END,    K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_A,      K_S,  K_D,  K_F,  K_G,  K_H,  K_J,  K_K,      K_L,  K_COLON,  K_QUOTE,  K_ENTER,  K_NONE,   K_NONE,   K_NONE,   K_NONE,   K_NONE, K_NONE},  // COL3
+		{K_LSHIFT,K_Z,      K_X,  K_C,  K_V,  K_B,  K_N,  K_M,  K_COMMA,  K_DOT,K_SLASH,  K_NONE,   K_RSHIFT, K_NONE,   K_NONE,   K_NONE,   K_UP,     K_NONE, K_NONE},  // COL4
+		{K_LCTRL, K_LGUI,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_RGUI,K_APPS, K_RCTRL,  K_NONE,   K_NONE,   K_LEFT,   K_DOWN,   K_RIGHT, K_NONE}  // COL5
 	},
 	{
          // LAYER 6: normal
         // ROW0        ROW1            ROW2     ROW3     ROW4   ROW5    ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-        {KEY_LFX,   KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,    KEY_LFX,     KEY_LFX,    KEY_LFX,   KEY_FN, KEY_NONE}, // COL0
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL1
-        {KEY_LFULL, KEY_LFULL,  KEY_LASD,   KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_NONE,   KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL2
-        {KEY_LFULL, KEY_LASD,   KEY_LASD,   KEY_LASD,   KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_NONE,   KEY_NONE,   KEY_LPAD,   KEY_LPAD,   KEY_LPAD, KEY_NONE},  // COL3
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LARR,   KEY_NONE,   KEY_LPAD,   KEY_LARR,   KEY_LPAD, KEY_NONE},  // COL4
-        {KEY_LFULL, KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_LFULL,  KEY_APPS,  KEY_LFULL,  KEY_LARR,   KEY_LARR,   KEY_LARR,   KEY_LARR,   KEY_LARR, KEY_NONE}  // COL5
+        {K_LFX,   K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,    K_LFX,     K_LFX,    K_LFX,   K_FN, K_NONE}, // COL0
+        {K_LFULL, K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LPAD,   K_LPAD,   K_LPAD, K_NONE},  // COL1
+        {K_LFULL, K_LFULL,  K_LASD,   K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_NONE,   K_LPAD,   K_LPAD,   K_LPAD, K_NONE},  // COL2
+        {K_LFULL, K_LASD,   K_LASD,   K_LASD,   K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_NONE,   K_NONE,   K_LPAD,   K_LPAD,   K_LPAD, K_NONE},  // COL3
+        {K_LFULL, K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LARR,   K_NONE,   K_LPAD,   K_LARR,   K_LPAD, K_NONE},  // COL4
+        {K_LFULL, K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_LFULL,  K_APPS,  K_LFULL,  K_LARR,   K_LARR,   K_LARR,   K_LARR,   K_LARR, K_NONE}  // COL5
 
      },
         
@@ -109,11 +109,11 @@
 	{	
 		// LAYER  FN
 		// ROW0        ROW1            ROW2     ROW3     ROW4 	ROW5	ROW6     ROW7     ROW8             ROW9     ROW10          ROW11           ROW12          ROW13           ROW14          ROW15           ROW16          ROW17
-		{KEY_L0,    KEY_M02,    KEY_M03,  KEY_M04,  KEY_M05,  KEY_M06,  KEY_M07,  KEY_M08,  KEY_M09, KEY_M10,  KEY_M11, KEY_M12,   KEY_M13,    KEY_DEL,     KEY_NONE,     KEY_MRESET, KEY_KEYLOCK,    KEY_FN, KEY_NONE}, // COL0
-		{KEY_M01,   KEY_L1,     KEY_L2,   KEY_L3,   KEY_L4,	KEY_LED0, KEY_LED1, KEY_LED2, KEY_LED3,KEY_9,    KEY_0,   KEY_M48,   KEY_M49,    KEY_BKSP,    KEY_NONE,   KEY_INSERT, KEY_HOME,         KEY_PAUSE, KEY_NONE},  // COL1
-		{KEY_TAB,   KEY_M14,    KEY_M15,  KEY_M16,  KEY_M17,  KEY_M18,  KEY_M19,  KEY_M20,  KEY_M21, KEY_M22,  KEY_M23, KEY_M24,   KEY_M25,    KEY_M26,     KEY_NONE,   KEY_DEL,   KEY_END,         KEY_PGDN, KEY_NONE},  // COL2
-		{KEY_CAPS,  KEY_M27,    KEY_M28,  KEY_M29,  KEY_M30,  KEY_M31,  KEY_M32,  KEY_M33,  KEY_M34, KEY_M35,  KEY_M36, KEY_M37,   KEY_ENTER,  KEY_NONE,    KEY_NONE,   KEY_KP_4,   KEY_KP_5,       KEY_KP_6, KEY_NONE},  // COL3
-		{KEY_LSHIFT,KEY_M38,    KEY_M39,  KEY_M40,  KEY_M41,  KEY_M42,  KEY_M43,  KEY_M44,  KEY_M45, KEY_M46,  KEY_M47, KEY_NONE,  KEY_RSHIFT, KEY_NONE,    KEY_NONE,   KEY_KP_1,   KEY_UP,         KEY_KP_3, KEY_NONE},  // COL4
-		{KEY_LCTRL, KEY_WINKEYLOCK,   KEY_LALT,KEY_NONE,KEY_NONE,KEY_NONE,KEY_SPACE,KEY_NONE,KEY_NONE,KEY_RALT,KEY_WINKEYLOCK,KEY_APPS,KEY_RCTRL,   KEY_LEFT,   KEY_DOWN,   KEY_LEFT,  KEY_DOWN,    KEY_RIGHT, KEY_NONE}  // COL5
+		{K_L0,    K_M02,    K_M03,  K_M04,  K_M05,  K_M06,  K_M07,  K_M08,  K_M09, K_M10,  K_M11, K_M12,   K_M13,    K_DEL,     K_NONE,     K_MRESET, K_KEYLOCK,    K_FN, K_NONE}, // COL0
+		{K_M01,   K_L1,     K_L2,   K_L3,   K_L4,	K_LED0, K_LED1, K_LED2, K_LED3,K_9,    K_0,   K_M48,   K_M49,    K_BKSP,    K_NONE,   K_INSERT, K_HOME,         K_PAUSE, K_NONE},  // COL1
+		{K_TAB,   K_M14,    K_M15,  K_M16,  K_M17,  K_M18,  K_M19,  K_M20,  K_M21, K_M22,  K_M23, K_M24,   K_M25,    K_M26,     K_NONE,   K_DEL,   K_END,         K_PGDN, K_NONE},  // COL2
+		{K_CAPS,  K_M27,    K_M28,  K_M29,  K_M30,  K_M31,  K_M32,  K_M33,  K_M34, K_M35,  K_M36, K_M37,   K_ENTER,  K_NONE,    K_NONE,   K_KP_4,   K_KP_5,       K_KP_6, K_NONE},  // COL3
+		{K_LSHIFT,K_M38,    K_M39,  K_M40,  K_M41,  K_M42,  K_M43,  K_M44,  K_M45, K_M46,  K_M47, K_NONE,  K_RSHIFT, K_NONE,    K_NONE,   K_KP_1,   K_UP,         K_KP_3, K_NONE},  // COL4
+		{K_LCTRL, K_WINKEYLOCK,   K_LALT,K_NONE,K_NONE,K_NONE,K_SPACE,K_NONE,K_NONE,K_RALT,K_WINKEYLOCK,K_APPS,K_RCTRL,   K_LEFT,   K_DOWN,   K_LEFT,  K_DOWN,    K_RIGHT, K_NONE}  // COL5
 
 	}
