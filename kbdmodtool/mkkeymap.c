@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "keymap.h"
 
-#define MAX_COL     6
-#define MAX_ROW     19
+#define MAX_ROW     6
+#define MAX_COL     19
 
 #define MAX_LAYER   8
-#define MAXHEXLINE 32	/* the maximum number of bytes to put in one line */
-
+#define MAXHEXLINE  32	/* the maximum number of bytes to put in one line */
 
 const char *keycode[256] = {
         "K_NONE",
@@ -291,7 +291,23 @@ const char *keycode[256] = {
 // Total 132 keys + one none
 
 
-unsigned char keymap_code[MAX_LAYER][MAX_COL][MAX_ROW];
+unsigned char keymap_code[MAX_LAYER][MAX_ROW][MAX_COL];
+
+
+const char *sLedmode[9] = {
+    "FADING",
+    "FADING_PUSH_ON",
+    "PUSHED_LEVEL",
+    "PUSH_ON",
+    "PUSH_OFF",
+    "ALWAYS",
+    "BASECAPS",
+    "OFF",
+    "NONE"
+};
+    
+#define MAX_TOKEN_LEN   256
+
 typedef enum
 {
     LED_EFFECT_FADING          = 0,
@@ -306,52 +322,17 @@ typedef enum
 }LED_MODE;
 
 #define LEDMODE_ADDRESS 0x9800
-unsigned char  ledmode[8][11] ={ 
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
-        
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
-        LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
-        
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, 
-        LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON, LED_EFFECT_FADING_PUSH_ON},
-        
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, 
-        LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL, LED_EFFECT_PUSHED_LEVEL},
-
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS},
-
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING, 
-        LED_EFFECT_FADING, LED_EFFECT_FADING, LED_EFFECT_FADING},
-
-        {LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, LED_EFFECT_ALWAYS, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, 
-        LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON, LED_EFFECT_PUSH_ON},
-        
-        {LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-        LED_EFFECT_ALWAYS, LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF, 
-        LED_EFFECT_OFF, LED_EFFECT_OFF, LED_EFFECT_OFF},       
-};
+unsigned char  ledmode[8][11];
 
 
-int keymAddress[MAX_LAYER] = {
-    0x9000, // FACTORY DEFAULT
-    0x9100,
-    0x9200,
-    0x9300,
-    0x9400,
-    0x9500,
-    0x9600, // LED LAYER
-    0x9700, // FN LAYER
-    };
-    
+int keymAddress;
+int ledmAddress;
+
+typedef enum
+{
+    PARSING_KEYMAP,
+    PARSING_LEDEFFECT
+}PARSING;
 
 int addressExtended = 0;
 
@@ -359,8 +340,7 @@ int addressExtended = 0;
 short getKeyIdx(const char *keystring)
 {
     unsigned int i;
-    unsigned char temp;
-    printf("%s", keystring);
+    printf("%s\n", keystring);
     //scanf("%c", &temp);
     for (i = 0; i < 256; i++)
     {
@@ -371,54 +351,173 @@ short getKeyIdx(const char *keystring)
         }
     }
     printf("ERROR: matrix is invalied ! \n");
-    scanf("%c", &temp);
+    //scanf("%c", &temp);
     return -1;
 }
 
 
-int interprete(const char *filename, char *pbuf)
+
+
+short getLEDIdx(const char *str)
+{
+    unsigned int i;
+    printf("%s", str);
+    //scanf("%c", &temp);
+    for (i = 0; i < 8; i++)
+    {
+        if(strcmp(str, sLedmode[i]) == 0)
+        {
+            printf(": found!!\n");
+            return (char)i;
+        }
+    }
+    printf("ERROR: LED is invalied ! \n");
+    //scanf("%c", &temp);
+    return -1;
+}
+
+
+int getToken(FILE *fp, char *pbuf)
+{
+    char ch;
+    size_t len;
+    int i;
+   
+    i = 0;
+    memset((void *)pbuf, 0, 256);
+    while (1){
+        len = fread(&ch, 1, 1, fp);
+        if((len != 1) || (i >= MAX_TOKEN_LEN))
+        {
+            printf("read len = %d \n", len);
+            break;
+        }
+        if(ch == ',' || ch == ' '|| ch == '{' ||ch == '}'|| ch == '\n'|| ch == '\t'|| ch == '\r')           // seperator
+        {
+            if(i == 0)
+            {
+                continue;   // ignore the beginning
+            }else
+            {
+                break;      // end of token
+
+            }
+        }else
+        {
+            *pbuf++ = ch;   // make token
+            i++;
+        }
+    }
+    return i;
+}
+
+int strtoi(char *str, int nsystem)
+{
+    int i = 0;
+    int digit = 1;
+    int number;
+    int result = 0;
+    while (*(str+1) != 0)        // rewind to 1st digit
+    {
+        str++;
+        i++;
+    }
+    
+    while(*str != 'x' && *str != 'X' && i-- != 0)
+    {
+        printf("%c", *str);
+        if('0' <= *str && *str <= '9')
+        {
+            number = *str -'0';
+        }else if ('a' <= *str && *str <= 'f')
+        {
+            number = 10 + *str -'a';
+        }else if ('A' <= *str && *str <= 'F')
+        {
+            number = 10 + *str -'A';
+        }else
+        {
+            printf("Error : [%c] is not a Number \n", *str);
+            result = -1;
+            break;
+        }
+            
+        result += number * digit;
+        digit *= nsystem;                     // hexadecimal
+        str--;
+    }
+    return result;
+}
+
+int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmode)
 {
     FILE *fp = fopen(filename, "r");
     char str[256];
-    char keyidx;
+    char index;
+    
+    unsigned char temp;
     size_t len;
-    int i, j;
-    for (i = 0; i < 1024; i++)
+    int mode;
+    mode = PARSING_KEYMAP;
+    
+    if (fp == NULL)
     {
-        i = 0;
-        // 1 start with "K" "E" "P"
-        do{
-            len = fread(&str[i], 1, 1, fp);
-            if(len != 1)
-            {
-                return 0;
-            }
-//            printf("%c : %d", str[i], len);
-        }while(str[i] != 'K' && str[i] != 'E' && str[i] != 'P');
-
-        // 2. parse a "K_xxx"
-        for (j = 1; j<256; j++)
+        printf("Error : Invalid file name!\n");
+        scanf("%c", &temp);
+        return -1;
+    }
+    
+    while(1)
+    {
+        // 1 get token
+        len = getToken(fp,str);
+        if(len == 0)
         {
-            len = fread(&str[j], 1, 1, fp);
-//            printf("%c\n", str[j]);
-            if(str[j] == ',' || str[j] == ' '|| str[j] == '}'|| str[j] == '\n'|| str[j] == '\t'|| str[j] == '\r')           // seperate
-            {
-                str[j] = '\0';
-                break;
-            }   
-            if(len != 1)
-            {
-                fclose(fp);
-                return 0;
-            }   
+            break;
         }
+        printf("Token:%s , Len = %d\n", str, len);
 
-        // 3. get key
-        keyidx = getKeyIdx(str);
-		if(keyidx == -1)
-			continue;
-        // 4. put key to matrix
-        *pbuf++ = (char)keyidx;
+        if(strcmp(str, "KEYMAP") == 0)
+        {
+            mode = PARSING_KEYMAP;
+            if(getToken(fp,str) == 0)
+                break;
+            
+            printf("keymAddress = %s \n", str);
+            keymAddress = strtoi(str,16);
+            
+            printf("keymAddress = %x \n", keymAddress);
+            scanf("%c", &temp);
+            
+        }else if(strcmp(str, "LEDEFFECT") == 0)
+        {
+            mode = PARSING_LEDEFFECT;
+
+            if(getToken(fp,str) == 0)
+                break;
+
+            printf("ledmAddress = %s \n", str);
+            ledmAddress = strtoi(str,16);
+
+            printf("ledmAddress = %x \n", ledmAddress);
+            scanf("%c", &temp);
+        }
+        if(mode == PARSING_KEYMAP)
+        {
+            // 2. get key
+            index = getKeyIdx(str);
+    		if(index == -1)
+    			continue;
+            // 3. put key to matrix
+            *keymap++ = (char)index;
+        }else if(mode == PARSING_LEDEFFECT)
+        {
+            index = getLEDIdx(str);
+            if(index == -1)
+                continue;
+                // 3. put key to matrix
+            *ledmode++ = (char)index;
+        }
     }        
     fclose(fp);
     return 0;
@@ -434,6 +533,7 @@ void revertExtSegAddr(FILE *fp)
 {
    fprintf(fp,":020000020000FC\n");
 }
+
 int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
 {
    unsigned char checksum = 0;
@@ -444,7 +544,6 @@ int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
 
    while (length > 0)
    {
-      
       if (!addressExtended && (address >= 0x10000))
       {
          insertExtSegAddr(fp);
@@ -481,14 +580,11 @@ int buffer2Hex(FILE *fp, int address, int length, unsigned char *buffer)
    return 0;
 }
 
- unsigned char hello[] = "hello world";
-
 int main(int argc, char *argv[])
 {
     int layer;
     int address;
     unsigned char *keymap;
-    unsigned char temp;
     int fnamelen;
     char *fname;
     
@@ -508,21 +604,20 @@ int main(int argc, char *argv[])
     FILE *fp = fopen(fname, "w");
 
     
-   interprete(argv[1], &(keymap_code[layer][0][0]));
+   interprete(argv[1], &(keymap_code[0][0][0]), &(ledmode[0][0]));
  
-
+   address = keymAddress;
 
    for (layer = 0; layer < MAX_LAYER ; layer++)
    {
-      address = keymAddress[layer];
       keymap = &(keymap_code[layer][0][0]);
-      
-      buffer2Hex(fp, address, MAX_COL * MAX_ROW, keymap);
+      buffer2Hex(fp, address, MAX_ROW * MAX_COL, keymap);
+      address += 0x100;
    }
 
    keymap = &(ledmode[0][0]);
 
-   buffer2Hex(fp, LEDMODE_ADDRESS, 256, keymap);
+   buffer2Hex(fp, ledmAddress, 256, keymap);
    
    fclose(fp);
    return 0;
