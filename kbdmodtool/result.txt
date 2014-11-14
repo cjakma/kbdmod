@@ -1,0 +1,1723 @@
+MX1830.hex 
+Token:KEYMAP , Len = 6
+keymAddress = 0x6000 
+0006keymAddress = 6000 
+0x6000
+ERROR: matrix is invalied ! 
+Token:LAYER , Len = 5
+maxlayer = 4 
+4maxlayer = 4 
+4
+ERROR: matrix is invalied ! 
+Token:COLUMN , Len = 6
+maxcolumn = 8 
+8maxcolumn = 8 
+8
+ERROR: matrix is invalied ! 
+Token:ROW , Len = 3
+maxrow = 13 
+31maxrow = 13 
+13
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:set , Len = 3
+set
+ERROR: matrix is invalied ! 
+Token:1 , Len = 1
+1
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:K_RESET , Len = 7
+K_RESET
+: found!!
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+Token:K_1 , Len = 3
+K_1
+: found!!
+Token:K_2 , Len = 3
+K_2
+: found!!
+Token:K_3 , Len = 3
+K_3
+: found!!
+Token:K_4 , Len = 3
+K_4
+: found!!
+Token:K_5 , Len = 3
+K_5
+: found!!
+Token:K_6 , Len = 3
+K_6
+: found!!
+Token:K_7 , Len = 3
+K_7
+: found!!
+Token:K_8 , Len = 3
+K_8
+: found!!
+Token:K_9 , Len = 3
+K_9
+: found!!
+Token:K_0 , Len = 3
+K_0
+: found!!
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+Token:K_Q , Len = 3
+K_Q
+: found!!
+Token:K_W , Len = 3
+K_W
+: found!!
+Token:K_E , Len = 3
+K_E
+: found!!
+Token:K_R , Len = 3
+K_R
+: found!!
+Token:K_T , Len = 3
+K_T
+: found!!
+Token:K_Y , Len = 3
+K_Y
+: found!!
+Token:K_U , Len = 3
+K_U
+: found!!
+Token:K_I , Len = 3
+K_I
+: found!!
+Token:K_O , Len = 3
+K_O
+: found!!
+Token:K_P , Len = 3
+K_P
+: found!!
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+Token:K_A , Len = 3
+K_A
+: found!!
+Token:K_S , Len = 3
+K_S
+: found!!
+Token:K_D , Len = 3
+K_D
+: found!!
+Token:K_F , Len = 3
+K_F
+: found!!
+Token:K_G , Len = 3
+K_G
+: found!!
+Token:K_H , Len = 3
+K_H
+: found!!
+Token:K_J , Len = 3
+K_J
+: found!!
+Token:K_K , Len = 3
+K_K
+: found!!
+Token:K_L , Len = 3
+K_L
+: found!!
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+Token:K_Z , Len = 3
+K_Z
+: found!!
+Token:K_X , Len = 3
+K_X
+: found!!
+Token:K_C , Len = 3
+K_C
+: found!!
+Token:K_V , Len = 3
+K_V
+: found!!
+Token:K_B , Len = 3
+K_B
+: found!!
+Token:K_N , Len = 3
+K_N
+: found!!
+Token:K_M , Len = 3
+K_M
+: found!!
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+Token:K_UP , Len = 4
+K_UP
+: found!!
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+Token:K_INSERT , Len = 8
+K_INSERT
+: found!!
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+Token:K_KP_MINUS , Len = 10
+K_KP_MINUS
+: found!!
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+Token:K_KP_ENTER , Len = 10
+K_KP_ENTER
+: found!!
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+Token:K_END , Len = 5
+K_END
+: found!!
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+Token:K_KP_PLUS , Len = 9
+K_KP_PLUS
+: found!!
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_NUMLOCK , Len = 9
+K_NUMLOCK
+: found!!
+Token:K_KP_SLASH , Len = 10
+K_KP_SLASH
+: found!!
+Token:K_KP_AST , Len = 8
+K_KP_AST
+: found!!
+Token:K_FN , Len = 4
+K_FN
+: found!!
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:set , Len = 3
+set
+ERROR: matrix is invalied ! 
+Token:2 , Len = 1
+2
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:FN , Len = 2
+FN
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+Token:K_1 , Len = 3
+K_1
+: found!!
+Token:K_2 , Len = 3
+K_2
+: found!!
+Token:K_3 , Len = 3
+K_3
+: found!!
+Token:K_4 , Len = 3
+K_4
+: found!!
+Token:K_5 , Len = 3
+K_5
+: found!!
+Token:K_6 , Len = 3
+K_6
+: found!!
+Token:K_7 , Len = 3
+K_7
+: found!!
+Token:K_8 , Len = 3
+K_8
+: found!!
+Token:K_9 , Len = 3
+K_9
+: found!!
+Token:K_0 , Len = 3
+K_0
+: found!!
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+Token:K_Q , Len = 3
+K_Q
+: found!!
+Token:K_W , Len = 3
+K_W
+: found!!
+Token:K_E , Len = 3
+K_E
+: found!!
+Token:K_R , Len = 3
+K_R
+: found!!
+Token:K_T , Len = 3
+K_T
+: found!!
+Token:K_Y , Len = 3
+K_Y
+: found!!
+Token:K_U , Len = 3
+K_U
+: found!!
+Token:K_I , Len = 3
+K_I
+: found!!
+Token:K_O , Len = 3
+K_O
+: found!!
+Token:K_P , Len = 3
+K_P
+: found!!
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+Token:K_A , Len = 3
+K_A
+: found!!
+Token:K_S , Len = 3
+K_S
+: found!!
+Token:K_D , Len = 3
+K_D
+: found!!
+Token:K_F , Len = 3
+K_F
+: found!!
+Token:K_G , Len = 3
+K_G
+: found!!
+Token:K_H , Len = 3
+K_H
+: found!!
+Token:K_J , Len = 3
+K_J
+: found!!
+Token:K_K , Len = 3
+K_K
+: found!!
+Token:K_L , Len = 3
+K_L
+: found!!
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+Token:K_Z , Len = 3
+K_Z
+: found!!
+Token:K_X , Len = 3
+K_X
+: found!!
+Token:K_C , Len = 3
+K_C
+: found!!
+Token:K_V , Len = 3
+K_V
+: found!!
+Token:K_B , Len = 3
+K_B
+: found!!
+Token:K_N , Len = 3
+K_N
+: found!!
+Token:K_M , Len = 3
+K_M
+: found!!
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+Token:K_INSERT , Len = 8
+K_INSERT
+: found!!
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+Token:K_KP_MINUS , Len = 10
+K_KP_MINUS
+: found!!
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+Token:K_KP_ENTER , Len = 10
+K_KP_ENTER
+: found!!
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+Token:K_END , Len = 5
+K_END
+: found!!
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+Token:K_KP_PLUS , Len = 9
+K_KP_PLUS
+: found!!
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_NUMLOCK , Len = 9
+K_NUMLOCK
+: found!!
+Token:K_KP_SLASH , Len = 10
+K_KP_SLASH
+: found!!
+Token:K_KP_AST , Len = 8
+K_KP_AST
+: found!!
+Token:K_FN , Len = 4
+K_FN
+: found!!
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:set , Len = 3
+set
+ERROR: matrix is invalied ! 
+Token:1 , Len = 1
+1
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+Token:K_1 , Len = 3
+K_1
+: found!!
+Token:K_2 , Len = 3
+K_2
+: found!!
+Token:K_3 , Len = 3
+K_3
+: found!!
+Token:K_4 , Len = 3
+K_4
+: found!!
+Token:K_5 , Len = 3
+K_5
+: found!!
+Token:K_6 , Len = 3
+K_6
+: found!!
+Token:K_7 , Len = 3
+K_7
+: found!!
+Token:K_8 , Len = 3
+K_8
+: found!!
+Token:K_9 , Len = 3
+K_9
+: found!!
+Token:K_0 , Len = 3
+K_0
+: found!!
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+Token:K_Q , Len = 3
+K_Q
+: found!!
+Token:K_W , Len = 3
+K_W
+: found!!
+Token:K_E , Len = 3
+K_E
+: found!!
+Token:K_R , Len = 3
+K_R
+: found!!
+Token:K_T , Len = 3
+K_T
+: found!!
+Token:K_Y , Len = 3
+K_Y
+: found!!
+Token:K_U , Len = 3
+K_U
+: found!!
+Token:K_I , Len = 3
+K_I
+: found!!
+Token:K_O , Len = 3
+K_O
+: found!!
+Token:K_P , Len = 3
+K_P
+: found!!
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+Token:K_A , Len = 3
+K_A
+: found!!
+Token:K_S , Len = 3
+K_S
+: found!!
+Token:K_D , Len = 3
+K_D
+: found!!
+Token:K_F , Len = 3
+K_F
+: found!!
+Token:K_G , Len = 3
+K_G
+: found!!
+Token:K_H , Len = 3
+K_H
+: found!!
+Token:K_J , Len = 3
+K_J
+: found!!
+Token:K_K , Len = 3
+K_K
+: found!!
+Token:K_L , Len = 3
+K_L
+: found!!
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+Token:K_Z , Len = 3
+K_Z
+: found!!
+Token:K_X , Len = 3
+K_X
+: found!!
+Token:K_C , Len = 3
+K_C
+: found!!
+Token:K_V , Len = 3
+K_V
+: found!!
+Token:K_B , Len = 3
+K_B
+: found!!
+Token:K_N , Len = 3
+K_N
+: found!!
+Token:K_M , Len = 3
+K_M
+: found!!
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+Token:K_INSERT , Len = 8
+K_INSERT
+: found!!
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+Token:K_KP_MINUS , Len = 10
+K_KP_MINUS
+: found!!
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+Token:K_KP_ENTER , Len = 10
+K_KP_ENTER
+: found!!
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+Token:K_END , Len = 5
+K_END
+: found!!
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+Token:K_KP_PLUS , Len = 9
+K_KP_PLUS
+: found!!
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_NUMLOCK , Len = 9
+K_NUMLOCK
+: found!!
+Token:K_KP_SLASH , Len = 10
+K_KP_SLASH
+: found!!
+Token:K_KP_AST , Len = 8
+K_KP_AST
+: found!!
+Token:K_FN , Len = 4
+K_FN
+: found!!
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:set , Len = 3
+set
+ERROR: matrix is invalied ! 
+Token:2 , Len = 1
+2
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:FN , Len = 2
+FN
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+Token:K_1 , Len = 3
+K_1
+: found!!
+Token:K_2 , Len = 3
+K_2
+: found!!
+Token:K_3 , Len = 3
+K_3
+: found!!
+Token:K_4 , Len = 3
+K_4
+: found!!
+Token:K_5 , Len = 3
+K_5
+: found!!
+Token:K_6 , Len = 3
+K_6
+: found!!
+Token:K_7 , Len = 3
+K_7
+: found!!
+Token:K_8 , Len = 3
+K_8
+: found!!
+Token:K_9 , Len = 3
+K_9
+: found!!
+Token:K_0 , Len = 3
+K_0
+: found!!
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+Token:K_Q , Len = 3
+K_Q
+: found!!
+Token:K_W , Len = 3
+K_W
+: found!!
+Token:K_E , Len = 3
+K_E
+: found!!
+Token:K_R , Len = 3
+K_R
+: found!!
+Token:K_T , Len = 3
+K_T
+: found!!
+Token:K_Y , Len = 3
+K_Y
+: found!!
+Token:K_U , Len = 3
+K_U
+: found!!
+Token:K_I , Len = 3
+K_I
+: found!!
+Token:K_O , Len = 3
+K_O
+: found!!
+Token:K_P , Len = 3
+K_P
+: found!!
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+Token:K_A , Len = 3
+K_A
+: found!!
+Token:K_S , Len = 3
+K_S
+: found!!
+Token:K_D , Len = 3
+K_D
+: found!!
+Token:K_F , Len = 3
+K_F
+: found!!
+Token:K_G , Len = 3
+K_G
+: found!!
+Token:K_H , Len = 3
+K_H
+: found!!
+Token:K_J , Len = 3
+K_J
+: found!!
+Token:K_K , Len = 3
+K_K
+: found!!
+Token:K_L , Len = 3
+K_L
+: found!!
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+Token:K_Z , Len = 3
+K_Z
+: found!!
+Token:K_X , Len = 3
+K_X
+: found!!
+Token:K_C , Len = 3
+K_C
+: found!!
+Token:K_V , Len = 3
+K_V
+: found!!
+Token:K_B , Len = 3
+K_B
+: found!!
+Token:K_N , Len = 3
+K_N
+: found!!
+Token:K_M , Len = 3
+K_M
+: found!!
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+Token:K_INSERT , Len = 8
+K_INSERT
+: found!!
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+Token:K_KP_MINUS , Len = 10
+K_KP_MINUS
+: found!!
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+Token:K_KP_ENTER , Len = 10
+K_KP_ENTER
+: found!!
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+Token:K_END , Len = 5
+K_END
+: found!!
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+Token:K_KP_PLUS , Len = 9
+K_KP_PLUS
+: found!!
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+Token:K_NUMLOCK , Len = 9
+K_NUMLOCK
+: found!!
+Token:K_KP_SLASH , Len = 10
+K_KP_SLASH
+: found!!
+Token:K_KP_AST , Len = 8
+K_KP_AST
+: found!!
+Token:K_FN , Len = 4
+K_FN
+: found!!
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+Token:LEDEFFECT , Len = 9
+ledmAddress = 0x6800 
+0086ledmAddress = 6800 
+0x6800ERROR: LED is invalied ! 
+Token:MODE , Len = 4
+MODEERROR: LED is invalied ! 
+Token:5 , Len = 1
+5ERROR: LED is invalied ! 
+Token:BLOCK , Len = 5
+BLOCKERROR: LED is invalied ! 
+Token:11 , Len = 2
+11ERROR: LED is invalied ! 
+Token://NUM , Len = 5
+//NUMERROR: LED is invalied ! 
+Token:CAPS , Len = 4
+CAPSERROR: LED is invalied ! 
+Token:SCRLOCK , Len = 7
+SCRLOCKERROR: LED is invalied ! 
+Token:PRTINDI , Len = 7
+PRTINDIERROR: LED is invalied ! 
+Token:ESCINDI , Len = 7
+ESCINDIERROR: LED is invalied ! 
+Token:Fx(EM7) , Len = 7
+Fx(EM7)ERROR: LED is invalied ! 
+Token:PAD , Len = 3
+PADERROR: LED is invalied ! 
+Token:BASE(EM7) , Len = 9
+BASE(EM7)ERROR: LED is invalied ! 
+Token:WASD(EM7) , Len = 9
+WASD(EM7)ERROR: LED is invalied ! 
+Token:ARRROW18 , Len = 8
+ARRROW18ERROR: LED is invalied ! 
+Token:VESEL , Len = 5
+VESELERROR: LED is invalied ! 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:FADING , Len = 6
+FADING: found!!
+Token:FADING , Len = 6
+FADING: found!!
+Token:FADING , Len = 6
+FADING: found!!
+Token:FADING , Len = 6
+FADING: found!!
+Token:FADING , Len = 6
+FADING: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+read len = 0 

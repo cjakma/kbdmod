@@ -1,1 +1,2 @@
-bootloadHID -r M3.hex
+mkkeymap.exe MX1830.txt
+bootloadHID -r MX1830.hex

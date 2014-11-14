@@ -1,0 +1,70 @@
+KEYMAP   0x6300
+LAYER    5
+COLUMN   8
+ROW      13
+
+// set 1 : normal
+   // COL0     COL1     COL2     COL3     COL4     COL5     COL6     COL7     COL8        COL9     COL10    COL11       COL12       
+   K_ESC,      K_F1,    K_F2,    K_F3,    K_F4,    K_F5,    K_F6,    K_F7,    K_F8,       K_F9,    K_F10,   K_F11,      K_F12,     
+   K_HASH,     K_1,     K_2,     K_3,     K_4,     K_5,     K_6,     K_7,     K_8,        K_9,     K_0,     K_MINUS,    K_EQUAL,  
+   K_TAB,      K_Q,     K_W,     K_E,     K_R,     K_T,     K_Y,     K_U,     K_I,        K_O,     K_P,     K_LBR,      K_RBR,    
+   K_CAPS,     K_A,     K_S,     K_D,     K_F,     K_G,     K_H,     K_J,     K_K,        K_L,     K_COLON, K_QUOTE,    K_ENTER,  
+   K_LSHIFT,   K_Z,     K_X,     K_C,     K_V,     K_B,     K_N,     K_M,     K_COMMA,    K_DOT,   K_SLASH, K_RSHIFT,   K_UP
+   K_LCTRL,    K_LALT,  K_SPACE, K_RALT,  K_RCTRL, K_LEFT,  K_DOWN,  K_RIGHT, K_INSERT,   K_HOME,  K_PGUP,  K_BKSP,     K_BKSLASH,   
+   K_KP_7,     K_KP_8,  K_KP_9,  K_KP_MINUS, K_KP_1,     K_KP_2,  K_KP_3,  K_KP_ENTER, K_DEL,      K_END,      K_PGDN,     K_PRNSCR,   K_SCRLCK,    
+   K_KP_4,     K_KP_5,  K_KP_6,  K_KP_PLUS,  K_KP_DOT,   K_LGUI,  K_RGUI,  K_APPS,     K_NUMLOCK,  K_KP_SLASH, K_KP_AST,   K_FN,       K_KP_0,  
+  
+// set 2 : normal
+   // COL0     COL1     COL2     COL3     COL4     COL5     COL6     COL7     COL8        COL9     COL10    COL11       COL12       
+   K_ESC,      K_F1,    K_F2,    K_F3,    K_F4,    K_F5,    K_F6,    K_F7,    K_F8,       K_F9,    K_F10,   K_F11,      K_F12,     
+   K_HASH,     K_1,     K_2,     K_3,     K_4,     K_5,     K_6,     K_7,     K_8,        K_9,     K_0,     K_MINUS,    K_EQUAL,  
+   K_TAB,      K_Q,     K_W,     K_E,     K_R,     K_T,     K_Y,     K_U,     K_I,        K_O,     K_P,     K_LBR,      K_RBR,    
+   K_CAPS,     K_A,     K_S,     K_D,     K_F,     K_G,     K_H,     K_J,     K_K,        K_L,     K_COLON, K_QUOTE,    K_ENTER,  
+   K_LSHIFT,   K_Z,     K_X,     K_C,     K_V,     K_B,     K_N,     K_M,     K_COMMA,    K_DOT,   K_SLASH, K_RSHIFT,   K_UP
+   K_LCTRL,    K_LALT,  K_SPACE, K_RALT,  K_RCTRL, K_LEFT,  K_DOWN,  K_RIGHT, K_INSERT,   K_HOME,  K_PGUP,  K_BKSP,     K_BKSLASH,   
+   K_KP_7,     K_KP_8,  K_KP_9,  K_KP_MINUS, K_KP_1,     K_KP_2,  K_KP_3,  K_KP_ENTER, K_DEL,      K_END,      K_PGDN,     K_PRNSCR,   K_SCRLCK,    
+   K_KP_4,     K_KP_5,  K_KP_6,  K_KP_PLUS,  K_KP_DOT,   K_LGUI,  K_RGUI,  K_APPS,     K_NUMLOCK,  K_KP_SLASH, K_KP_AST,   K_FN,       K_KP_0,  
+
+// set 3 :  MACRO PAD
+   // COL0     COL1     COL2     COL3     COL4     COL5     COL6     COL7     COL8        COL9     COL10    COL11       COL12       
+   K_ESC,      K_F1,    K_F2,    K_F3,    K_F4,    K_F5,    K_F6,    K_F7,    K_F8,       K_F9,    K_F10,   K_F11,      K_F12,     
+   K_HASH,     K_1,     K_2,     K_3,     K_4,     K_5,     K_6,     K_7,     K_8,        K_9,     K_0,     K_MINUS,    K_EQUAL,  
+   K_TAB,      K_Q,     K_W,     K_E,     K_R,     K_T,     K_Y,     K_U,     K_I,        K_O,     K_P,     K_LBR,      K_RBR,    
+   K_CAPS,     K_A,     K_S,     K_D,     K_F,     K_G,     K_H,     K_J,     K_K,        K_L,     K_COLON, K_QUOTE,    K_ENTER,  
+   K_LSHIFT,   K_Z,     K_X,     K_C,     K_V,     K_B,     K_N,     K_M,     K_COMMA,    K_DOT,   K_SLASH, K_RSHIFT,   K_UP
+   K_LCTRL,    K_LALT,  K_SPACE, K_RALT,  K_RCTRL, K_LEFT,  K_DOWN,  K_RIGHT, K_INSERT,   K_HOME,  K_PGUP,  K_BKSP,     K_BKSLASH,   
+   K_M33,      K_M34,   K_M35,   K_KP_MINUS, K_M27,    K_M28,  K_M29,   K_KP_ENTER, K_DEL,      K_END,      K_PGDN,     K_PRNSCR,   K_SCRLCK,    
+   K_M30,      K_M31,   K_M32,   K_KP_PLUS,  K_KP_DOT, K_LGUI, K_RGUI,  K_APPS,     K_NUMLOCK,  K_KP_SLASH, K_KP_AST,   K_FN,       K_M36,
+
+// set 4 : MACRO NUM
+   // COL0     COL1     COL2     COL3     COL4     COL5     COL6     COL7     COL8        COL9     COL10    COL11       COL12       
+   K_ESC,      K_F1,    K_F2,    K_F3,    K_F4,    K_F5,    K_F6,    K_F7,    K_F8,       K_F9,    K_F10,   K_F11,      K_F12,     
+   K_HASH,     K_1,     K_2,     K_3,     K_4,     K_5,     K_6,     K_7,     K_8,        K_9,     K_0,     K_MINUS,    K_EQUAL,  
+   K_TAB,      K_Q,     K_W,     K_E,     K_R,     K_T,     K_Y,     K_U,     K_I,        K_O,     K_P,     K_LBR,      K_RBR,    
+   K_CAPS,     K_A,     K_S,     K_D,     K_F,     K_G,     K_H,     K_J,     K_K,        K_L,     K_COLON, K_QUOTE,    K_ENTER,  
+   K_LSHIFT,   K_Z,     K_X,     K_C,     K_V,     K_B,     K_N,     K_M,     K_COMMA,    K_DOT,   K_SLASH, K_RSHIFT,   K_UP
+   K_LCTRL,    K_LALT,  K_SPACE, K_RALT,  K_RCTRL, K_LEFT,  K_DOWN,  K_RIGHT, K_INSERT,   K_HOME,  K_PGUP,  K_BKSP,     K_BKSLASH,   
+   K_M33,      K_M34,   K_M35,   K_KP_MINUS, K_M27,    K_M28,  K_M29,   K_KP_ENTER, K_DEL,      K_END,      K_PGDN,     K_PRNSCR,   K_SCRLCK,    
+   K_M30,      K_M31,   K_M32,   K_KP_PLUS,  K_KP_DOT, K_LGUI, K_RGUI,  K_APPS,     K_NUMLOCK,  K_KP_SLASH, K_KP_AST,   K_FN,       K_M36,  
+
+// set 1 : FN
+   // COL0     COL1     COL2     COL3     COL4     COL5     COL6     COL7     COL8     COL9     COL10    COL11    COL12       
+   K_LED0,     K_L0,    K_L1,    K_L2,    K_L3,    K_F5,    K_F6,    K_F7,    K_F8,      K_F9,    K_F10,   K_MRESET,   K_RESET,     
+   K_HASH,     K_1,     K_2,     K_3,     K_4,     K_5,     K_6,     K_7,     K_8,       K_9,     K_0,     K_MINUS,    K_EQUAL,  
+   K_TAB,      K_M01,   K_M02,   K_M03,   K_M04,   K_M05,   K_M06,   K_M07,   K_M08,     K_M09,   K_M10,   K_LBR,      K_RBR,    
+   K_CAPS,     K_M11,   K_M12,   K_M13,   K_M14,   K_M15,   K_M16,   K_M17,   K_M18,     K_M19,   K_COLON, K_QUOTE,    K_ENTER,  
+   K_LSHIFT,   K_M20,   K_M21,   K_M22,   K_M23,   K_M24,   K_M25,   K_M26,   K_COMMA,   K_DOT,   K_SLASH, K_RSHIFT,   K_UP
+   K_LCTRL,    K_LALT,  K_SPACE, K_RALT,  K_RCTRL, K_LEFT,  K_DOWN,  K_RIGHT, K_INSERT,  K_HOME,  K_PGUP,  K_BKSP,     K_BKSLASH,   
+   K_KP_7,     K_KP_8,  K_KP_9,  K_KP_MINUS, K_KP_1,    K_KP_2,   K_KP_3,    K_KP_ENTER, K_DEL,      K_END,      K_PGDN,     K_PRNSCR,   K_PAUSE,    
+   K_KP_4,     K_KP_5,  K_KP_6,  K_KP_PLUS,  K_KP_DOT,  K_LGUI,   K_RGUI,    K_APPS,     K_NUMLOCK,  K_KP_SLASH, K_KP_AST,   K_FN,       K_KP_0,  
+
+LEDEFFECT   0x6800
+MODE        5
+BLOCK       11
+
+   //NUM    CAPS     SCRLOCK  PRTINDI  ESCINDI     Fx(EM7)     PAD            BASE(EM7)      WASD(EM7)      ARRROW18       VESEL
+   {ALWAYS, ALWAYS,  ALWAYS,  ALWAYS,  ALWAYS,     ALWAYS,     ALWAYS,        PUSHED_LEVEL,  ALWAYS,        ALWAYS,        ALWAYS},
+   {ALWAYS, ALWAYS,  ALWAYS,  ALWAYS,  ALWAYS,     ALWAYS,     FADING,        FADING,        FADING,        FADING,        FADING},
+   {ALWAYS, ALWAYS,  ALWAYS,  ALWAYS,  ALWAYS,     BASECAPS,   PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL},
+   {ALWAYS, ALWAYS,  ALWAYS,  ALWAYS,  ALWAYS,     BASECAPS,   PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL},
+   {ALWAYS, ALWAYS,  ALWAYS,  ALWAYS,  ALWAYS,     BASECAPS,   PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL,  PUSHED_LEVEL},

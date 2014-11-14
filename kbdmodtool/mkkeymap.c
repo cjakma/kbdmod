@@ -9,6 +9,10 @@
 #define MAX_LAYER   8
 #define MAXHEXLINE  32	/* the maximum number of bytes to put in one line */
 
+
+#define DBG_PRINTF(X, s...) printf(X, ##s )
+//#define DBG_PRINTF(X, s...)
+
 const char *keycode[256] = {
         "K_NONE",
         "ErrorRollOver",
@@ -291,7 +295,7 @@ const char *keycode[256] = {
 // Total 132 keys + one none
 
 
-unsigned char keymap_code[MAX_LAYER][MAX_ROW][MAX_COL];
+unsigned char keymap_code[MAX_LAYER * MAX_ROW * MAX_COL];
 
 
 const char *sLedmode[9] = {
@@ -340,17 +344,17 @@ int addressExtended = 0;
 short getKeyIdx(const char *keystring)
 {
     unsigned int i;
-    printf("%s\n", keystring);
+    DBG_PRINTF("%s\n", keystring);
     //scanf("%c", &temp);
     for (i = 0; i < 256; i++)
     {
         if(strcmp(keystring, keycode[i]) == 0)
         {
-            printf(": found!!\n");
+            DBG_PRINTF(": found!!\n");
             return (char)i;
         }
     }
-    printf("ERROR: matrix is invalied ! \n");
+    DBG_PRINTF("ERROR: matrix is invalied ! \n");
     //scanf("%c", &temp);
     return -1;
 }
@@ -361,17 +365,17 @@ short getKeyIdx(const char *keystring)
 short getLEDIdx(const char *str)
 {
     unsigned int i;
-    printf("%s", str);
+    DBG_PRINTF("%s", str);
     //scanf("%c", &temp);
     for (i = 0; i < 8; i++)
     {
         if(strcmp(str, sLedmode[i]) == 0)
         {
-            printf(": found!!\n");
+            DBG_PRINTF(": found!!\n");
             return (char)i;
         }
     }
-    printf("ERROR: LED is invalied ! \n");
+    DBG_PRINTF("ERROR: LED is invalied ! \n");
     //scanf("%c", &temp);
     return -1;
 }
@@ -389,7 +393,7 @@ int getToken(FILE *fp, char *pbuf)
         len = fread(&ch, 1, 1, fp);
         if((len != 1) || (i >= MAX_TOKEN_LEN))
         {
-            printf("read len = %d \n", len);
+            DBG_PRINTF("read len = %d \n", len);
             break;
         }
         if(ch == ',' || ch == ' '|| ch == '{' ||ch == '}'|| ch == '\n'|| ch == '\t'|| ch == '\r')           // seperator
@@ -423,9 +427,9 @@ int strtoi(char *str, int nsystem)
         i++;
     }
     
-    while(*str != 'x' && *str != 'X' && i-- != 0)
+    while(*str != 'x' && *str != 'X' && i-- >= 0)
     {
-        printf("%c", *str);
+        DBG_PRINTF("%c", *str);
         if('0' <= *str && *str <= '9')
         {
             number = *str -'0';
@@ -437,7 +441,7 @@ int strtoi(char *str, int nsystem)
             number = 10 + *str -'A';
         }else
         {
-            printf("Error : [%c] is not a Number \n", *str);
+            DBG_PRINTF("Error : [%c] is not a Number \n", *str);
             result = -1;
             break;
         }
@@ -449,6 +453,9 @@ int strtoi(char *str, int nsystem)
     return result;
 }
 
+int  maxrow, maxcol, maxlayer;
+
+    
 int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmode)
 {
     FILE *fp = fopen(filename, "r");
@@ -460,10 +467,15 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
     int mode;
     mode = PARSING_KEYMAP;
     
+    
+    maxrow = MAX_ROW;
+    maxcol = MAX_COL;
+    maxlayer = MAX_LAYER;
+    
     if (fp == NULL)
     {
-        printf("Error : Invalid file name!\n");
-        scanf("%c", &temp);
+        DBG_PRINTF("Error : Invalid file name!\n");
+//        scanf("%c", &temp);
         return -1;
     }
     
@@ -475,7 +487,7 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
         {
             break;
         }
-        printf("Token:%s , Len = %d\n", str, len);
+        DBG_PRINTF("Token:%s , Len = %d\n", str, len);
 
         if(strcmp(str, "KEYMAP") == 0)
         {
@@ -483,11 +495,11 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
             if(getToken(fp,str) == 0)
                 break;
             
-            printf("keymAddress = %s \n", str);
+            DBG_PRINTF("keymAddress = %s \n", str);
             keymAddress = strtoi(str,16);
             
-            printf("keymAddress = %x \n", keymAddress);
-            scanf("%c", &temp);
+            DBG_PRINTF("keymAddress = %x \n", keymAddress);
+//            scanf("%c", &temp);
             
         }else if(strcmp(str, "LEDEFFECT") == 0)
         {
@@ -496,11 +508,32 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
             if(getToken(fp,str) == 0)
                 break;
 
-            printf("ledmAddress = %s \n", str);
+            DBG_PRINTF("ledmAddress = %s \n", str);
             ledmAddress = strtoi(str,16);
 
-            printf("ledmAddress = %x \n", ledmAddress);
-            scanf("%c", &temp);
+            DBG_PRINTF("ledmAddress = %x \n", ledmAddress);
+//            scanf("%c", &temp);
+        }else if(strcmp(str, "ROW") == 0)
+        {
+            if(getToken(fp,str) == 0)
+                break;
+            DBG_PRINTF("maxrow = %s \n", str);
+            maxrow = strtoi(str, 10);
+            DBG_PRINTF("maxrow = %d \n", maxrow);
+        }else if(strcmp(str, "COLUMN") == 0)
+        {
+            if(getToken(fp,str) == 0)
+                break;
+            DBG_PRINTF("maxcolumn = %s \n", str);
+            maxcol = strtoi(str, 10);
+            DBG_PRINTF("maxcolumn = %d \n", maxcol);
+        }else if(strcmp(str, "LAYER") == 0)
+        {
+            if(getToken(fp,str) == 0)
+                break;
+            DBG_PRINTF("maxlayer = %s \n", str);
+            maxlayer = strtoi(str, 10);
+            DBG_PRINTF("maxlayer = %d \n", maxlayer);
         }
         if(mode == PARSING_KEYMAP)
         {
@@ -590,7 +623,7 @@ int main(int argc, char *argv[])
     
     if(argc != 2)
     {
-        printf("USAGE : mkkeymap.exe keymap.txt \n");
+        DBG_PRINTF("USAGE : mkkeymap.exe keymap.txt \n");
         return -1;
     }
     fnamelen = strlen(argv[1]);
@@ -599,19 +632,19 @@ int main(int argc, char *argv[])
     memcpy(fname, argv[1], fnamelen-4);
     strcat(fname, ".hex");
 
-    printf("%s \n", fname);
+    DBG_PRINTF("%s \n", fname);
       
     FILE *fp = fopen(fname, "w");
 
     
-   interprete(argv[1], &(keymap_code[0][0][0]), &(ledmode[0][0]));
+   interprete(argv[1], keymap_code, &(ledmode[0][0]));
  
    address = keymAddress;
 
-   for (layer = 0; layer < MAX_LAYER ; layer++)
+   for (layer = 0; layer < maxlayer ; layer++)
    {
-      keymap = &(keymap_code[layer][0][0]);
-      buffer2Hex(fp, address, MAX_ROW * MAX_COL, keymap);
+      keymap = &(keymap_code[layer * maxrow * maxcol]);
+      buffer2Hex(fp, address, maxrow * maxcol, keymap);
       address += 0x100;
    }
 
