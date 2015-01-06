@@ -294,7 +294,7 @@ const char *keycode[256] = {
 
 // Total 132 keys + one none
 
-
+char temp;
 unsigned char keymap_code[MAX_LAYER * MAX_ROW * MAX_COL];
 
 
@@ -429,7 +429,7 @@ int strtoi(char *str, int nsystem)
     
     while(*str != 'x' && *str != 'X' && i-- >= 0)
     {
-        DBG_PRINTF("%c", *str);
+        //DBG_PRINTF("%c", *str);
         if('0' <= *str && *str <= '9')
         {
             number = *str -'0';
@@ -499,7 +499,7 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
             keymAddress = strtoi(str,16);
             
             DBG_PRINTF("keymAddress = %x \n", keymAddress);
-//            scanf("%c", &temp);
+            //scanf("%c", &temp);
             
         }else if(strcmp(str, "LEDEFFECT") == 0)
         {
@@ -512,7 +512,7 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
             ledmAddress = strtoi(str,16);
 
             DBG_PRINTF("ledmAddress = %x \n", ledmAddress);
-//            scanf("%c", &temp);
+            //scanf("%c", &temp);
         }else if(strcmp(str, "ROW") == 0)
         {
             if(getToken(fp,str) == 0)
@@ -531,10 +531,11 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
         {
             if(getToken(fp,str) == 0)
                 break;
-            DBG_PRINTF("maxlayer = %s \n", str);
+            DBG_PRINTF("STRING maxlayer = %s \n", str);
             maxlayer = strtoi(str, 10);
-            DBG_PRINTF("maxlayer = %d \n", maxlayer);
+            DBG_PRINTF("DEC maxlayer = %d \n", maxlayer);
         }
+
         if(mode == PARSING_KEYMAP)
         {
             // 2. get key
@@ -551,7 +552,11 @@ int interprete(const char *filename, unsigned char *keymap, unsigned char *ledmo
                 // 3. put key to matrix
             *ledmode++ = (char)index;
         }
-    }        
+		
+		DBG_PRINTF("DEC maxlayer = %d \n", maxlayer);
+		if(maxlayer == -1)
+			break;
+	}        
     fclose(fp);
     return 0;
 }
@@ -638,9 +643,10 @@ int main(int argc, char *argv[])
 
     
    interprete(argv[1], keymap_code, &(ledmode[0][0]));
- 
+       DBG_PRINTF("DEC maxlayer = %d \n", maxlayer);
    address = keymAddress;
-
+	
+   DBG_PRINTF("maxlayer = %d \n", maxlayer);
    for (layer = 0; layer < maxlayer ; layer++)
    {
       keymap = &(keymap_code[layer * maxrow * maxcol]);
