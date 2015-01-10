@@ -223,5 +223,4 @@ pip-log.txt
 *.elf
 *.hex
 *.map
-*.exe
 *.zip
