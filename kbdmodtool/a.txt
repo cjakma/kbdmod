@@ -1,0 +1,4834 @@
+M592ottong.hex 
+Token:KEYMAP , Len = 6
+keymAddress = 0x9000 
+keymAddress = 9000 
+0x9000
+ERROR: matrix is invalied ! 
+Token:LAYER , Len = 5
+STRING maxlayer = 8 
+DEC maxlayer = 8 
+8
+ERROR: matrix is invalied ! 
+Token:ROW , Len = 3
+maxrow = 6 
+maxrow = 6 
+6
+ERROR: matrix is invalied ! 
+Token:COLUMN , Len = 6
+maxcolumn = 19 
+maxcolumn = 19 
+19
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER0 , Len = 6
+LAYER0
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_1 , Len = 3
+K_1
+: found!!
+DEC maxlayer = 8 
+Token:K_2 , Len = 3
+K_2
+: found!!
+DEC maxlayer = 8 
+Token:K_3 , Len = 3
+K_3
+: found!!
+DEC maxlayer = 8 
+Token:K_4 , Len = 3
+K_4
+: found!!
+DEC maxlayer = 8 
+Token:K_5 , Len = 3
+K_5
+: found!!
+DEC maxlayer = 8 
+Token:K_6 , Len = 3
+K_6
+: found!!
+DEC maxlayer = 8 
+Token:K_7 , Len = 3
+K_7
+: found!!
+DEC maxlayer = 8 
+Token:K_8 , Len = 3
+K_8
+: found!!
+DEC maxlayer = 8 
+Token:K_9 , Len = 3
+K_9
+: found!!
+DEC maxlayer = 8 
+Token:K_0 , Len = 3
+K_0
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_END , Len = 5
+K_END
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER0 , Len = 6
+LAYER0
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_1 , Len = 3
+K_1
+: found!!
+DEC maxlayer = 8 
+Token:K_2 , Len = 3
+K_2
+: found!!
+DEC maxlayer = 8 
+Token:K_3 , Len = 3
+K_3
+: found!!
+DEC maxlayer = 8 
+Token:K_4 , Len = 3
+K_4
+: found!!
+DEC maxlayer = 8 
+Token:K_5 , Len = 3
+K_5
+: found!!
+DEC maxlayer = 8 
+Token:K_6 , Len = 3
+K_6
+: found!!
+DEC maxlayer = 8 
+Token:K_7 , Len = 3
+K_7
+: found!!
+DEC maxlayer = 8 
+Token:K_8 , Len = 3
+K_8
+: found!!
+DEC maxlayer = 8 
+Token:K_9 , Len = 3
+K_9
+: found!!
+DEC maxlayer = 8 
+Token:K_0 , Len = 3
+K_0
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_END , Len = 5
+K_END
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER0 , Len = 6
+LAYER0
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_1 , Len = 3
+K_1
+: found!!
+DEC maxlayer = 8 
+Token:K_2 , Len = 3
+K_2
+: found!!
+DEC maxlayer = 8 
+Token:K_3 , Len = 3
+K_3
+: found!!
+DEC maxlayer = 8 
+Token:K_4 , Len = 3
+K_4
+: found!!
+DEC maxlayer = 8 
+Token:K_5 , Len = 3
+K_5
+: found!!
+DEC maxlayer = 8 
+Token:K_6 , Len = 3
+K_6
+: found!!
+DEC maxlayer = 8 
+Token:K_7 , Len = 3
+K_7
+: found!!
+DEC maxlayer = 8 
+Token:K_8 , Len = 3
+K_8
+: found!!
+DEC maxlayer = 8 
+Token:K_9 , Len = 3
+K_9
+: found!!
+DEC maxlayer = 8 
+Token:K_0 , Len = 3
+K_0
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_END , Len = 5
+K_END
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER0 , Len = 6
+LAYER0
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:normal , Len = 6
+normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_1 , Len = 3
+K_1
+: found!!
+DEC maxlayer = 8 
+Token:K_2 , Len = 3
+K_2
+: found!!
+DEC maxlayer = 8 
+Token:K_3 , Len = 3
+K_3
+: found!!
+DEC maxlayer = 8 
+Token:K_4 , Len = 3
+K_4
+: found!!
+DEC maxlayer = 8 
+Token:K_5 , Len = 3
+K_5
+: found!!
+DEC maxlayer = 8 
+Token:K_6 , Len = 3
+K_6
+: found!!
+DEC maxlayer = 8 
+Token:K_7 , Len = 3
+K_7
+: found!!
+DEC maxlayer = 8 
+Token:K_8 , Len = 3
+K_8
+: found!!
+DEC maxlayer = 8 
+Token:K_9 , Len = 3
+K_9
+: found!!
+DEC maxlayer = 8 
+Token:K_0 , Len = 3
+K_0
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_END , Len = 5
+K_END
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER4 , Len = 6
+LAYER4
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:Multimedia , Len = 10
+Multimedia
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:COL0 , Len = 4
+COL0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_NEXT_TRK , Len = 10
+K_NEXT_TRK
+: found!!
+DEC maxlayer = 8 
+Token:K_NEXT_TRK , Len = 10
+K_NEXT_TRK
+: found!!
+DEC maxlayer = 8 
+Token:K_STOP , Len = 6
+K_STOP
+: found!!
+DEC maxlayer = 8 
+Token:K_PLAY , Len = 6
+K_PLAY
+: found!!
+DEC maxlayer = 8 
+Token:K_MUTE , Len = 6
+K_MUTE
+: found!!
+DEC maxlayer = 8 
+Token:K_BASS_BST , Len = 10
+K_BASS_BST
+: found!!
+DEC maxlayer = 8 
+Token:K_LOUDNESS , Len = 10
+K_LOUDNESS
+: found!!
+DEC maxlayer = 8 
+Token:K_VOL_UP , Len = 8
+K_VOL_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_VOL_DOWN , Len = 10
+K_VOL_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_BASS_UP , Len = 9
+K_BASS_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_BASS_DN , Len = 9
+K_BASS_DN
+: found!!
+DEC maxlayer = 8 
+Token:K_TRE_UP , Len = 8
+K_TRE_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_TRE_DN , Len = 8
+K_TRE_DN
+: found!!
+DEC maxlayer = 8 
+Token:K_MEDIA_SEL , Len = 11
+K_MEDIA_SEL
+: found!!
+DEC maxlayer = 8 
+Token:K_MAIL , Len = 6
+K_MAIL
+: found!!
+DEC maxlayer = 8 
+Token:K_CALC , Len = 6
+K_CALC
+: found!!
+DEC maxlayer = 8 
+Token:K_MYCOM , Len = 7
+K_MYCOM
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_SEARCH , Len = 12
+K_WWW_SEARCH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_WWW_HOME , Len = 10
+K_WWW_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_BACK , Len = 10
+K_WWW_BACK
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_FORWARD , Len = 13
+K_WWW_FORWARD
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_STOP , Len = 10
+K_WWW_STOP
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_REFRESH , Len = 13
+K_WWW_REFRESH
+: found!!
+DEC maxlayer = 8 
+Token:K_WWW_FAVORITE , Len = 14
+K_WWW_FAVORITE
+: found!!
+DEC maxlayer = 8 
+Token:K_EJECT , Len = 7
+K_EJECT
+: found!!
+DEC maxlayer = 8 
+Token:K_SCREENSAVE , Len = 12
+K_SCREENSAVE
+: found!!
+DEC maxlayer = 8 
+Token:K_REC , Len = 5
+K_REC
+: found!!
+DEC maxlayer = 8 
+Token:K_REWIND , Len = 8
+K_REWIND
+: found!!
+DEC maxlayer = 8 
+Token:K_MINIMIZE , Len = 10
+K_MINIMIZE
+: found!!
+DEC maxlayer = 8 
+Token:K_System , Len = 8
+K_System
+: found!!
+DEC maxlayer = 8 
+Token:K_POWER , Len = 7
+K_POWER
+: found!!
+DEC maxlayer = 8 
+Token:K_SLEEP , Len = 7
+K_SLEEP
+: found!!
+DEC maxlayer = 8 
+Token:K_WAKE , Len = 6
+K_WAKE
+: found!!
+DEC maxlayer = 8 
+Token:K_WAKE , Len = 6
+K_WAKE
+: found!!
+DEC maxlayer = 8 
+Token:K_VOL_UP , Len = 8
+K_VOL_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER5 , Len = 6
+LAYER5
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:Normal , Len = 6
+Normal
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_PGUP , Len = 6
+K_PGUP
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_1 , Len = 3
+K_1
+: found!!
+DEC maxlayer = 8 
+Token:K_2 , Len = 3
+K_2
+: found!!
+DEC maxlayer = 8 
+Token:K_3 , Len = 3
+K_3
+: found!!
+DEC maxlayer = 8 
+Token:K_4 , Len = 3
+K_4
+: found!!
+DEC maxlayer = 8 
+Token:K_5 , Len = 3
+K_5
+: found!!
+DEC maxlayer = 8 
+Token:K_6 , Len = 3
+K_6
+: found!!
+DEC maxlayer = 8 
+Token:K_7 , Len = 3
+K_7
+: found!!
+DEC maxlayer = 8 
+Token:K_8 , Len = 3
+K_8
+: found!!
+DEC maxlayer = 8 
+Token:K_9 , Len = 3
+K_9
+: found!!
+DEC maxlayer = 8 
+Token:K_0 , Len = 3
+K_0
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_INSERT , Len = 8
+K_INSERT
+: found!!
+DEC maxlayer = 8 
+Token:K_HOME , Len = 6
+K_HOME
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_END , Len = 5
+K_END
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER6 , Len = 6
+LAYER6
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:LED , Len = 3
+LED
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_LFX , Len = 5
+K_LFX
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LASD , Len = 6
+K_LASD
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LASD , Len = 6
+K_LASD
+: found!!
+DEC maxlayer = 8 
+Token:K_LASD , Len = 6
+K_LASD
+: found!!
+DEC maxlayer = 8 
+Token:K_LASD , Len = 6
+K_LASD
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_LPAD , Len = 6
+K_LPAD
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LFULL , Len = 7
+K_LFULL
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_LARR , Len = 6
+K_LARR
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:LAYER7 , Len = 6
+LAYER7
+ERROR: matrix is invalied ! 
+Token:: , Len = 1
+:
+ERROR: matrix is invalied ! 
+Token:FN , Len = 2
+FN
+ERROR: matrix is invalied ! 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:COL1 , Len = 4
+COL1
+ERROR: matrix is invalied ! 
+Token:COL2 , Len = 4
+COL2
+ERROR: matrix is invalied ! 
+Token:COL3 , Len = 4
+COL3
+ERROR: matrix is invalied ! 
+Token:COL4 , Len = 4
+COL4
+ERROR: matrix is invalied ! 
+Token:COL5 , Len = 4
+COL5
+ERROR: matrix is invalied ! 
+Token:COL6 , Len = 4
+COL6
+ERROR: matrix is invalied ! 
+Token:COL7 , Len = 4
+COL7
+ERROR: matrix is invalied ! 
+Token:COL8 , Len = 4
+COL8
+ERROR: matrix is invalied ! 
+Token:COL9 , Len = 4
+COL9
+ERROR: matrix is invalied ! 
+Token:COL10 , Len = 5
+COL10
+ERROR: matrix is invalied ! 
+Token:COL11 , Len = 5
+COL11
+ERROR: matrix is invalied ! 
+Token:COL12 , Len = 5
+COL12
+ERROR: matrix is invalied ! 
+Token:COL13 , Len = 5
+COL13
+ERROR: matrix is invalied ! 
+Token:COL14 , Len = 5
+COL14
+ERROR: matrix is invalied ! 
+Token:COL15 , Len = 5
+COL15
+ERROR: matrix is invalied ! 
+Token:COL16 , Len = 5
+COL16
+ERROR: matrix is invalied ! 
+Token:COL17 , Len = 5
+COL17
+ERROR: matrix is invalied ! 
+Token:COL18 , Len = 5
+COL18
+ERROR: matrix is invalied ! 
+Token:K_ESC , Len = 5
+K_ESC
+: found!!
+DEC maxlayer = 8 
+Token:K_F1 , Len = 4
+K_F1
+: found!!
+DEC maxlayer = 8 
+Token:K_F2 , Len = 4
+K_F2
+: found!!
+DEC maxlayer = 8 
+Token:K_F3 , Len = 4
+K_F3
+: found!!
+DEC maxlayer = 8 
+Token:K_F4 , Len = 4
+K_F4
+: found!!
+DEC maxlayer = 8 
+Token:K_F5 , Len = 4
+K_F5
+: found!!
+DEC maxlayer = 8 
+Token:K_F6 , Len = 4
+K_F6
+: found!!
+DEC maxlayer = 8 
+Token:K_F7 , Len = 4
+K_F7
+: found!!
+DEC maxlayer = 8 
+Token:K_F8 , Len = 4
+K_F8
+: found!!
+DEC maxlayer = 8 
+Token:K_F9 , Len = 4
+K_F9
+: found!!
+DEC maxlayer = 8 
+Token:K_F10 , Len = 5
+K_F10
+: found!!
+DEC maxlayer = 8 
+Token:K_F11 , Len = 5
+K_F11
+: found!!
+DEC maxlayer = 8 
+Token:K_F12 , Len = 5
+K_F12
+: found!!
+DEC maxlayer = 8 
+Token:K_PRNSCR , Len = 8
+K_PRNSCR
+: found!!
+DEC maxlayer = 8 
+Token:K_DEL , Len = 5
+K_DEL
+: found!!
+DEC maxlayer = 8 
+Token:K_SCRLCK , Len = 8
+K_SCRLCK
+: found!!
+DEC maxlayer = 8 
+Token:K_PAUSE , Len = 7
+K_PAUSE
+: found!!
+DEC maxlayer = 8 
+Token:K_RCTRL , Len = 7
+K_RCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW0 , Len = 4
+ROW0
+ERROR: matrix is invalied ! 
+Token:K_HASH , Len = 6
+K_HASH
+: found!!
+DEC maxlayer = 8 
+Token:K_M01 , Len = 5
+K_M01
+: found!!
+DEC maxlayer = 8 
+Token:K_M02 , Len = 5
+K_M02
+: found!!
+DEC maxlayer = 8 
+Token:K_M03 , Len = 5
+K_M03
+: found!!
+DEC maxlayer = 8 
+Token:K_M04 , Len = 5
+K_M04
+: found!!
+DEC maxlayer = 8 
+Token:K_M05 , Len = 5
+K_M05
+: found!!
+DEC maxlayer = 8 
+Token:K_M06 , Len = 5
+K_M06
+: found!!
+DEC maxlayer = 8 
+Token:K_M07 , Len = 5
+K_M07
+: found!!
+DEC maxlayer = 8 
+Token:K_M08 , Len = 5
+K_M08
+: found!!
+DEC maxlayer = 8 
+Token:K_M09 , Len = 5
+K_M09
+: found!!
+DEC maxlayer = 8 
+Token:K_M10 , Len = 5
+K_M10
+: found!!
+DEC maxlayer = 8 
+Token:K_MINUS , Len = 7
+K_MINUS
+: found!!
+DEC maxlayer = 8 
+Token:K_EQUAL , Len = 7
+K_EQUAL
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSP , Len = 6
+K_BKSP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NUMLOCK , Len = 9
+K_NUMLOCK
+: found!!
+DEC maxlayer = 8 
+Token:K_PGDN , Len = 6
+K_PGDN
+: found!!
+DEC maxlayer = 8 
+Token:K_FN , Len = 4
+K_FN
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW1 , Len = 4
+ROW1
+ERROR: matrix is invalied ! 
+Token:K_TAB , Len = 5
+K_TAB
+: found!!
+DEC maxlayer = 8 
+Token:K_Q , Len = 3
+K_Q
+: found!!
+DEC maxlayer = 8 
+Token:K_W , Len = 3
+K_W
+: found!!
+DEC maxlayer = 8 
+Token:K_E , Len = 3
+K_E
+: found!!
+DEC maxlayer = 8 
+Token:K_R , Len = 3
+K_R
+: found!!
+DEC maxlayer = 8 
+Token:K_T , Len = 3
+K_T
+: found!!
+DEC maxlayer = 8 
+Token:K_Y , Len = 3
+K_Y
+: found!!
+DEC maxlayer = 8 
+Token:K_U , Len = 3
+K_U
+: found!!
+DEC maxlayer = 8 
+Token:K_I , Len = 3
+K_I
+: found!!
+DEC maxlayer = 8 
+Token:K_O , Len = 3
+K_O
+: found!!
+DEC maxlayer = 8 
+Token:K_P , Len = 3
+K_P
+: found!!
+DEC maxlayer = 8 
+Token:K_LBR , Len = 5
+K_LBR
+: found!!
+DEC maxlayer = 8 
+Token:K_RBR , Len = 5
+K_RBR
+: found!!
+DEC maxlayer = 8 
+Token:K_BKSLASH , Len = 9
+K_BKSLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_7 , Len = 6
+K_KP_7
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_8 , Len = 6
+K_KP_8
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_9 , Len = 6
+K_KP_9
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW2 , Len = 4
+ROW2
+ERROR: matrix is invalied ! 
+Token:K_CAPS , Len = 6
+K_CAPS
+: found!!
+DEC maxlayer = 8 
+Token:K_A , Len = 3
+K_A
+: found!!
+DEC maxlayer = 8 
+Token:K_S , Len = 3
+K_S
+: found!!
+DEC maxlayer = 8 
+Token:K_D , Len = 3
+K_D
+: found!!
+DEC maxlayer = 8 
+Token:K_F , Len = 3
+K_F
+: found!!
+DEC maxlayer = 8 
+Token:K_G , Len = 3
+K_G
+: found!!
+DEC maxlayer = 8 
+Token:K_H , Len = 3
+K_H
+: found!!
+DEC maxlayer = 8 
+Token:K_J , Len = 3
+K_J
+: found!!
+DEC maxlayer = 8 
+Token:K_K , Len = 3
+K_K
+: found!!
+DEC maxlayer = 8 
+Token:K_L , Len = 3
+K_L
+: found!!
+DEC maxlayer = 8 
+Token:K_COLON , Len = 7
+K_COLON
+: found!!
+DEC maxlayer = 8 
+Token:K_QUOTE , Len = 7
+K_QUOTE
+: found!!
+DEC maxlayer = 8 
+Token:K_ENTER , Len = 7
+K_ENTER
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_4 , Len = 6
+K_KP_4
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_5 , Len = 6
+K_KP_5
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_6 , Len = 6
+K_KP_6
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW3 , Len = 4
+ROW3
+ERROR: matrix is invalied ! 
+Token:K_LSHIFT , Len = 8
+K_LSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_Z , Len = 3
+K_Z
+: found!!
+DEC maxlayer = 8 
+Token:K_X , Len = 3
+K_X
+: found!!
+DEC maxlayer = 8 
+Token:K_C , Len = 3
+K_C
+: found!!
+DEC maxlayer = 8 
+Token:K_V , Len = 3
+K_V
+: found!!
+DEC maxlayer = 8 
+Token:K_B , Len = 3
+K_B
+: found!!
+DEC maxlayer = 8 
+Token:K_N , Len = 3
+K_N
+: found!!
+DEC maxlayer = 8 
+Token:K_M , Len = 3
+K_M
+: found!!
+DEC maxlayer = 8 
+Token:K_COMMA , Len = 7
+K_COMMA
+: found!!
+DEC maxlayer = 8 
+Token:K_DOT , Len = 5
+K_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_SLASH , Len = 7
+K_SLASH
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RSHIFT , Len = 8
+K_RSHIFT
+: found!!
+DEC maxlayer = 8 
+Token:K_UP , Len = 4
+K_UP
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_1 , Len = 6
+K_KP_1
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_2 , Len = 6
+K_KP_2
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_3 , Len = 6
+K_KP_3
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW4 , Len = 4
+ROW4
+ERROR: matrix is invalied ! 
+Token:K_LCTRL , Len = 7
+K_LCTRL
+: found!!
+DEC maxlayer = 8 
+Token:K_LGUI , Len = 6
+K_LGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_LALT , Len = 6
+K_LALT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_SPACE , Len = 7
+K_SPACE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:K_RALT , Len = 6
+K_RALT
+: found!!
+DEC maxlayer = 8 
+Token:K_RGUI , Len = 6
+K_RGUI
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_APPS , Len = 6
+K_APPS
+: found!!
+DEC maxlayer = 8 
+Token:K_LEFT , Len = 6
+K_LEFT
+: found!!
+DEC maxlayer = 8 
+Token:K_DOWN , Len = 6
+K_DOWN
+: found!!
+DEC maxlayer = 8 
+Token:K_RIGHT , Len = 7
+K_RIGHT
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_0 , Len = 6
+K_KP_0
+: found!!
+DEC maxlayer = 8 
+Token:K_KP_DOT , Len = 8
+K_KP_DOT
+: found!!
+DEC maxlayer = 8 
+Token:K_NONE , Len = 6
+K_NONE
+: found!!
+DEC maxlayer = 8 
+Token:// , Len = 2
+//
+ERROR: matrix is invalied ! 
+Token:ROW5 , Len = 4
+ROW5
+ERROR: matrix is invalied ! 
+Token:LEDEFFECT , Len = 9
+ledmAddress = 0x9800 
+ledmAddress = 9800 
+0x9800ERROR: LED is invalied ! 
+Token:MODE , Len = 4
+MODEERROR: LED is invalied ! 
+Token:8 , Len = 1
+8ERROR: LED is invalied ! 
+Token:BLOCK , Len = 5
+BLOCKERROR: LED is invalied ! 
+Token:11 , Len = 2
+11ERROR: LED is invalied ! 
+Token://NUM , Len = 5
+//NUMERROR: LED is invalied ! 
+Token:CAPS , Len = 4
+CAPSERROR: LED is invalied ! 
+Token:SCRLOCK , Len = 7
+SCRLOCKERROR: LED is invalied ! 
+Token:PRTINDI , Len = 7
+PRTINDIERROR: LED is invalied ! 
+Token:ESCINDI , Len = 7
+ESCINDIERROR: LED is invalied ! 
+Token:Fx , Len = 2
+FxERROR: LED is invalied ! 
+Token:PAD , Len = 3
+PADERROR: LED is invalied ! 
+Token:BASE , Len = 4
+BASEERROR: LED is invalied ! 
+Token:WASD , Len = 4
+WASDERROR: LED is invalied ! 
+Token:ARRROW18 , Len = 8
+ARRROW18ERROR: LED is invalied ! 
+Token:VESEL , Len = 5
+VESELERROR: LED is invalied ! 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:FADING , Len = 6
+FADING: found!!
+DEC maxlayer = 8 
+Token:FADING , Len = 6
+FADING: found!!
+DEC maxlayer = 8 
+Token:FADING , Len = 6
+FADING: found!!
+DEC maxlayer = 8 
+Token:FADING , Len = 6
+FADING: found!!
+DEC maxlayer = 8 
+Token:FADING , Len = 6
+FADING: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:ALWAYS , Len = 6
+ALWAYS: found!!
+DEC maxlayer = 8 
+Token:BASECAPS , Len = 8
+BASECAPS: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+Token:PUSHED_LEVEL , Len = 12
+PUSHED_LEVEL: found!!
+DEC maxlayer = 8 
+read len = 0 
+DEC maxlayer = 8 
+maxlayer = 8 

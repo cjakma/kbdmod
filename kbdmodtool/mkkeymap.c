@@ -625,6 +625,7 @@ int main(int argc, char *argv[])
     unsigned char *keymap;
     int fnamelen;
     char *fname;
+    char *binname;
     
     if(argc != 2)
     {
@@ -636,17 +637,26 @@ int main(int argc, char *argv[])
     memset(fname, '\0', fnamelen);
     memcpy(fname, argv[1], fnamelen-4);
     strcat(fname, ".hex");
-
+   
+    binname = malloc(fnamelen+1);
+    memset(binname, '\0', fnamelen);
+    memcpy(binname, argv[1], fnamelen-4);
+    strcat(binname, ".bin");
+    
+    
     DBG_PRINTF("%s \n", fname);
       
     FILE *fp = fopen(fname, "w");
-
+    FILE *fpb = fopen(binname, "wb");
     
    interprete(argv[1], keymap_code, &(ledmode[0][0]));
        DBG_PRINTF("DEC maxlayer = %d \n", maxlayer);
    address = keymAddress;
 	
    DBG_PRINTF("maxlayer = %d \n", maxlayer);
+   
+   fwrite(keymap_code,1, maxlayer * maxrow * maxcol, fpb);
+   fclose(fpb);
    for (layer = 0; layer < maxlayer ; layer++)
    {
       keymap = &(keymap_code[layer * maxrow * maxcol]);
